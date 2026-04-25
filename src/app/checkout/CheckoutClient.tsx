@@ -105,7 +105,7 @@ export const CheckoutClient = () => {
         // In Medusa v2, payment_collection has payment_sessions
         const session = paymentCollection?.payment_sessions?.find((s: HttpTypes.StorePaymentSession) => s.provider_id === "stripe");
         if (session?.data?.client_secret) {
-          setClientSecret(session.data.client_secret);
+          setClientSecret(session.data.client_secret as string);
           setStep("payment");
         } else {
           throw new Error("Payment session could not be established. Please try again or contact support.");
