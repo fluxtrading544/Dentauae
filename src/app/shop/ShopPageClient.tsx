@@ -47,7 +47,7 @@ export const ShopPageClient = ({ initialProducts }: { initialProducts: Product[]
   const heroContent = {
     title: selectedCategory || "The Clinical Collection",
     description: "Advanced oral care technology for a brighter, healthier smile. Discover premium models expertly curated for the UAE.",
-    image: initialProducts.find(p => p.category === selectedCategory)?.image || initialProducts[0].image
+    image: initialProducts.find(p => p.category === selectedCategory)?.image || initialProducts[0]?.image || "https://lh3.googleusercontent.com/aida/ADBb0uihHWsAYPZ-TfRuQ_ggJRfzLqraJD5F_kSb_LgjEoYHNv4tdVDjjOEVVmTcSaZ_IekfH6G_0xlPbB-11mbfD9DrohjqhUC0t_-0Hc-BzxcMKce6MZpkhOYqia1ChIagYBVUSVI0dCClUGtKd_m9LG7-GJ1li7TVxu4dJsZjDF88M0Ic1q5fjTAP2-i3GFvNPczxD3gy8moe81s24Akp4jecBb1EjZA5y5P5gmQW0n1djO-ONGDGF81bvkXk"
   };
 
   return (
