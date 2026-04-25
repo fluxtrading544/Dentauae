@@ -30,7 +30,8 @@ export function mapMedusaProductToStorefront(medusaProduct: HttpTypes.StoreProdu
     price: v.calculated_price?.calculated_amount ?? 0,
     thumbnail: (v as { metadata?: { thumbnail_url?: string; image_url?: string } }).metadata?.thumbnail_url || (v as { metadata?: { thumbnail_url?: string; image_url?: string } }).metadata?.image_url,
     options: v.options?.reduce((acc: Record<string, string | undefined>, opt: HttpTypes.StoreProductOptionValue) => {
-      acc[opt.option?.title || opt.option_id] = opt.value;
+      const key = (opt.option?.title || opt.option_id) as string;
+      if (key) acc[key] = opt.value;
       return acc;
     }, {}) || {}
   }));
