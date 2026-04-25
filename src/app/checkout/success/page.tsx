@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { CheckCircle, Package, ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function SuccessPage() {
+function SuccessContent() {
   const [mounted, setMounted] = useState(false);
   const searchParams = useSearchParams();
   const orderId = searchParams.get("id");
@@ -66,5 +66,13 @@ export default function SuccessPage() {
         </Link>
       </div>
     </main>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen pt-32 pb-24 flex items-center justify-center font-bold text-primary-dark">Loading Order...</div>}>
+      <SuccessContent />
+    </Suspense>
   );
 }

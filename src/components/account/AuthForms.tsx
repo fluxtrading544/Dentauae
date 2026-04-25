@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useCartStore } from "@/lib/store";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Lock, Mail, ArrowRight, UserPlus, Loader2 } from "lucide-react";
 
-export default function AuthForms() {
+function AuthFormsContent() {
   const [view, setView] = useState<"login" | "register">("login");
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -160,5 +160,13 @@ export default function AuthForms() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AuthForms() {
+  return (
+    <Suspense fallback={<div className="w-full max-w-md mx-auto text-center py-10 font-bold text-primary-dark">Loading Authentication Securely...</div>}>
+      <AuthFormsContent />
+    </Suspense>
   );
 }
