@@ -62,7 +62,6 @@ export const StripePayment: React.FC<StripePaymentProps> = ({ onSuccess, onError
         <PaymentElement 
           options={{
             layout: "tabs",
-            theme: "stripe",
           }} 
         />
         
