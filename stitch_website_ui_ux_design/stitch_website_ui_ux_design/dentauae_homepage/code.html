@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "primary-container": "#0f6e56",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1a1c1b",
+                    "tertiary-fixed": "#ffdcbb",
+                    "surface-bright": "#f9f9f7",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "inverse-primary": "#84d6b9",
+                    "secondary-fixed": "#d3e7e0",
+                    "on-primary-fixed-variant": "#00513e",
+                    "primary-fixed-dim": "#84d6b9",
+                    "secondary": "#50625d",
+                    "primary-fixed": "#a0f3d4",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#005440",
+                    "on-secondary-fixed-variant": "#394a45",
+                    "on-secondary-fixed": "#0d1f1b",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb869",
+                    "tertiary": "#6b3f00",
+                    "surface-tint": "#086b53",
+                    "surface-container-high": "#e8e8e6",
+                    "on-background": "#1a1c1b",
+                    "on-primary-fixed": "#002117",
+                    "secondary-fixed-dim": "#b7cbc4",
+                    "on-primary-container": "#9aedcf",
+                    "inverse-on-surface": "#f1f1ef",
+                    "tertiary-container": "#8c5400",
+                    "on-tertiary-container": "#ffd5ac",
+                    "surface-variant": "#e2e3e1",
+                    "on-secondary-container": "#566863",
+                    "secondary-container": "#d3e7e0",
+                    "outline": "#6f7a74",
+                    "surface": "#f9f9f7",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#bec9c3",
+                    "on-surface-variant": "#3f4944",
+                    "error-container": "#ffdad6",
+                    "background": "#f9f9f7",
+                    "surface-container-highest": "#e2e3e1",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eeeeec",
+                    "surface-dim": "#dadad8",
+                    "surface-container-low": "#f4f4f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-2 font-headline">
+                DentaUAE
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-label text-base tracking-tight">
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">Shop</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">Brands</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">Deals</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">Blog</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">For Clinics</a>
+</div>
+<div class="flex items-center space-x-6">
+<span class="text-emerald-900 font-medium text-sm">EN | عربي</span>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors">search</span>
+<span class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors">favorite</span>
+<div class="relative">
+<span class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors">shopping_cart</span>
+<span class="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+</div>
+<span class="material-symbols-outlined cursor-pointer text-on-surface hover:text-primary transition-colors">person</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Used as Category Header here) -->
+<div class="mt-[72px] bg-emerald-50/50 w-full h-14 flex items-center justify-center border-b border-outline-variant/10">
+<div class="flex flex-row justify-center items-center space-x-12 w-full max-w-7xl px-4 overflow-x-auto no-scrollbar">
+<a class="flex items-center gap-2 text-emerald-900 font-bold whitespace-nowrap text-sm font-label" href="#">
+<span class="material-symbols-outlined text-sm">electric_bolt</span>Electric Brushes
+            </a>
+<a class="flex items-center gap-2 text-emerald-700 opacity-80 hover:opacity-100 whitespace-nowrap text-sm font-label" href="#">
+<span class="material-symbols-outlined text-sm">brush</span>Toothpaste
+            </a>
+<a class="flex items-center gap-2 text-emerald-700 opacity-80 hover:opacity-100 whitespace-nowrap text-sm font-label" href="#">
+<span class="material-symbols-outlined text-sm">flare</span>Whitening
+            </a>
+<a class="flex items-center gap-2 text-emerald-700 opacity-80 hover:opacity-100 whitespace-nowrap text-sm font-label" href="#">
+<span class="material-symbols-outlined text-sm">water_drop</span>Mouthwash
+            </a>
+<a class="flex items-center gap-2 text-emerald-700 opacity-80 hover:opacity-100 whitespace-nowrap text-sm font-label" href="#">
+<span class="material-symbols-outlined text-sm">linear_scale</span>Floss &amp; Picks
+            </a>
+<a class="flex items-center gap-2 text-emerald-700 opacity-80 hover:opacity-100 whitespace-nowrap text-sm font-label" href="#">
+<span class="material-symbols-outlined text-sm">child_care</span>Kids Dental
+            </a>
+</div>
+</div>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center overflow-hidden pt-12">
+<div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-primary-container/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[5%] left-[5%] w-[400px] h-[400px] bg-tertiary/5 rounded-full blur-[100px]"></div>
+<div class="max-w-screen-2xl mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="z-10 space-y-8">
+<span class="inline-block px-4 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold tracking-widest uppercase">Premium Dental Care</span>
+<h1 class="text-6xl md:text-7xl font-headline font-bold text-on-surface leading-[1.1] -tracking-[0.02em]">
+                        Smile Brighter, <br/><span class="text-primary italic">Every Single Day</span>
+</h1>
+<p class="text-xl text-on-surface-variant max-w-lg leading-relaxed">
+                        Curated professional dental solutions delivered to your doorstep. Experience the gold standard of oral hygiene in the UAE.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="px-8 py-4 bg-primary text-on-primary rounded-xl font-bold flex items-center gap-3 hover:shadow-xl transition-all duration-300">
+                            Shop Collections <span class="material-symbols-outlined">arrow_right_alt</span>
+</button>
+<button class="px-8 py-4 bg-surface-container-lowest text-primary border border-outline-variant/30 rounded-xl font-bold hover:bg-surface-container-low transition-all">
+                            View All Brands
+                        </button>
+</div>
+</div>
+<div class="relative flex justify-center items-center">
+<div class="relative w-full max-w-lg aspect-square bg-surface-container-low rounded-[48px] overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-90" data-alt="professional luxury dental products including a sleek electric toothbrush and glass bottles on a clean minimalist surface with soft teal shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnLK605AAoW7E6scFIxuymir7Oe2pz_NkYkcIw2hL78soQf0jxIL78P4taDGZo3iyf_rZ6HKx6fe0lYCP9Y3bs24bH-tmHEiMt4ViHaZA6rnM78JKzAFI71JUlgGcG-xF3rD0DCAor5btcJq_F5hRM6LJcV_N86jclf4pvkxgb0zhUQkp21yDus4GOXgmDDapo5nDkLhvk9J0ZEBHMp_DY7IEXN14MQtig42UnhZW5SMzy7JLY7di8S5zFJR8a6sBn6gyfEVkn46B3"/>
+</div>
+<!-- Product Mockup Cards Floating -->
+<div class="absolute -top-8 -right-4 md:right-0 bg-surface-container-lowest p-6 rounded-2xl shadow-2xl w-64 border border-outline-variant/10">
+<div class="w-full aspect-square bg-surface-container-low rounded-xl mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Oral-B iO 9 electric toothbrush in matte black finish standing against a clean clinical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9zUK8QqFTgNefPwNopbl6goavDqU4vaCNyV1I8BboADPJU1_RgODOn_CEvJcLHZ5-CybcnDvrRRWu2mtVT6NeJgXc2qQDZvCWgT_HdAQU1sim9IwGIjfR8ZFGZ2ke8Ptp6oLaa5TBA89LfX0TIfmbC9O-Tf_AplcvgrnZ7y3MXhsSS7G-2OFa50PROAFBizQNU9ji0bhRFSLNfOFV3dB1P9rY8yXlhUAAZvL9jAYw5OAT1OI69L_D8C8fbBqBfU6S88hmgBcKpb2G"/>
+</div>
+<h4 class="font-bold text-on-surface">Oral-B iO 9</h4>
+<p class="text-sm text-on-surface-variant">Intelligent AI Pressure Control</p>
+<p class="text-primary font-bold mt-2">AED 1,499</p>
+</div>
+<div class="absolute -bottom-8 -left-4 md:-left-8 bg-surface-container-lowest p-6 rounded-2xl shadow-2xl w-64 border border-outline-variant/10">
+<div class="w-full aspect-square bg-surface-container-low rounded-xl mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Philips Sonicare 9900 Prestige electric toothbrush in champagne gold finish on a marble surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOQHtUv-vVE5-sCJRUxIE1RGbFsTntaI5WVKxtZRI7tGn3irmHFz48nWMKomGnntVgb3WMt3ZolvxREpAkCsasMZYpFv5kOPFKWQoj-dxvDBUg7E9BVpNEYXeSSqbR-35dqytyUN2zXug_sO2kurpl5whRSjHs3OYS981v-iNzI-797964-BSMvEMfhUXGO3yEWI6m0oEyxyR_lXaF-1Xui4f9gBoG3N101gfvLfKUp3y6-NBhk_gOY8CDHeRVF0pnQPufQWEHJJxd"/>
+</div>
+<h4 class="font-bold text-on-surface">Sonicare 9900</h4>
+<p class="text-sm text-on-surface-variant">SenseIQ Technology</p>
+<p class="text-primary font-bold mt-2">AED 1,349</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Brand Strip -->
+<section class="py-12 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="flex flex-wrap justify-between items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+<img class="h-8 md:h-10 w-auto object-contain" data-alt="Oral-B professional brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjeqluMlNecYVh6jSDfu5XFKP4HgQy4g6ue44JsDPXBluOHI1jnmDmz9eQTp6uKtPX4Q6bxYiUqIFEUz3pNyNKbu3_yndJdD3e2T-OiC_Xm7WZOuWjnPdOwvOW4RGDkipvBj7VzD3vrP0q_YEoHDg3Uv5n14ZPJAvA1_0LuTl6nZ778Gwrq3Inf-kVduthVbSWHUb81az-xHiIK7TMVu9I8UU4vMEDz7QQ3FhGHHWbroQhxxRfLoyApGDiSA_77kgbcMZ2rmP8xV3J"/>
+<img class="h-8 md:h-10 w-auto object-contain" data-alt="Philips Sonicare brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi26s--v4uIV86-lu0ECtkRmCn8_J9hv8Ns2cdzfW31aBnzQnUvF8YY9Zo_fChHcVIjkAGq8zXgCBFySz_0Z2wnChklBHEhjIBTl7oYCqlcAnxZ8TB0Op2-0-PAWzSgIZIVJvEyzpHOcozHOtURns-HWKl9h6wKJYdYBNbVDfzivteNztbEUTAqcL4ci-FHgnHgq7V0kcH8gVNZ6qeDt7BUaAoMVHMw1KhHiKlmgja496TSdnvpzKcwgruu2eTN-9EJBsDna9bXz0s"/>
+<img class="h-8 md:h-10 w-auto object-contain" data-alt="Colgate professional dental brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0A43_ZallbHTeqsxpdm7erWI0zqW79Y1Jv2UugtdIr_jEQolwriP_CWWzFYMmCMjsMHLuJZgww5ixOKqn_eq0l76To1AJQyc9bOAIx1CkcsaZvVJ4CFi3L4A9jasnyjK2gE0UPelOB9f9VayZV-bH5vvXrhCbACYyyDMf7VjTB0siE9-zyEawmjPB8m22_mFrn2xDHL1pfC0qknoumXjmCySI83zuRlfzbMkqTXFyXo3dHa_EzMcK2U0d2bifuCzXKdp1teC90zkY"/>
+<img class="h-8 md:h-10 w-auto object-contain" data-alt="Sensodyne sensitive toothpaste logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5PGIYCG86ES0PaEp1WOte_VWkdjVI8HIK2Mx83Q--SpB6pfdD20FPi_odIqEmTyoa8zk2pDHcRkNN5WjOTSfNVLOVBWt8OKzBbZfD8WAWpjBH9aPmfYrvStuCj3d7n9WLEtFmc2Y1MGKe0mPjIoCPMEPhrOEiGRF4L6Cesde9mD-ThSkqGDLUbq97uoqkP-Ix282nq1ZU_ndGLchAvuuZVVQqKYEvTqc37Ib4UrCPaaMvzLLwYSq8yjYddjoJT_CNmKLNV9AxN7mP"/>
+<img class="h-8 md:h-10 w-auto object-contain" data-alt="Curaprox premium dental care logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC-bDdYkmidD3vjOmpy2OR3o061yczK5iJsDkRI1j7RVLUtMVEq6S7h2xflfFEC3EGRt3cCZU6WeRce_k6TqCtzR1sxvVanpcM-G-8q9-qEADQEG4XWAwnDNtLsmkWVjF34zMEmnMAzDbIHiKHtd8CDX_9dguMZMvym8DaDaYnKtelPfLKXwZDFhgTDMH7Pny8pxpQU0YcNscXgqXG4s_ctkuaSI_-DQOERfXIU9tl4G6JpcxBbAc5_apFELNfOC3ItT9yrShHh2Aw"/>
+<img class="h-8 md:h-10 w-auto object-contain" data-alt="Waterpik oral irrigator brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNl4aWQecvFyQHfsP-WBkqkYYxf9fPG4R5PXH0a5ElVGmq-GK89JEulkRlFkpGfwDYi6Uq_1_Vaqggi_xaja9P6HqiOewTHx210fBqPzf8MnynA3p9kwGqo7S5KHM5asK2u06h0PV1OyMN_S9ArPpK1Xavv9mGDEi2BAXg8Utc-7DxZUKaDGxN5CV0BN0ZMOo1-lfXeejzDgrGkWEj5-6x7BA8flomAzTWBDpcucgklSk3VxDObZGkuIkbwS-tTAvJugj8gfOkFLUz"/>
+</div>
+</div>
+</section>
+<!-- Featured Categories -->
+<section class="py-24 max-w-screen-2xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-4xl font-headline font-bold mb-4">Shop by Category</h2>
+<p class="text-on-surface-variant max-w-md">Tailored solutions for every aspect of your oral wellness journey.</p>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 group underline underline-offset-4" href="#">
+                    Explore All <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- 8 Category Cards -->
+<a class="group relative aspect-[4/5] bg-surface-container-low rounded-3xl overflow-hidden p-8 flex flex-col justify-end border border-transparent hover:border-primary/20 transition-all" href="#">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20" data-alt="close up of premium electric toothbrush bristles with water droplets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz0SPnYbAuIAL0-srmwVWKPUZZS2Pk1kH14hza2VtQfnCRBm0zMQi5oHwa_wXXGXoZZrzKaC2z92IVms8X_eCpVTR4dHz5msVQnj1Tqc_6DQrtE1S8pjctWBM4qvyOzI9uKxTctYbmHioDqgaXZyGEx9nKaZ2iIZdQvYpzlPbW7nRV0Sn3Xla-9TLC8URjDtAMjdsFXCZUGaTjzJyWJ46-FOI_8Kek522f841MIJ_5t39FIoUf4HcnIfvvdTmbJxhogviHk0x98HdW"/>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">electric_bolt</span>
+<h3 class="text-xl font-bold font-headline">Electric Brushes</h3>
+</a>
+<a class="group relative aspect-[4/5] bg-surface-container-low rounded-3xl overflow-hidden p-8 flex flex-col justify-end border border-transparent hover:border-primary/20 transition-all" href="#">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20" data-alt="smooth minty toothpaste texture with a swirl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-08vQbkNR42t94HWxLMA2W6MQNWZ2503Rx8iG9o20DjvBQqTlaWwnoc80erFqbMi0X4w6vVxVOf4VqYD7ML77XRvKL7H0YxxXcGLsCpUI7dYPyGQKgjdQsgtQFu62yVdan1bHJf4AwDd7b-OxwtAlLkRvrFqccdWdis1XCS-ZtQElE5HpwNW1F-p1kewPHGTlsKXM3JUXHuESFipC17bjXLH1RrGltLDY2saIbNra2z7PCur0QTCfoqBeZtRy6jYPQC45SrjkrU_F"/>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">brush</span>
+<h3 class="text-xl font-bold font-headline">Toothpaste</h3>
+</a>
+<a class="group relative aspect-[4/5] bg-surface-container-low rounded-3xl overflow-hidden p-8 flex flex-col justify-end border border-transparent hover:border-primary/20 transition-all" href="#">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20" data-alt="shining clean white surface representing dental whitening excellence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAZavtSojqBhJrrNLGy5dGawkoN42TFwuWrgn52WqxZw6UkzyRi-ebW1764rFT-xuRK8RLhrdIGgiKQjZATL_pNYwyMJjUEH3eqz8HHqx6xL-4dKizj9U2ADnQOv4WBi_onALnyeZn9UOHDdorA7ntzIFyHKiLympwfo1rjOhd11_0fl6u_ugwc8VMBKS0FYtyc1dCmeljhMrpURsMh-xVs4UQppF66LInALBkQS_Ss8P3Y1_wDNLuAI7jQVZ1P-IMyIcv5L337wyC"/>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">flare</span>
+<h3 class="text-xl font-bold font-headline">Whitening</h3>
+</a>
+<a class="group relative aspect-[4/5] bg-surface-container-low rounded-3xl overflow-hidden p-8 flex flex-col justify-end border border-transparent hover:border-primary/20 transition-all" href="#">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20" data-alt="refreshing clear blue liquid with bubbles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkxF4R9aAJQ1ZDZJYlIU4NFcWBipfaF35hRcA4BTHBeOGDYmwtvDpRjEeqjPj1XFRDwpn5HaNGyYP72w-qaNytIMorDdKa08dLliPaL1JtfbvFm9QR86KjJHsEkXl3y2JPH7aNd5uDYXESVIQHUQjBThBrdUg0fL-GmrSNG2En1WfGHNIzhWqZ3we4Wx2n_nYT4tWf1VnQcyE1XQK1IF61QCYyHUg3XkMDcwDhPHiwWHPNYzc1OuKf9vruxTCzInqYWUs21JaL3_HC"/>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">water_drop</span>
+<h3 class="text-xl font-bold font-headline">Mouthwash</h3>
+</a>
+<a class="group relative aspect-[4/5] bg-surface-container-low rounded-3xl overflow-hidden p-8 flex flex-col justify-end border border-transparent hover:border-primary/20 transition-all" href="#">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20" data-alt="detail of dental floss texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBTdtfspCuU7iFxXoUGufVv_q37rCS0KjXOExmM2funRtMw-bh5iFwHqzD7K46uFKd2M8DKliJU8LFW5JFnNkI0He6qrvnAPjn28XqWhcyilRdUovgqVkCe_fGq28LJWJ6vUKz2B5cuDCh7q4L9izGjfbvlJJIwwBJHw8Sr0C3SP1569zDY76CRJAR4QNCyv-obbYbHGYjMq0iJaB2pFVgwtN80zr0os4NSOhR-AGfEUlpaxof8kO3r1Sm9kEtKeFvAMpPhn-E2vGY"/>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">linear_scale</span>
+<h3 class="text-xl font-bold font-headline">Floss &amp; Picks</h3>
+</a>
+<a class="group relative aspect-[4/5] bg-surface-container-low rounded-3xl overflow-hidden p-8 flex flex-col justify-end border border-transparent hover:border-primary/20 transition-all" href="#">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20" data-alt="playful colorful background for children's dental care" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQmGj3BRTqM5WOie7jTPnVOPhCcSywQywv6Lh6keFVEu5jGFNz6hFILQVjs7AbpGDULyhiyjzb10Js68g9Nc0cu0sxOKqnAb6VFH6e_eRWVHgHH4iHanCyMDNtcKcWTMNK7sOusr_4c1Yzyo-OxPMLw8-jshgqAxvvT53PI-lApJymO8oGUBXkuLu_CH5VvyLmiJrp60Lq3G8QaLInAhgTM7Q2go52dVysp0TMk2YzXbUAvvsBmiEwxH8H2Sz4tUUvAmKSPpwrm4rI"/>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">child_care</span>
+<h3 class="text-xl font-bold font-headline">Kids Dental</h3>
+</a>
+<a class="group relative aspect-[4/5] bg-surface-container-low rounded-3xl overflow-hidden p-8 flex flex-col justify-end border border-transparent hover:border-primary/20 transition-all" href="#">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20" data-alt="water droplets splashing representing water flossing power" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrXCZe04nC2CLZrxr6xxkNGE6BJYnzvYmfmeCuq3oGcoySPFDoaXLRvqz2Bslbx8S_ixBymEcqURBi48oi1fJwTSNOlbm-6T2RgFqfSDT84RPqFr2Q5-ba7ICngo_fZpMISYmKqn6Rs9uC7ETTllzg4HH_dgLGKq22GRZuiA0b5iPcUt-coGFEzRChmNfLw4ZH7sSVePF7QdjoNEQR7En3-1djBcDGNmvCf5p12yHUiZjJZw30Ekpdbg9SWdNKQtQEiKwxw5_5J-FW"/>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">waves</span>
+<h3 class="text-xl font-bold font-headline">Water Flossers</h3>
+</a>
+<a class="group relative aspect-[4/5] bg-surface-container-low rounded-3xl overflow-hidden p-8 flex flex-col justify-end border border-transparent hover:border-primary/20 transition-all" href="#">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20" data-alt="assortment of various dental accessories on a clean surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaRLBjXbw_pm8zzFdTDMaQ_HdMMV3hISIUOnQCH0-D-wH8p9oz2z9JZYJTNWFxLNSGRfVC0DOC8G_ZRGrzMcAKA39-uQfyoCHni88jfvq49lCcA5MTeQXUsbTPpQme2jNbpFrI8TZ5Aj3h4ATJ2CKSfAKLjeZQGfGMYI_uUyU9Aj6wMqsKNNOZSVXptnZptzNlt2YtEpc4Jiu3NQUTZizg_R32QgXYEPK9pFiWsmLTpaOMXP4RTSP0oqm2FR_gsQWQ7ANqiK434YwT"/>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-weight="fill">category</span>
+<h3 class="text-xl font-bold font-headline">Accessories</h3>
+</a>
+</div>
+</section>
+<!-- Bestsellers Grid -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto px-8">
+<h2 class="text-4xl font-headline font-bold mb-16 text-center">Bestselling Essentials</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Product 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl group">
+<div class="relative w-full aspect-square bg-surface-container-low rounded-2xl mb-6 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Oral-B iO Series 7 electric toothbrush white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE_iO2nVuGKXDwYVLPMYke_D0XvI_wWKNkRKAFEBm7V3gxZlBuwzEAxUzSpo-wEh_9-XHLzYCLSX16r-DgejO_KLjqvMTxwTFNUpIIR1jGq-gNYBvNG5X95rWOWIxiIXRZTWcUE_eRyOrnceB8Lf4NVz4PpXlrBYD_yAuKdRHqTec0By9f-xU3sEtCZJXssq-Ln3R-Lb2Ia1rSVLyVg6JuEsMeZy_-27ujJIqzXuGvQb_czuLgQMe1pl3YX9jRowu2Y4DkNV9hRp3l"/>
+<span class="absolute top-4 left-4 bg-primary text-white text-xs px-3 py-1 rounded-full font-bold">Top Seller</span>
+</div>
+<h4 class="font-headline font-bold text-lg mb-1">Oral-B iO Series 7</h4>
+<p class="text-on-surface-variant text-sm mb-4">Magnetic iO Technology</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">AED 949</span>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl group">
+<div class="relative w-full aspect-square bg-surface-container-low rounded-2xl mb-6 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Waterpik Ultra Professional Water Flosser WP-660" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3LuJzV8TPtS1IHNLXpS_szZhxXUSsj5uXjDDMA1rMVAooRsjnn-j3D7AbAy1MRFoGfIYq2XlWrC6Uqa_vTzJnHW7xCGZPBOaTBY1GZmJX1KOtDI977ItuRquqq6ES3_rpDy-TtqESC1jTeUBe0_FWpjEyUl2DpJ3V2C8GOBs7gPqCurzvTIE0Lg3UcGfz15L77mwZqrLKJ-rMs3aehMYO0kyMA3ta2r62mTzTPWm6lKEkDe1OWe-Heh2foBh8olO1sndk_QmLkfcX"/>
+</div>
+<h4 class="font-headline font-bold text-lg mb-1">Waterpik Ultra WP-660</h4>
+<p class="text-on-surface-variant text-sm mb-4">Advanced Water Flossing</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">AED 445</span>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl group">
+<div class="relative w-full aspect-square bg-surface-container-low rounded-2xl mb-6 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Curaprox 5460 ultra soft toothbrush 3-pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaz2nn96OHYk-B-MVCAs2mduh74MP2G5ZDZH-J4Z42zb9h8nSMoWosrEUxr2KXKV9jgrSbzgbMkA7TOzCq5-WDlVz-X2x4_ceSIfHhjWg7jWbwB2zICzhRr3J7L6LeEYA-4WHeSsMoQfJfp9ungZFdPfk8lhX8nkbWqSo2c__JlGxS1m2ApWdbsZ6GWanXbf5E77g7E-WmgNMBff2BwMSvaEUgMuw2LzIUDyCJc3O6A5dvmEqT_MxQpTZHL4d7phRZJaE8Z7yTzO9q"/>
+</div>
+<h4 class="font-headline font-bold text-lg mb-1">Curaprox CS 5460 (3pk)</h4>
+<p class="text-on-surface-variant text-sm mb-4">Ultra Soft Bristles</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">AED 115</span>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl group">
+<div class="relative w-full aspect-square bg-surface-container-low rounded-2xl mb-6 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Philips Sonicare 9900 Prestige electric toothbrush" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNk2Ron_eUWV9X4ooHLEVXDMslrEEV0GJ-Jka-w595Exd37CZBMN268oSQpyncrRmVerv3rNwcst_1bv3PPNMeolMC7TSSwMOAdRZjwsHOR2ZEAp1MB7uxF7h2GdpHMvx-DL1D1x1MFQOoxgaa577gSMrelnARgwd920Gaozgr1l51Cfz_s28UimSI2tbh7E-g868tHe812vVwWG2a3poLfv7TZ4WQZbI_bAOhNY61kFKIZahB_6Nk-3Qbiwt6Cm-dYOM6vn2bq97H"/>
+</div>
+<h4 class="font-headline font-bold text-lg mb-1">Sonicare 9900 Prestige</h4>
+<p class="text-on-surface-variant text-sm mb-4">AI BrushSync Technology</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">AED 1,349</span>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Deals Banner -->
+<section class="max-w-screen-2xl mx-auto px-8 py-12">
+<div class="bg-gradient-to-r from-primary to-primary-container rounded-[40px] p-12 md:p-20 text-on-primary relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
+<img class="w-full h-full object-cover" data-alt="subtle abstract dental icon pattern in teal overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACJ843D8c2U1i4wIzeOqAhB4zrIVjmsJ7q1jbEpeduzmPwPAsDTy4s1-ze_Jllwu82MatKmsAxKoaPnofzZjSOqD0H-j1uDvGuXbU99Y5I6vvyOVcnlSPj80Xra5gU5fEg3dIKwtvoKTkaKZkyJS16K04_mtu8V1K482rKvtC4zHXsjzGQodrn6BM5Dfb5YF7e1P2ZrKr6PGeWOGgRU8buw-_l0ExbszreUETdiCjAY1m5Qv4Jg8VarIylffYIXa7uxMaBHLihSkV2"/>
+</div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<span class="inline-block border border-on-primary/30 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest">Limited Time Offer</span>
+<h2 class="text-5xl md:text-6xl font-headline font-bold leading-tight">Flash Sale: Up to 40% Off Select Brands</h2>
+<div class="flex gap-4 md:gap-8 pt-4">
+<div class="text-center">
+<div class="text-4xl font-bold">08</div>
+<div class="text-xs uppercase opacity-70">Hours</div>
+</div>
+<div class="text-4xl font-bold opacity-30">:</div>
+<div class="text-center">
+<div class="text-4xl font-bold">42</div>
+<div class="text-xs uppercase opacity-70">Mins</div>
+</div>
+<div class="text-4xl font-bold opacity-30">:</div>
+<div class="text-center">
+<div class="text-4xl font-bold">15</div>
+<div class="text-xs uppercase opacity-70">Secs</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center lg:justify-end">
+<button class="bg-surface-container-lowest text-primary px-12 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition-transform">
+                            Grab the Deal Now
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Brand Spotlight -->
+<section class="py-24 max-w-screen-2xl mx-auto px-8 space-y-32">
+<!-- Oral-B Spotlight -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative order-2 lg:order-1">
+<div class="aspect-square bg-surface-container-low rounded-[60px] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional display of Oral-B iO series products in a luxury dental clinic setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj6dstvL3VNr7V_AA_9_rGUWH7SGjkrByE7xWIkWcRBWWHeCJ_0o5umQ7Ys07le6Iq1a6xIzLjtWGR0YfUiRS8dfBffeaeOiM4nfU2RGejTuXeCGV4QNXIa2RWU5ksnireheCqAxZTprZL6sayOWydzTXqwMBGA2UBvQJRE5h0Qgi7C403p3_LluVQ4kmO6PoTomhFwm8UaVDsGqDmfN0CarKM4zMDdoHtj-1-84DqUoacOmZh76DsDNHS-5q5_Hsd7U2O7ZM9xdb9"/>
+</div>
+<div class="absolute -bottom-10 -right-10 bg-white p-8 rounded-3xl shadow-xl max-w-xs hidden md:block border border-outline-variant/10">
+<div class="text-tertiary font-bold mb-2">Editor's Choice</div>
+<p class="text-sm italic">"The Oral-B iO has completely transformed my daily hygiene routine. The AI feedback is a game changer."</p>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-8">
+<h2 class="text-4xl font-headline font-bold">The Oral-B iO Collection</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">Experience a professional clean feeling every day. The iO series combines Oral-B's iconic round brush head with the gentle energy of micro-vibrations.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 font-medium"><span class="material-symbols-outlined text-primary">check_circle</span> Revolutionary Magnetic iO Drive</li>
+<li class="flex items-center gap-3 font-medium"><span class="material-symbols-outlined text-primary">check_circle</span> Interactive Color Display</li>
+<li class="flex items-center gap-3 font-medium"><span class="material-symbols-outlined text-primary">check_circle</span> 3D Teeth Tracking with AI</li>
+</ul>
+<button class="text-primary font-bold border-b-2 border-primary pb-1 hover:border-primary-container transition-colors">Discover Oral-B</button>
+</div>
+</div>
+<!-- Philips Spotlight -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="space-y-8">
+<h2 class="text-4xl font-headline font-bold">Sonicare Prestige 9900</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">Our most advanced electric toothbrush yet. It senses your brushing style and adapts in real time with SenseIQ technology for personalized care.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 font-medium"><span class="material-symbols-outlined text-primary">check_circle</span> Senses Brushing Pressure and Motion</li>
+<li class="flex items-center gap-3 font-medium"><span class="material-symbols-outlined text-primary">check_circle</span> Adapts Intensity Automatically</li>
+<li class="flex items-center gap-3 font-medium"><span class="material-symbols-outlined text-primary">check_circle</span> Personalized Brushing Guidance via App</li>
+</ul>
+<button class="text-primary font-bold border-b-2 border-primary pb-1 hover:border-primary-container transition-colors">Shop Philips Sonicare</button>
+</div>
+<div class="relative">
+<div class="aspect-square bg-surface-container-low rounded-[60px] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Philips Sonicare Prestige toothbrush displayed on a modern wooden vanity with soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr3Jf_zgX-PcziOSPrRy4524HCAtOssyA4ESWWiHY1fFiqVkvOPrhJxhBsvYaudTVXzi7iEArNSgpaFNGtgWCbnOuqYzZw-zb1oqK0VjAkI9_fB8uSvnrDlkYeQYuwbAqmFyoglggU7TTcTlXS1sz4sM00SPZ62dCv_CLRFUzR8kzPuQ6boDC34vghDRyIsKplTRRvGNpvVlwEHgbnrbC3h-E0SeZlZaXZgnzE5FHOcuduABl_vrUhgKuz6VjHREgSBiq_omFgovn9"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose Us -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="text-center space-y-4">
+<div class="w-16 h-16 bg-primary-container/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-3xl">verified</span>
+</div>
+<h3 class="text-xl font-bold font-headline">100% Authentic</h3>
+<p class="text-on-surface-variant text-sm">Directly sourced from global brands and official distributors.</p>
+</div>
+<div class="text-center space-y-4">
+<div class="w-16 h-16 bg-primary-container/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<h3 class="text-xl font-bold font-headline">Same-Day Delivery</h3>
+<p class="text-on-surface-variant text-sm">Express shipping available across Dubai, Abu Dhabi &amp; UAE.</p>
+</div>
+<div class="text-center space-y-4">
+<div class="w-16 h-16 bg-primary-container/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<h3 class="text-xl font-bold font-headline">DDS Approved</h3>
+<p class="text-on-surface-variant text-sm">All products curated and vetted by dental professionals.</p>
+</div>
+<div class="text-center space-y-4">
+<div class="w-16 h-16 bg-primary-container/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+<h3 class="text-xl font-bold font-headline">Flexible Payments</h3>
+<p class="text-on-surface-variant text-sm">Buy now, pay later with Tabby and Tamara available at checkout.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Reviews -->
+<section class="py-24 max-w-screen-2xl mx-auto px-8">
+<h2 class="text-4xl font-headline font-bold mb-16 text-center">Loved by Our Community</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-lowest p-10 rounded-[32px] border border-outline-variant/10">
+<div class="flex text-tertiary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-lg mb-8 leading-relaxed">"Best place in UAE to get genuine dental products. The shipping was incredibly fast, arrived within 4 hours!"</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="portrait of a happy customer in Dubai" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc07oD34AjJ54fFIfL7qsDhO1ZOMu9nib-eYHSJSWpeMeXq2m-VN7V3lIPdd_XxOethjMpedYnR8X-cz3rOUqGSubCerDHCbKdqBHo1f1uJqC1bzZEE7UU7JpWBVhTeG18DMfN3molX78Ik1uM80u5bwbWP6DBjYZW8YPXbbK_iDvAp46Za-gjHiIGhoSvEJI6-hghwvYAeEBioTJMiq7v2_bMGrCB1tW379HmBWP6i66OTgsyUOBnc7Yqej3UotpiCFggqfZ6XLxC"/>
+</div>
+<div>
+<div class="font-bold">Sarah K.</div>
+<div class="text-xs text-on-surface-variant">Verified Buyer, Dubai</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-10 rounded-[32px] border border-outline-variant/10">
+<div class="flex text-tertiary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-lg mb-8 leading-relaxed">"Their customer service team is so helpful. They helped me pick the right water flosser for my braces."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="portrait of a smiling man wearing professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF9PnONitMXT3lipurcWmn6Zg4SS4_xfdM6_oGa0fOgf1-fef1arv8NqpJYKQLmXGbLk9lEEWzkddkYJv2LRkxo6L-0v231zDh8UFcqFDDgIiQU0vz5RXiZZKF4Qx-P_S_WlG9APNbr8Ij7NARZib6vn9soY8Re0GnP83tYPHaiKUUqQVb4Pv8DEV6DuWUhBZQYSWQfMFiJV6TnLaAhH_uKmNlAdgaJfnxiIkwvX-QOyryKyTaZcGlDwuKv_aEMcpIJhTVtnc8MTR-"/>
+</div>
+<div>
+<div class="font-bold">Ahmed M.</div>
+<div class="text-xs text-on-surface-variant">Verified Buyer, Abu Dhabi</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-10 rounded-[32px] border border-outline-variant/10">
+<div class="flex text-tertiary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-lg mb-8 leading-relaxed">"Luxury experience from browsing to unboxing. I highly recommend DentaUAE for anyone serious about their teeth."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="portrait of a woman in a clinical setting smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMOavkHaVwbx5e8jm8wKlnVi2W9ByEPLOfvFlqG5rN6nmFtQZcnnFxeSbEEZF15fpH-C4EkBOkUe1PhS-IfXnnVBSUdonXO63AU72zvT3seO6We8UwMwJOyEFk03ssowUCcSjo82UGz9qJlhN6pXbFKjEdSCoKEfR_yPhFxLI9P9uy7iLGCe0mSl0HFACEG2ZBGsIOZiCPyK3WeeY6msiFU0RO1YL0FDafpy0vUb9lCzBLdIC135_h3eLZ6XNJ_UHvW7WWuu1vqXjw"/>
+</div>
+<div>
+<div class="font-bold">Dr. Lena S.</div>
+<div class="text-xs text-on-surface-variant">Dentist, Sharjah</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Preview -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<h2 class="text-4xl font-headline font-bold">The Dental Journal</h2>
+<a class="text-primary font-bold flex items-center gap-2 group" href="#">Read All Articles <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<article class="group">
+<div class="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close up of toothbrush bristles and toothpaste on a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu_XmabrKZkQR_j7YPF4RCxQnRyKKa2uFfZPIpe9c5d9PWJ0OaQH5HNZwMC-wlcGhmYNMlPw1q-ggshuH8wl2fW8to5ZZQEX2GaRDveSTLdsnIq7qLs0PBcD6_w3qnC09q6M1KEdJC3cQ9hicg_tu8HI44jneqXdNT97gakjgYQEKg5Rpp_w2Fmnd4KfVGn2dHjzEVsKk559DFqaravKOonvVEw4g20YY80-HkBVEF9Fio_zmiG76KWVXWdSTU_KFUeB6pXdBomrdh"/>
+</div>
+<div class="space-y-4">
+<span class="text-tertiary text-xs font-bold uppercase tracking-widest">Oral Health</span>
+<h3 class="text-2xl font-headline font-bold leading-tight group-hover:text-primary transition-colors">Sonic vs. Oscillating: Which is better for your gums?</h3>
+<p class="text-on-surface-variant line-clamp-2">The ultimate guide to choosing the right electric toothbrush technology for your specific needs.</p>
+</div>
+</article>
+<article class="group">
+<div class="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="bright white healthy smile of a person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXCvBgz6AmaWwjisu-JPHVgqMQdJMRZf8ZfgtL3ULUu4E4LU0EYOR-HcKLY7GR19pFKB37HdK21DZruHBzuI2zsj1pvS4Etn9VVzPqKf4uiSFQk44cWiP5X-1oxk0za2MhV-SeJrQi8eqpNTVtNvIe_zjFfzW3Nq-1a1tGEHnOiKxAKb_5E_UGNVeQAmGk43YLGSeVe2udZ6idrEOwj4i-_Bws_298g61_jynQ56v1xsmcic0wXAaAgNcPe8Nl6gj-H8y_sQq6ZRZ1"/>
+</div>
+<div class="space-y-4">
+<span class="text-tertiary text-xs font-bold uppercase tracking-widest">Whitening Tips</span>
+<h3 class="text-2xl font-headline font-bold leading-tight group-hover:text-primary transition-colors">How to maintain your white smile at home</h3>
+<p class="text-on-surface-variant line-clamp-2">Practical tips and product recommendations to keep your smile bright between clinic visits.</p>
+</div>
+</article>
+<article class="group">
+<div class="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="assortment of kids dental care products in vibrant colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYebNT_LKZeN2FFJNH25gz5aLrEUPd1iTBuuOYUk4e9weZvAazNGMwIDNFC-3i3iNlDFrM-bWFIgGQu0CWBrdZGs-FJTxxNoIMjdL1ePFjyKO6B3gkTolxd5socwN5JaVnv65iMAXRCnMXuA4JlvOmVr3JBjWBpaRaoK9fe6y4TgiO3uGcby5xh8xTLfjbs5fMKal8ukJ044PzDXDzBseFLS80KkBPtau5L0Z8d0yhVOOUG4eyNbeM9zV1jC5N254aa9luJepA8PNU"/>
+</div>
+<div class="space-y-4">
+<span class="text-tertiary text-xs font-bold uppercase tracking-widest">Family Care</span>
+<h3 class="text-2xl font-headline font-bold leading-tight group-hover:text-primary transition-colors">Making brushing fun for kids: A parent's guide</h3>
+<p class="text-on-surface-variant line-clamp-2">Turn daily hygiene into a playful activity with these expert-approved strategies.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#04342C] text-emerald-50 w-full pt-16 pb-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 max-w-7xl mx-auto text-left">
+<div class="space-y-6">
+<div class="text-2xl font-headline font-bold text-white">DentaUAE</div>
+<p class="text-emerald-100/70 text-sm leading-relaxed">
+                    Premium dental solutions delivered to your doorstep. The UAE's leading destination for professional oral hygiene brands.
+                </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full border border-emerald-100/20 flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">share</span>
+</div>
+<div class="w-10 h-10 rounded-full border border-emerald-100/20 flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">mail</span>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold uppercase tracking-widest text-xs">Quick Links</h4>
+<ul class="space-y-4">
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">About Us</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Shop All</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Brands</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Our Blog</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold uppercase tracking-widest text-xs">Customer Service</h4>
+<ul class="space-y-4">
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Track Order</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Shipping Policy</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Returns &amp; Refunds</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Contact Support</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold uppercase tracking-widest text-xs">Newsletter</h4>
+<p class="text-emerald-100/70 text-sm">Join the club for exclusive offers and oral care tips.</p>
+<div class="flex gap-2">
+<input class="bg-white/10 border-transparent text-white rounded-lg px-4 py-2 w-full focus:ring-1 focus:ring-emerald-400 placeholder:text-emerald-100/30" placeholder="Email Address" type="email"/>
+<button class="bg-white text-emerald-950 p-2 rounded-lg hover:bg-emerald-100 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-emerald-100/10 px-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-emerald-100/50">
+<div>© 2024 DentaUAE. All rights reserved. VAT Reg No. 100xxxxxxxxx</div>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Sale</a>
+</div>
+<div class="flex gap-4 items-center grayscale opacity-50">
+<img class="h-4" data-alt="visa payment card logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDseiObvelGmWowHDjY5L3kth4za2fsIBXkqYlQujDCleJoxRuYXj_zKepJUqsDBaps1rZqQU35p5Wdo-_CQse1rtflxJ-SSuTqGYy5GZ7pR6rQTnUs7g3AON4XKv-L-5O47UG0CGfwROubg1ipDhRN6RVqepaOdIc8_dcJSSQKKi9rY0igC2454wP5TfPztebJF-DweH3HgE0wlVGD1ph0HGt6s13lI5jwYZ8GBXNRjRHT79R5VuAxs2aiRprCnk_NzF086NJFJw5h"/>
+<img class="h-4" data-alt="mastercard payment logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXZ8EpgxD-9w1OOEawceuECj094dVtm8qH-iYdFiilB7xtSB3-SSXX2nJSBz993gtv5GtGwslFXjnamePArArncN75sSuMXJhfv1epVRf5-5uck5dI7W1qaxCOPT0hNeS30iSIFSv0xn1oxkQsx7vK6R3Ah4EdUlTomW-cwk_gEkLKJswur1qdYu_x8NYEBeRcj4VD2ne-enZ7K5266Po-Wr2RgwbA5_S2Yi6VwZhI7pI3j0_Uk_sX1Mkf7aGQf0it0lEujwL5Hw02"/>
+<img class="h-4" data-alt="apple pay logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnC-oAXnKc-5G6mgtp1VHqO06wv0eFWkytKMxD3BZTdxyd7mOGUggaWDDy9yGQdiMwS9qwqOylSijGC1i_XO3rZCy2BB2KjjmzYdqsxKLkxJC4Bik6Kmqfyywbs1ihJGztjTGkUASQOsOgAcHPaLn1P6nYNIid9WKqJ547OA1lFZgOdny-v48uDLeHkjrBE1dSlAcY0_sDw96csfq73pSz7bzMCKNjABRKO_1adea_2uVG_IkmFgSVYBvkqLnLrHsq1XECWcALVhC8"/>
+<img class="h-3" data-alt="tabby payment provider logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoUxzzwAsI_43PRABeRSNTeEsr9soVyo0yzxMlswhGvWxhLtgOC0m2EX4Vi3DFeLM7wKg3y47NbTX_8MB3TGwCV9k_8YyK_nth1SMlZjllC7FS92VzZZ1cfKm66TcFmI9JgX69awMmq4wRQIh2teacdXWk88qPfUYQ_FFnGVhWaSYpLQ5f9S9iACYeIouCN2XjnHpQEYct90Exd8DBUpwqmm-uuDkAEz4XvMRmtjwv3Fb2H-s6YOaa6zqgFDwbQknArSZd85akJC0g"/>
+</div>
+</div>
+</footer>
+<!-- Floating WhatsApp Button -->
+<a class="fixed bottom-8 right-8 z-[60] w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform" href="#">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24">
+<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.53.909 3.338 1.389 5.179 1.391 5.505 0 9.986-4.479 9.989-9.984.002-2.669-1.037-5.176-2.927-7.067-1.89-1.891-4.393-2.932-7.067-2.933-5.513 0-9.99 4.478-9.993 9.984-.001 1.898.532 3.75 1.542 5.358l-.946 3.454 3.523-.923zm9.251-6.487c-.312-.156-1.848-.912-2.126-1.013-.28-.101-.486-.156-.69.156-.204.311-.79.986-.968 1.192-.177.204-.355.23-.668.072-.312-.156-1.318-.486-2.511-1.549-.928-.827-1.554-1.849-1.737-2.161-.183-.312-.02-.481.136-.636.141-.14.312-.363.468-.545.156-.182.208-.312.312-.52.103-.208.052-.389-.026-.546-.078-.157-.69-1.666-.946-2.282-.25-.6-.505-.519-.69-.527-.179-.008-.384-.01-.589-.01-.205 0-.539.077-.821.388-.282.311-1.077 1.052-1.077 2.564s1.103 2.973 1.256 3.181c.154.208 2.17 3.313 5.258 4.645.734.317 1.307.505 1.754.648.737.234 1.408.201 1.94.121.593-.089 1.848-.756 2.108-1.455.26-.699.26-1.3.182-1.427-.078-.127-.282-.204-.594-.36z"></path>
+</svg>
+</a>
+</body></html>

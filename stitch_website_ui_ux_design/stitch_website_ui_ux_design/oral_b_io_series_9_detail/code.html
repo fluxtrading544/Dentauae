@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "primary-container": "#0f6e56",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1a1c1b",
+                    "tertiary-fixed": "#ffdcbb",
+                    "surface-bright": "#f9f9f7",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "inverse-primary": "#84d6b9",
+                    "secondary-fixed": "#d3e7e0",
+                    "on-primary-fixed-variant": "#00513e",
+                    "primary-fixed-dim": "#84d6b9",
+                    "secondary": "#50625d",
+                    "primary-fixed": "#a0f3d4",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#005440",
+                    "on-secondary-fixed-variant": "#394a45",
+                    "on-secondary-fixed": "#0d1f1b",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb869",
+                    "tertiary": "#6b3f00",
+                    "surface-tint": "#086b53",
+                    "surface-container-high": "#e8e8e6",
+                    "on-background": "#1a1c1b",
+                    "on-primary-fixed": "#002117",
+                    "secondary-fixed-dim": "#b7cbc4",
+                    "on-primary-container": "#9aedcf",
+                    "inverse-on-surface": "#f1f1ef",
+                    "tertiary-container": "#8c5400",
+                    "on-tertiary-container": "#ffd5ac",
+                    "surface-variant": "#e2e3e1",
+                    "on-secondary-container": "#566863",
+                    "secondary-container": "#d3e7e0",
+                    "outline": "#6f7a74",
+                    "surface": "#f9f9f7",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#bec9c3",
+                    "on-surface-variant": "#3f4944",
+                    "error-container": "#ffdad6",
+                    "background": "#f9f9f7",
+                    "surface-container-highest": "#e2e3e1",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eeeeec",
+                    "surface-dim": "#dadad8",
+                    "surface-container-low": "#f4f4f2"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-nav {
+            background: rgba(249, 249, 247, 0.8);
+            backdrop-filter: blur(24px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/15">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold text-primary flex items-center gap-2 font-headline tracking-tight">
+                DentaUAE
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-label text-sm font-medium">
+<a class="text-slate-600 hover:text-primary transition-colors duration-200" href="#">Shop</a>
+<a class="text-slate-600 hover:text-primary transition-colors duration-200" href="#">Brands</a>
+<a class="text-slate-600 hover:text-primary transition-colors duration-200" href="#">Deals</a>
+<a class="text-slate-600 hover:text-primary transition-colors duration-200" href="#">Blog</a>
+<a class="text-slate-600 hover:text-primary transition-colors duration-200" href="#">For Clinics</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-xs font-bold text-primary tracking-widest cursor-pointer">EN | عربي</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">search</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">favorite</span>
+<div class="relative">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">shopping_cart</span>
+<span class="absolute -top-2 -right-2 bg-tertiary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">1</span>
+</div>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">person</span>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 max-w-7xl mx-auto px-6 lg:px-12">
+<!-- Breadcrumbs -->
+<nav class="flex items-center space-x-2 text-xs font-medium text-on-surface-variant mb-8 uppercase tracking-widest">
+<a href="#">Shop</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a href="#">Electric Brushes</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Oral-B iO Series 9</span>
+</nav>
+<!-- Product Main Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+<!-- Left: Image Gallery -->
+<div class="lg:col-span-7 flex flex-col md:flex-row gap-6">
+<div class="hidden md:flex flex-col gap-4 order-1">
+<button class="w-20 h-20 rounded-lg overflow-hidden border-2 border-primary bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="close up of oral-b io series 9 electric toothbrush in sleek onyx black finish on white clinical surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq3KaSJUcnj_4jythTEkAPP6rpoQuOXWK7IGrRwn1ZkTMVZa-u8jSbFMHNlLo_mreMrb8fFKIjzJF5Z9vNhfXkOqhTlMUfAb-ayozsK9ppsPtPRVlFJl8XwX2xtuRiWsQ1XwIR_UKV8PWWMq23K6h5lVTvVEJ3bxW8I-2N3ovoLkJ_tOS2KH-ub1HoMzZjFiCQWSj4YRUtRi0kq5SBPOi5ZGfwJK7k9fo4b-Ym9ttYxchAVIw3uqp_p4tJxssLa8qGinp_--Dws1PI"/>
+</button>
+<button class="w-20 h-20 rounded-lg overflow-hidden border border-outline-variant/30 hover:border-primary/50 transition-colors bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="details of oral-b io series 9 interactive display showing a smiley face and cleaning mode icons" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqY668LYfUhUu9t2MuNerI934n2WYhhvePMRO-AJJokpKN4EqubRGiVp3Rf_CNKpbEwZMq8mGRpsssut9r3hikGrXxryecpAnjYRLaSj6NQgmwHWsZ32LgyrzHBdtVYKTtRKWIk1_igLcv0_pwTz_-MnWo-4ABMlIbnmBCIhInH3N7etRAXmL9JhnEysNU_CzhorkOsuT90gUTIqXg4E-X4w9EodwgeO45Cx_SeUxnzDwqpupbdmKCi0fGdvMw0DESfC0LliGpmrl9"/>
+</button>
+<button class="w-20 h-20 rounded-lg overflow-hidden border border-outline-variant/30 hover:border-primary/50 transition-colors bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="luxury charging travel case for oral-b io series 9 toothbrush in charcoal grey textile finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeyNa_Q-dasqYrdMW_BkG0g9X74GFVfNdN2HDSb0HpbjjuNY4OoeJPxK_kH5m4QnuTQTa3F0zw6wW3KCdPicfbIF6CBG8kGXsc-I_1MOEXx78KNwF2U_IiSIKdenbn5FkmwT0WpWpBiyBt5De-ItN6hiZDqE47sDIwxkXWEaUOOxxrEDB0UB8Ua3izYp-ri-k2fvXo2rqCdYdaLWm41MPM0Cnt--qKkDHn3RCJi42zz4rq4kgDsrBtn86wDDwFCN5q9228OA5OeaXI"/>
+</button>
+</div>
+<div class="flex-1 order-2">
+<div class="aspect-[4/5] rounded-2xl overflow-hidden bg-surface-container-low relative">
+<img class="w-full h-full object-cover" data-alt="premium high-angle shot of the oral-b io series 9 toothbrush stand next to professional dental tools with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcRlStCVeYKCqGfCK4BbeK2OLcWoZjfO5HVs3BM-422oodowUlU8VJokanTJGID1TM7CFFyE1NGwpcljGh_6h0iWfLy7IjDYsTMwiN-Fc1Ea8Kf7gv6XaeQEBsKYL5hxnlU91UKWuqOsNfcqluyM7sk9TBdTCaxsdZHqdcNL6g1iPDEdlm9X26xIMLdVIfX-f4TRGQTPlo9sS8OMIMRGHtHm_f52gg4IypBheeMdC4fAnyW1Lr8cPSkqSp8mFhRUZefZgVAw9IWQrc"/>
+<span class="absolute top-6 left-6 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Bestseller</span>
+</div>
+</div>
+</div>
+<!-- Right: Product Info -->
+<div class="lg:col-span-5 flex flex-col space-y-8">
+<div>
+<span class="text-tertiary font-bold text-xs uppercase tracking-[0.2em] mb-3 block">Oral-B</span>
+<h1 class="text-4xl md:text-5xl font-headline font-bold text-primary leading-tight tracking-tight mb-4">iO Series 9 Electric Toothbrush</h1>
+<div class="flex items-center gap-4 mb-6">
+<div class="flex text-tertiary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">(128 Reviews)</span>
+</div>
+<div class="flex items-baseline gap-4 mb-1">
+<span class="text-3xl font-bold text-primary">AED 899.00</span>
+<span class="text-lg text-on-surface-variant line-through opacity-50">AED 1,149.00</span>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider mb-2">Price includes VAT</p>
+<div class="bg-primary-fixed/20 text-primary-fixed-dim inline-block px-3 py-1 rounded text-xs font-bold">
+                        SAVE AED 250.00 (22% OFF)
+                    </div>
+</div>
+<!-- Split Payments -->
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl border border-outline-variant/20 bg-surface-container-low flex flex-col gap-1">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Tabby</span>
+<p class="text-xs font-medium">4 interest-free payments of <span class="font-bold">AED 224.75</span></p>
+</div>
+<div class="p-4 rounded-xl border border-outline-variant/20 bg-surface-container-low flex flex-col gap-1">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Tamara</span>
+<p class="text-xs font-medium">Split into 3 payments of <span class="font-bold">AED 299.66</span></p>
+</div>
+</div>
+<!-- Selectors -->
+<div class="space-y-6">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest mb-3 block">Finish: <span class="text-on-surface-variant font-normal">Onyx Black</span></span>
+<div class="flex gap-3">
+<button class="w-10 h-10 rounded-full border-2 border-primary ring-2 ring-primary/10 p-1">
+<span class="block w-full h-full rounded-full bg-slate-900"></span>
+</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant/30 p-1 hover:border-primary/50 transition-colors">
+<span class="block w-full h-full rounded-full bg-slate-100"></span>
+</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant/30 p-1 hover:border-primary/50 transition-colors">
+<span class="block w-full h-full rounded-full bg-pink-100"></span>
+</button>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-32 flex items-center justify-between px-4 py-3 rounded-xl bg-surface-container-high">
+<button class="material-symbols-outlined text-sm text-primary hover:font-bold">remove</button>
+<span class="font-bold text-sm">1</span>
+<button class="material-symbols-outlined text-sm text-primary hover:font-bold">add</button>
+</div>
+<button class="flex-1 bg-primary text-on-primary rounded-xl font-bold text-sm tracking-wide uppercase py-4 shadow-lg shadow-primary/20 hover:bg-primary-container transition-all">
+                            Add to Cart
+                        </button>
+</div>
+<button class="w-full bg-surface-container-lowest border border-primary text-primary rounded-xl font-bold text-sm tracking-wide uppercase py-4 hover:bg-primary/5 transition-all">
+                        Buy Now
+                    </button>
+</div>
+<!-- Benefits -->
+<div class="pt-6 space-y-4">
+<div class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<span>Free Express Shipping across UAE</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span>2-Year Official Manufacturer Warranty</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Add to Cart (Desktop View) -->
+<div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-outline-variant/20 z-40 transform translate-y-full md:translate-y-0 py-4 hidden lg:block">
+<div class="max-w-7xl mx-auto px-12 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-lg object-cover" data-alt="thumbnail of oral-b io 9 for sticky bar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFmyeIZI01avQ4q9e9KQjls3ElpQtwqYmStqoleKbhH_VfEyXfBhlaj0Jkl9Sek4UQBMIuALNyXjOWRwPhs3lHTjlMJ-Obg3wW6-Lwqlj9GVd7AbLCBsbvVkUqDD0EFmsBdrance0n16FuPvQfFJlxHOJdicBjKeAVaE5yhszWw07fqKqWcmcVwLDb1aT4QchmirlIhnrklL60OPEjSgfMp2ukOslcf2hAwxNfhPJDPXtSaK-K7Ifhm1qW-lNTLWCD_4a-uVxMt10y"/>
+<div>
+<p class="font-bold text-sm">Oral-B iO Series 9</p>
+<p class="text-primary font-bold">AED 899.00</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-3 bg-primary text-white rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-primary-container">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Product Details Tabs -->
+<section class="mt-24">
+<div class="border-b border-outline-variant/15 flex gap-12 overflow-x-auto no-scrollbar">
+<button class="pb-6 text-primary border-b-2 border-primary font-bold text-sm tracking-widest uppercase whitespace-nowrap">Overview</button>
+<button class="pb-6 text-on-surface-variant hover:text-primary transition-colors font-medium text-sm tracking-widest uppercase whitespace-nowrap">Key Features</button>
+<button class="pb-6 text-on-surface-variant hover:text-primary transition-colors font-medium text-sm tracking-widest uppercase whitespace-nowrap">In The Box</button>
+<button class="pb-6 text-on-surface-variant hover:text-primary transition-colors font-medium text-sm tracking-widest uppercase whitespace-nowrap">Specifications</button>
+<button class="pb-6 text-on-surface-variant hover:text-primary transition-colors font-medium text-sm tracking-widest uppercase whitespace-nowrap">Warranty</button>
+</div>
+<div class="py-12 editorial-grid">
+<div class="col-span-12 lg:col-span-5 flex flex-col justify-center">
+<h2 class="text-3xl font-headline font-bold text-primary mb-6">Redefining the Clean.</h2>
+<p class="text-on-surface-variant leading-relaxed body-lg mb-8">
+                        The Oral-B iO Series 9 combines powerful but gentle micro-vibrations with Oral-B's unique dentist-inspired round brush head design for a professional clean feeling every day. The Linear Magnetic Drive system directs energy to the bristle tips, producing a cleaning experience that is as quiet as it is effective.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-medium">3D Teeth Tracking with A.I. to monitor your brushing</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-medium">7 Smart Brushing Modes for personalized cleaning</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-medium">Interactive Color Display for real-time coaching</span>
+</li>
+</ul>
+</div>
+<div class="col-span-12 lg:col-span-6 lg:col-start-7 bg-surface-container-low rounded-3xl overflow-hidden aspect-video relative">
+<img class="w-full h-full object-cover" data-alt="lifestyle shot of a clean modern bathroom with the oral-b io series 9 on a minimalist marble vanity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxIDTBK4Ft6sV6wl1snEl7Q94ruH2BxbyJHYzsGp3iayEzVuH0feSuACdNMWX_xlOvv2FL3tk8ODyvTapArIkf_aVHdfHoPPtvCuRelJOiZj_ni03EIv5pH7hpshADEjDyCXuXk3G1Dap70QOiPmuaEICIlyapU1ZnEqt67O7qoxZj_lh6Q1ah690odg-EOX_FIx3HNcanA75IiguZsvLdcYR6juJL2Jfr-he3VxO11Jz5X_bwGy08kom_8vzxzt_NjMpl4JCkrmbo"/>
+</div>
+</div>
+</section>
+<!-- Frequently Bought Together -->
+<section class="mt-24 p-8 md:p-12 bg-surface-container-low rounded-[2rem]">
+<h3 class="text-2xl font-headline font-bold text-primary mb-8">Frequently Bought Together</h3>
+<div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+<div class="flex items-center gap-6">
+<div class="w-24 h-24 bg-white rounded-xl p-2 flex-shrink-0">
+<img class="w-full h-full object-contain" data-alt="oral-b io series 9" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmZb1upc3QlRp-1nFjh7fwv-r9YE7FZh3wqjoXeUTKMvgE8jmi81cAgPC8YxgWZgBYGZRYPnSrs2FqxVQeZmDS-HaLJ9cHV4HmZiC4WQkTSZsdXi2QfytyQAr3dgRiUR-EoPoD2QkhsEaGPUy0T4ugfGyzynRK07adwRwFKyPgEUzVVCM_PEkrkGQAUmce7OyCgcOzANwBAuI4oULf5kkS_8nF1cbKqsVvPlJ4-0UGswSYGwoF4wrG-AnZFCWEqROgKWEb5ZMpWt9f"/>
+</div>
+<span class="material-symbols-outlined text-outline-variant">add</span>
+<div class="w-24 h-24 bg-white rounded-xl p-2 flex-shrink-0">
+<img class="w-full h-full object-contain" data-alt="oral-b io ultimate clean replacement heads 2 pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6SBkFtmmoGNObtEkYMgVMePhkbwtw3a76SY6P4uNToRUTdiMPH38IGQOvLWaPSA7-VPmG31z_gCaYMXJ9cPyEHK7k3vJ6ZeNC-8AfLN82nBaK2jJRaRbm1gReBzWuFjDDazEiE9Oiu8-aH8midlmKZ9vZPxG5ozioehJFSs07F-E-GiVVeKhDRFD98bXF4SU1mkb8xh0PsMLuoL0mIloQqu8deN-2WHLiyFIbbqUqqpcnGoq-Mkza0vXKggYKwmjN1-XFdXjm0crt"/>
+</div>
+</div>
+<div class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div>
+<p class="text-sm font-bold text-on-surface">Bundle Deal: iO9 + 2x Replacement Heads</p>
+<p class="text-xs text-on-surface-variant">Save AED 45.00 when purchased together</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xl font-bold text-primary">AED 1,029.00</p>
+<p class="text-[10px] text-on-surface-variant line-through uppercase">AED 1,074.00</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-primary-container">Add Bundle</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Reviews -->
+<section class="mt-24">
+<h3 class="text-2xl font-headline font-bold text-primary mb-12">Clinical Feedback &amp; Reviews</h3>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<!-- Breakdown -->
+<div class="md:col-span-4 space-y-6">
+<div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/15">
+<div class="text-center mb-6">
+<p class="text-5xl font-bold text-primary mb-2">4.8</p>
+<div class="flex justify-center text-tertiary mb-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">Based on 128 Reviews</p>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">5</span>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[85%]"></div>
+</div>
+<span class="text-xs text-on-surface-variant">85%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">4</span>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[10%]"></div>
+</div>
+<span class="text-xs text-on-surface-variant">10%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">3</span>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[3%]"></div>
+</div>
+<span class="text-xs text-on-surface-variant">3%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">2</span>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[1%]"></div>
+</div>
+<span class="text-xs text-on-surface-variant">1%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">1</span>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[1%]"></div>
+</div>
+<span class="text-xs text-on-surface-variant">1%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Review Feed -->
+<div class="md:col-span-8 space-y-8">
+<div class="pb-8 border-b border-outline-variant/15">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex text-tertiary mb-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h4 class="font-bold text-lg mb-1">Incredible Cleaning Technology</h4>
+<p class="text-xs text-on-surface-variant mb-3">Sarah J. — <span class="italic text-primary">Verified Buyer</span></p>
+</div>
+<span class="text-xs text-on-surface-variant">2 days ago</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed text-sm">
+                            As someone who has used electric brushes for years, the iO9 is in a different league. The pressure sensor is incredibly helpful—it turns green when you're just right. My teeth have never felt smoother after a home brush.
+                        </p>
+</div>
+<div class="pb-8 border-b border-outline-variant/15">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex text-tertiary mb-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<h4 class="font-bold text-lg mb-1">Premium Feel and App tracking is great</h4>
+<p class="text-xs text-on-surface-variant mb-3">Ahmed M. — <span class="italic text-primary">Verified Buyer</span></p>
+</div>
+<span class="text-xs text-on-surface-variant">1 week ago</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed text-sm">
+                            The travel case that charges is a game changer for my work trips. The AI tracking in the app helps ensure I'm hitting every surface. Highly recommend if you take dental health seriously.
+                        </p>
+</div>
+<button class="w-full py-4 border border-outline-variant/30 rounded-xl text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary/5 transition-colors">
+                        Read All 128 Reviews
+                    </button>
+</div>
+</div>
+</section>
+<!-- Related Products -->
+<section class="mt-32">
+<div class="flex justify-between items-end mb-12">
+<div>
+<span class="text-tertiary font-bold text-[10px] uppercase tracking-widest mb-2 block">Curated Selection</span>
+<h3 class="text-3xl font-headline font-bold text-primary">Related Products</h3>
+</div>
+<a class="text-xs font-bold text-primary flex items-center gap-2 hover:translate-x-1 transition-transform" href="#">
+                    View Entire Shop <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- Product Card 1 -->
+<div class="group">
+<div class="aspect-square rounded-2xl bg-surface-container-low mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="oral-b io series 7 electric toothbrush in white finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsStVMMFNpJb0FUoxEEqVE-sEJQONLBy8LimT7PfAkpMsYT1CKQHbjk1gHMek_q6y1Rsav6SJWNLG84uvApXPmDJ5RVUs_J1JcNePJRJ1zJuhH23OgEXFAb_UdOQ269mgjbTS8Ho63685pTvj18OnX-X8NwALG6DsfyNMVwOd7UK6dnIhXPwO0V3nk3RkZPVtEZkyoJ9PMtxUGaE-0xlKAE9zWAyTrt4TOK_e7JGq2IeekU5A1o7xyEYfuo5ESOJV284B3FeBjEffU"/>
+<button class="absolute bottom-4 right-4 bg-white/80 backdrop-blur text-primary p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Oral-B</p>
+<h4 class="font-bold text-sm mb-2 group-hover:text-primary transition-colors">iO Series 7 White</h4>
+<p class="text-primary font-bold">AED 649.00</p>
+</div>
+<!-- Product Card 2 -->
+<div class="group">
+<div class="aspect-square rounded-2xl bg-surface-container-low mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="pack of 4 oral-b io gentle care brush heads" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyCGPw4ZgumwUoKeUcfzo6BIN2b7CZQiAU9pJhgGlGOX7qnP9mZTiFmmujrMK7fYQ1gTTbAFLUPSTsA2jEmMilMAGCcz4NZhpl7vjU6VHyymnOeowXxzeBdvVWUeB65tiXjZr-bj2dXJm-akKEmXPjcxAb31MCvnwhoGp9MJCVoT70VAwb0iOt_W6thp6_fmaG3c3zkR7PizzgF3DD8vo5XgzC512_G_uFvSq3V0jFPiSEQV-WmUycy0zaNrsoGrY4EF7ExPs9vob1"/>
+<button class="absolute bottom-4 right-4 bg-white/80 backdrop-blur text-primary p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Oral-B</p>
+<h4 class="font-bold text-sm mb-2 group-hover:text-primary transition-colors">iO Gentle Care Heads (4ct)</h4>
+<p class="text-primary font-bold">AED 185.00</p>
+</div>
+<!-- Product Card 3 -->
+<div class="group">
+<div class="aspect-square rounded-2xl bg-surface-container-low mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="oral-b io series 8 black onyx" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDphPGYqAMpmBmCVk4ZukYOs67o8Y-dW5zTEsGAk5Y1vgKVkAEhnGlQ-zjsdbGZ2tDtq5qzeSio9pRvNUKNy6u4fpklMCqMR9J8qKhifSVxw95HrlNg_H7qz8QfVu85yAZggHMiFZ_dTJTxRVrRZ_R7jxouGYn1aBeTZA8Hej3ujJPbVZH8JEudoNqCAGzJrKyCX0pdKUSIEoh3V4Zz7KbYwbRi7gp3H7rK8A8da9gCb8p75ewxqMSRLaeSiMA9Jp1bcSvsWCugKl-N"/>
+<button class="absolute bottom-4 right-4 bg-white/80 backdrop-blur text-primary p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Oral-B</p>
+<h4 class="font-bold text-sm mb-2 group-hover:text-primary transition-colors">iO Series 8 Black Onyx</h4>
+<p class="text-primary font-bold">AED 749.00</p>
+</div>
+<!-- Product Card 4 -->
+<div class="group">
+<div class="aspect-square rounded-2xl bg-surface-container-low mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="oral-b charcoal infused floss 2 pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKMSwxRnqaYQN_tJdE-340_xI-D_HhUWyR1_losETy4LFxGfJXa1NBKwjevewmmv-Hmqx7SNxNCyjaSnHDuUaaX_txr6Rs5ZTn_ce0ZRzLshgtwsaqCr-qxreUC2ASX1fMnfH942HtoYKEwkrlnYIMl4wdQ4f4ChftIQaoje4KcyCvATnhzrz6T9JcQ3fKUQYkV9xWpvUo-lInQwY457D5Jb72tx6uqO5ex8W34jEA0u5Rj7o-KA4F5BMY3Zi9qIQSJLZLRlXiamA_"/>
+<button class="absolute bottom-4 right-4 bg-white/80 backdrop-blur text-primary p-3 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Oral-B</p>
+<h4 class="font-bold text-sm mb-2 group-hover:text-primary transition-colors">Glide Charcoal Floss (2ct)</h4>
+<p class="text-primary font-bold">AED 38.00</p>
+</div>
+</div>
+</section>
+<!-- Recently Viewed -->
+<section class="mt-32">
+<h3 class="text-xl font-headline font-bold text-primary mb-8">Recently Viewed</h3>
+<div class="flex gap-6 overflow-x-auto no-scrollbar pb-4">
+<div class="w-48 flex-shrink-0 group">
+<div class="aspect-square bg-surface-container-low rounded-xl mb-3 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="oral-b io9" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoAaXgXCrlOEmPcNcs6V-NQaXigAB2axPdkdy1dSfU7At_kH3MvDIFjMlqIAdja1cgeD_uh1ArNLtk_JMPZde1MtU9ccDrpQqytS506Oxpvms2VWQetqhlHlrfSMzcY_ulscTd82ZVZoMhjX3zvm2KQ2YyD7dVdagU_7EAvwqfUh0PXHJCCXjF6LzTNPHp10BdqfrjAjELyfj0aiak0r5h8mTZuBFH09YJj3Y4ytsvdh_3nG1ol91b7kSPl7eeRY5wy7W05uSeiK09"/>
+</div>
+<h5 class="text-xs font-bold truncate">Oral-B iO Series 9</h5>
+<p class="text-primary font-bold text-xs">AED 899.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#04342C] text-emerald-50 w-full pt-16 pb-8 font-body">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 max-w-7xl mx-auto text-left">
+<div class="space-y-6">
+<h4 class="text-xl font-headline text-white">DentaUAE</h4>
+<p class="text-emerald-100/70 text-sm leading-relaxed">Your premium destination for professional oral care in the UAE. Quality clinical products delivered to your doorstep.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-emerald-100/70 hover:text-white cursor-pointer transition-colors">social_leaderboard</span>
+<span class="material-symbols-outlined text-emerald-100/70 hover:text-white cursor-pointer transition-colors">public</span>
+<span class="material-symbols-outlined text-emerald-100/70 hover:text-white cursor-pointer transition-colors">camera</span>
+</div>
+</div>
+<div>
+<h5 class="font-bold text-white mb-6 uppercase tracking-widest text-xs">Quick Links</h5>
+<ul class="space-y-4 text-emerald-100/70 text-sm">
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Home</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Shop All</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Best Sellers</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Our Clinics</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-white mb-6 uppercase tracking-widest text-xs">Customer Service</h5>
+<ul class="space-y-4 text-emerald-100/70 text-sm">
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Contact Us</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Warranty Information</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">FAQs</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-white mb-6 uppercase tracking-widest text-xs">Newsletter</h5>
+<p class="text-emerald-100/70 text-xs mb-4">Subscribe for oral health tips and exclusive deals.</p>
+<div class="flex">
+<input class="bg-emerald-900/50 border-none rounded-l-lg text-xs w-full focus:ring-1 focus:ring-emerald-400" placeholder="Email Address" type="email"/>
+<button class="bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-r-lg transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-12 mt-16 pt-8 border-t border-emerald-900 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-emerald-100/40 uppercase tracking-widest">
+<p>© 2024 DentaUAE. All rights reserved. VAT Reg No. 100xxxxxxxxx</p>
+<div class="flex gap-6">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Sale</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb869",
+                    "surface-tint": "#086b53",
+                    "inverse-primary": "#84d6b9",
+                    "on-tertiary-fixed": "#2b1700",
+                    "surface-container-highest": "#e2e3e1",
+                    "surface-container-high": "#e8e8e6",
+                    "secondary-fixed": "#d3e7e0",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-fixed": "#ffdcbb",
+                    "tertiary-container": "#8c5400",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0f6e56",
+                    "on-surface-variant": "#3f4944",
+                    "primary-fixed": "#a0f3d4",
+                    "outline": "#6f7a74",
+                    "on-error-container": "#93000a",
+                    "primary": "#005440",
+                    "on-primary-fixed-variant": "#00513e",
+                    "on-secondary-fixed": "#0d1f1b",
+                    "background": "#f9f9f7",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#84d6b9",
+                    "on-surface": "#1a1c1b",
+                    "error": "#ba1a1a",
+                    "surface": "#f9f9f7",
+                    "on-tertiary-container": "#ffd5ac",
+                    "secondary-fixed-dim": "#b7cbc4",
+                    "secondary-container": "#d3e7e0",
+                    "tertiary": "#6b3f00",
+                    "on-primary-container": "#9aedcf",
+                    "inverse-on-surface": "#f1f1ef",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1a1c1b",
+                    "surface-container-low": "#f4f4f2",
+                    "surface-dim": "#dadad8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeec",
+                    "surface-bright": "#f9f9f7",
+                    "surface-variant": "#e2e3e1",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "outline-variant": "#bec9c3",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002117",
+                    "on-secondary-container": "#566863",
+                    "on-secondary-fixed-variant": "#394a45",
+                    "secondary": "#50625d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Noto Serif', serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-[#f9f9f7] dark:bg-[#1a1c1b] shadow-sm backdrop-blur-md flex justify-between items-center px-16 py-4 max-w-full">
+<div class="text-2xl font-serif font-bold text-[#005440] dark:text-[#0f6e56]">Emerald Dental</div>
+<div class="hidden md:flex items-center gap-8 font-serif text-lg tracking-tight">
+<a class="text-[#1a1c1b] opacity-70 hover:text-[#6b3f00] transition-colors duration-300" href="#">Shop</a>
+<a class="text-[#1a1c1b] opacity-70 hover:text-[#6b3f00] transition-colors duration-300" href="#">Brands</a>
+<a class="text-[#005440] border-b-2 border-[#6b3f00] pb-1 hover:text-[#6b3f00] transition-colors duration-300" href="#">Articles</a>
+<a class="text-[#1a1c1b] opacity-70 hover:text-[#6b3f00] transition-colors duration-300" href="#">Offers</a>
+<a class="text-[#1a1c1b] opacity-70 hover:text-[#6b3f00] transition-colors duration-300" href="#">Support</a>
+</div>
+<div class="flex items-center gap-6 text-[#005440] dark:text-[#0f6e56]">
+<button class="scale-95 transition-transform"><span class="material-symbols-outlined">shopping_cart</span></button>
+<button class="scale-95 transition-transform"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section & Search -->
+<section class="px-16 pt-20 pb-12">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-outline-variant/30 pb-12">
+<div>
+<h1 class="text-5xl md:text-7xl font-bold tracking-tight text-primary leading-tight">Dental Tips &amp; Guides</h1>
+<p class="mt-4 text-lg text-on-surface-variant max-w-xl font-light">Expert advice, clinical insights, and product comparisons tailored for the UAE's premium oral healthcare standards.</p>
+</div>
+<div class="w-full md:w-96 relative">
+<input class="w-full bg-transparent border-b border-outline-variant py-3 pr-10 focus:border-primary focus:ring-0 placeholder:text-on-surface-variant/50 text-on-surface transition-all" placeholder="Search articles..." type="text"/>
+<span class="material-symbols-outlined absolute right-0 top-3 text-on-surface-variant">search</span>
+</div>
+</div>
+</section>
+<!-- Featured Article -->
+<section class="px-16 py-12">
+<div class="max-w-7xl mx-auto">
+<div class="group flex flex-col lg:flex-row bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="lg:w-3/5 overflow-hidden">
+<img alt="Featured comparison" class="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up of two high-end electric toothbrushes, Oral-B and Philips Sonicare, on a white marble surface with soft dental studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqoGnO9GICVmH_ciar90mQOWAbW930069Idq7bkyXPNC8dY2WFk66jPVK2KAgXxPI5xU1Gbl_-qsvgSGBLhboK1PVq3smcXLv_5V-0Xw0Af_Eq5YqFa8P3c4KpdBvzSPaFw56_BhjTlheDgm5uLiD9ExAIdL5wsB6EvPo4o0YmyOu6ALk3rdZFBM9YWn6TuZ4UU-_dYb3eJgfLoSmwQPhbrZpKsdMbjvdju3YFOOUw3A2-dhePA7ybwicUATJTqc_j06DRK6-E1LmG"/>
+</div>
+<div class="lg:w-2/5 p-12 flex flex-col justify-center bg-surface-container-low">
+<span class="text-xs font-bold tracking-widest text-tertiary uppercase mb-4">Featured Buying Guide</span>
+<h2 class="text-4xl font-serif leading-tight text-primary mb-6">Oral-B vs Philips Sonicare: The UAE Dentist's Verdict (2025)</h2>
+<p class="text-on-surface-variant leading-relaxed mb-8">We consulted top Dubai clinics to determine which electric toothbrush technology reigns supreme for the unique oral hygiene needs of the Gulf region.</p>
+<a class="inline-flex items-center gap-2 text-primary font-bold group-hover:text-tertiary transition-colors" href="#">
+                            Read the full report
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Article Grid -->
+<section class="px-16 py-16 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center justify-between mb-12">
+<h3 class="text-3xl font-serif text-primary">Latest Insights</h3>
+<div class="flex gap-4">
+<button class="px-4 py-2 text-sm font-medium border border-outline-variant/30 rounded-full hover:bg-primary hover:text-on-primary transition-all">All</button>
+<button class="px-4 py-2 text-sm font-medium border border-outline-variant/30 rounded-full hover:bg-primary hover:text-on-primary transition-all">Buying Guides</button>
+<button class="px-4 py-2 text-sm font-medium border border-outline-variant/30 rounded-full hover:bg-primary hover:text-on-primary transition-all">Oral Health</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Card 1 -->
+<article class="flex flex-col">
+<div class="aspect-[16/9] overflow-hidden rounded-lg mb-6">
+<img alt="Buying Guide" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Selection of premium dental products including water flossers and organic toothpastes on a minimalist wooden tray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD96TBAr9N_CaQhg-qZz7siv98AlP5ib4mHxtHHCsMFegp-618VoWyTPX-BESdWjlPAyZjjK805oD-8xF-zpJU9I5wo80bbldaixr1LJh7GOIfCEdElN8w4_kMUTX2CXk2TGPdxoaMcGj8NEzsAo9FSyQi_xFXREPpma0ZK2K8Ecun8cK_A2s-2qH4iJ8BrA1T-0jiRJkMniHR3L71fjUz-K0-H5HC5Uku85xCC09frP2wny0MmnmJFyCldnaz97cLmCbA3SLexKyhO"/>
+</div>
+<div class="px-2">
+<span class="inline-block bg-primary-container text-on-primary-container text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Buying Guides</span>
+<h4 class="text-2xl font-serif text-primary leading-snug mb-4">The Ultimate Guide to Choosing a Water Flosser in 2025</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Navigating the flood of options to find the perfect oral irrigator for your daily routine...</p>
+<a class="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:text-tertiary transition-colors" href="#">Read More <span class="material-symbols-outlined text-base">arrow_right_alt</span></a>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="flex flex-col">
+<div class="aspect-[16/9] overflow-hidden rounded-lg mb-6">
+<img alt="Oral Health" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="A serene morning scene with a glass of water, fresh mint, and dental care items on a sunlit bathroom counter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu7HWvWWCfm3grmVozJ9vmJ6ykpL-z1O942D2v8ugFthx_ta3MiD70stKdEOoQ2z_SMXMV_0GgTt15yfKy_D7f2OJc-85uypuXGhHg_6lJ9eB_CXBy94f_wHMOxiJznNypocrViGrWBXfGsdL9iEXh4aleH78lk2Dl5BkIvkD8FnmcqAmfnFQVIcwpuNUfEzPcUazL9iiu-uWvmbeaqIZR-hGYDyMDZvFcgJLy0YB3pc-IRF79UgDVvdVYLJFbArDBBt2Kleu4lOMm"/>
+</div>
+<div class="px-2">
+<span class="inline-block bg-primary-container text-on-primary-container text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Oral Health Tips</span>
+<h4 class="text-2xl font-serif text-primary leading-snug mb-4">5 Habits to Prevent Enamel Erosion from Citrus and Tea</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">UAE residents love their karak and fresh juices; here is how to enjoy them without damaging your smile...</p>
+<a class="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:text-tertiary transition-colors" href="#">Read More <span class="material-symbols-outlined text-base">arrow_right_alt</span></a>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="flex flex-col">
+<div class="aspect-[16/9] overflow-hidden rounded-lg mb-6">
+<img alt="Kids Dental" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="A cheerful child holding a colorful toothbrush with a bright, welcoming pediatric dentist office in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKXxXDd8LP_RGVMjO2w0A9lo2J1aeBP4n7N6vzYKrhDf3vXhKT_lwej9uZSf_VlMPDWbH2XkkGaxQOGqUB0mgQqr8TLq7NAkbZE9h_m_Nvjz0TJYpdw0Jh2nHBXCiIC_ycvtN9TYkmAqCV2Oj2EAewxwO6-GFe6UOmqQBYQuQC2kkEoYW-dZKaQOTIRCY3gv1vrjbPOu9mt4wR_t7GaNMpWJ52UAHkQJAcgmG7knTyDJGvFWrwrscE1SUU4hv2BCxomUrPnaPriUyN"/>
+</div>
+<div class="px-2">
+<span class="inline-block bg-primary-container text-on-primary-container text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Kids Dental</span>
+<h4 class="text-2xl font-serif text-primary leading-snug mb-4">Making Brushing Fun: A UAE Parent's Survival Guide</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Gamification and local resources that make dental hygiene the best part of your child's bedtime routine...</p>
+<a class="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:text-tertiary transition-colors" href="#">Read More <span class="material-symbols-outlined text-base">arrow_right_alt</span></a>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="flex flex-col">
+<div class="aspect-[16/9] overflow-hidden rounded-lg mb-6">
+<img alt="Teeth Whitening" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Professional teeth whitening kit with blue LED light and syringes on a white silk cloth background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAjoGdLZYBhk7Uzt9H77rNaEqeygpXTiz_ZpIydoZ7T18nbuLIqSzmoJtgPx-1xAdBixX9fXWXlLZagrTWxNAKRsvbRt1uhDzSSChYCUzWbD5e9JnW4kvTt_Fj9Qef_Ngy2AwJrczDp8JF9SivyBskik7sDJ25mLKMiW4C01-r076I7z9EExSS_cj4zTJ0K-U7vAlhmL-Aw83cDqHIM1i6UzyGPnpeNjxtQ2Kx_GvYTjExWn5_Xi5cXAp-oSbXqaS7hzSrA9RpTwtG"/>
+</div>
+<div class="px-2">
+<span class="inline-block bg-primary-container text-on-primary-container text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Buying Guides</span>
+<h4 class="text-2xl font-serif text-primary leading-snug mb-4">In-Clinic vs. At-Home Whitening: Costs and Benefits</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">A transparent breakdown of the investment required for a brighter smile in Dubai and Abu Dhabi...</p>
+<a class="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:text-tertiary transition-colors" href="#">Read More <span class="material-symbols-outlined text-base">arrow_right_alt</span></a>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="flex flex-col">
+<div class="aspect-[16/9] overflow-hidden rounded-lg mb-6">
+<img alt="Gum Care" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Macro photo of healthy pink gums and perfectly clean teeth with a soft focus on medical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeXZaBBeSHoTkDzCUK1FLLcRkNc8xZKy_1VkId9cBM0_bu44mYmqDrFuROK_g6WNCWSIHEYswomGZ8aOXHYbbTss7bGZsQ_83s1DWihEkqsSfaymQ_6TenBEjsuVxC1L5Yf-_0TPfbktWWya5lNGRjdx4Ram4zTsWY0QVSMUhuznogTF6VyFe_ve8siw1nKTlb9UP5Z95s8EsPPOog8u_dB3wPQ2wHhAjKL2fQvZuqnDTSUvKlrnK5KWGYdOgOPK1GXaePcaJGVekQ"/>
+</div>
+<div class="px-2">
+<span class="inline-block bg-primary-container text-on-primary-container text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Oral Health Tips</span>
+<h4 class="text-2xl font-serif text-primary leading-snug mb-4">Why Gum Health is the Secret to Longevity</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Exploring the systemic link between periodontal wellness and your overall physical health...</p>
+<a class="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:text-tertiary transition-colors" href="#">Read More <span class="material-symbols-outlined text-base">arrow_right_alt</span></a>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="flex flex-col">
+<div class="aspect-[16/9] overflow-hidden rounded-lg mb-6">
+<img alt="Technology" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Close up of a smart toothbrush connected to a smartphone app showing real-time brushing analytics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCHVzhSnWKeH-lMf2RegJpgVibEj3_HREPBFwDMy72VK9RobgBAackKqj1G8zl9-nuDPVKjK83DUHWbXsDFF2F47F5eAMHUtLjLxuyd42ZrKU3L0jjkgOQjEQZ4NESzNpP4qsA2gd8ssXPiQ01dprP6PnoL4eW5HwkUmvAKmn1R7ybDIG4Hs2lKFaQ5vmUn5lRbYTBxO7ZO8TCL5k1W8A_LJiT50g2RJ8sHvN9b5u3qPnigGo1lk-PQ6hDl3Q7PYD-pFXFmnKlAih3"/>
+</div>
+<div class="px-2">
+<span class="inline-block bg-primary-container text-on-primary-container text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Buying Guides</span>
+<h4 class="text-2xl font-serif text-primary leading-snug mb-4">Is Smart Toothbrush Tech Worth the High Price Tag?</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">From AI sensors to app tracking, we test whether high-tech features actually improve your cleaning score...</p>
+<a class="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:text-tertiary transition-colors" href="#">Read More <span class="material-symbols-outlined text-base">arrow_right_alt</span></a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Newsletter / Subscription Bento -->
+<section class="px-16 py-24 bg-surface">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-8 bg-primary rounded-xl p-12 text-on-primary flex flex-col justify-center relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-4xl font-serif mb-4">Become an Oral Health Insider</h3>
+<p class="text-primary-fixed opacity-90 max-w-lg mb-8">Receive exclusive monthly guides, early access to clinical studies, and premium member offers directly to your inbox.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-md">
+<input class="flex-grow bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder:text-white/40 focus:bg-white/20 focus:ring-0 transition-all" placeholder="Email address" type="email"/>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-3 rounded-md font-bold hover:scale-105 transition-transform">Subscribe</button>
+</form>
+</div>
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-primary-container/30 rounded-full blur-3xl"></div>
+</div>
+<div class="md:col-span-4 bg-surface-container-high rounded-xl p-8 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-5xl text-tertiary mb-4">medical_services</span>
+<h4 class="text-xl font-bold text-primary mb-2">Need Clinical Advice?</h4>
+<p class="text-on-surface-variant text-sm mb-6">Our partners offer complimentary digital consultations for all premium members.</p>
+<button class="w-full py-3 border border-primary text-primary font-bold rounded-md hover:bg-primary hover:text-on-primary transition-all">Book Consultation</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-16 mt-auto bg-[#005440] dark:bg-[#052b21] grid grid-cols-4 gap-8 border-t border-[#0f6e56]">
+<div class="col-span-4 md:col-span-1">
+<div class="text-white font-serif italic text-2xl mb-4">Emerald Oasis Dental</div>
+<p class="text-[#f9f9f7] opacity-80 font-sans text-xs uppercase tracking-widest leading-relaxed">
+                © 2024 Emerald Oasis Dental UAE. Registered Health Tech Partner.
+            </p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-[#f9f9f7] opacity-60 font-sans text-[10px] uppercase tracking-widest mb-2">Legal</span>
+<a class="text-[#f9f9f7] opacity-80 font-sans text-xs uppercase tracking-widest hover:text-[#6b3f00] transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#f9f9f7] opacity-80 font-sans text-xs uppercase tracking-widest hover:text-[#6b3f00] transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-[#f9f9f7] opacity-60 font-sans text-[10px] uppercase tracking-widest mb-2">Services</span>
+<a class="text-[#f9f9f7] opacity-80 font-sans text-xs uppercase tracking-widest hover:text-[#6b3f00] transition-colors" href="#">Local Delivery</a>
+<a class="text-[#f9f9f7] opacity-80 font-sans text-xs uppercase tracking-widest hover:text-[#6b3f00] transition-colors" href="#">Payment Methods</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-[#f9f9f7] opacity-60 font-sans text-[10px] uppercase tracking-widest mb-2">Support</span>
+<a class="text-[#f9f9f7] opacity-80 font-sans text-xs uppercase tracking-widest hover:text-[#6b3f00] transition-colors" href="#">Contact DXB</a>
+<div class="flex gap-4 mt-4">
+<span class="material-symbols-outlined text-white opacity-80 cursor-pointer hover:text-tertiary transition-colors">share</span>
+<span class="material-symbols-outlined text-white opacity-80 cursor-pointer hover:text-tertiary transition-colors">public</span>
+</div>
+</div>
+</footer>
+</body></html>

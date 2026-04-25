@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "primary-container": "#0f6e56",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1a1c1b",
+                    "tertiary-fixed": "#ffdcbb",
+                    "surface-bright": "#f9f9f7",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "inverse-primary": "#84d6b9",
+                    "secondary-fixed": "#d3e7e0",
+                    "on-primary-fixed-variant": "#00513e",
+                    "primary-fixed-dim": "#84d6b9",
+                    "secondary": "#50625d",
+                    "primary-fixed": "#a0f3d4",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#005440",
+                    "on-secondary-fixed-variant": "#394a45",
+                    "on-secondary-fixed": "#0d1f1b",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb869",
+                    "tertiary": "#6b3f00",
+                    "surface-tint": "#086b53",
+                    "surface-container-high": "#e8e8e6",
+                    "on-background": "#1a1c1b",
+                    "on-primary-fixed": "#002117",
+                    "secondary-fixed-dim": "#b7cbc4",
+                    "on-primary-container": "#9aedcf",
+                    "inverse-on-surface": "#f1f1ef",
+                    "tertiary-container": "#8c5400",
+                    "on-tertiary-container": "#ffd5ac",
+                    "surface-variant": "#e2e3e1",
+                    "on-secondary-container": "#566863",
+                    "secondary-container": "#d3e7e0",
+                    "outline": "#6f7a74",
+                    "surface": "#f9f9f7",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#bec9c3",
+                    "on-surface-variant": "#3f4944",
+                    "error-container": "#ffdad6",
+                    "background": "#f9f9f7",
+                    "surface-container-highest": "#e2e3e1",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eeeeec",
+                    "surface-dim": "#dadad8",
+                    "surface-container-low": "#f4f4f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white dark:bg-emerald-950">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
+<span class="font-headline tracking-tight">DentaUAE</span>
+</div>
+<nav class="hidden md:flex items-center space-x-8 font-['Noto_Serif'] text-base tracking-tight">
+<a class="text-emerald-700 dark:text-emerald-400 border-b-2 border-emerald-700 pb-1" href="#">Shop</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">Brands</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">Deals</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">Blog</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-emerald-800 transition-colors duration-200" href="#">For Clinics</a>
+</nav>
+<div class="flex items-center space-x-6 text-emerald-900 dark:text-emerald-100">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-emerald-700">search</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-emerald-700">favorite</span>
+<div class="relative">
+<span class="material-symbols-outlined cursor-pointer hover:text-emerald-700">shopping_cart</span>
+<span class="absolute -top-2 -right-2 bg-tertiary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</div>
+<span class="material-symbols-outlined cursor-pointer hover:text-emerald-700">person</span>
+</div>
+<div class="border-l border-outline-variant/30 pl-4 text-sm font-medium">
+                    EN | عربي
+                </div>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Sub-Nav for Categories) -->
+<div class="mt-20 border-t border-emerald-100/20 bg-emerald-50 dark:bg-emerald-900/30">
+<div class="flex flex-row justify-center items-center space-x-8 w-full h-12 font-['Plus_Jakarta_Sans'] text-sm font-medium overflow-x-auto hide-scrollbar">
+<a class="text-emerald-900 dark:text-white font-bold whitespace-nowrap flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">electric_bolt</span> Electric Brushes
+            </a>
+<a class="text-emerald-700 dark:text-emerald-300 opacity-80 hover:opacity-100 hover:bg-emerald-100 dark:hover:bg-emerald-800 px-3 py-1 rounded-full transition-all whitespace-nowrap flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">brush</span> Toothpaste
+            </a>
+<a class="text-emerald-700 dark:text-emerald-300 opacity-80 hover:opacity-100 hover:bg-emerald-100 dark:hover:bg-emerald-800 px-3 py-1 rounded-full transition-all whitespace-nowrap flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">flare</span> Whitening
+            </a>
+<a class="text-emerald-700 dark:text-emerald-300 opacity-80 hover:opacity-100 hover:bg-emerald-100 dark:hover:bg-emerald-800 px-3 py-1 rounded-full transition-all whitespace-nowrap flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">water_drop</span> Mouthwash
+            </a>
+<a class="text-emerald-700 dark:text-emerald-300 opacity-80 hover:opacity-100 hover:bg-emerald-100 dark:hover:bg-emerald-800 px-3 py-1 rounded-full transition-all whitespace-nowrap flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">linear_scale</span> Floss &amp; Picks
+            </a>
+</div>
+</div>
+<main class="max-w-screen-2xl mx-auto px-8 py-8">
+<!-- Breadcrumb -->
+<nav class="flex items-center space-x-2 text-sm text-on-surface-variant mb-8">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary" href="#">Shop</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-medium text-on-surface">Electric Toothbrushes</span>
+</nav>
+<!-- Category Hero -->
+<section class="relative h-64 rounded-3xl overflow-hidden mb-12 flex items-center px-12 bg-gradient-to-r from-emerald-100 to-teal-50 dark:from-emerald-900/40 dark:to-teal-900/20">
+<div class="relative z-10 max-w-2xl">
+<h1 class="text-5xl font-headline font-bold text-primary mb-4 tracking-tight">Electric Toothbrushes</h1>
+<p class="text-on-surface-variant text-lg font-light leading-relaxed">
+                    Advanced oral care technology for a brighter, healthier smile. Discover 124 premium models.
+                </p>
+</div>
+<div class="absolute right-0 top-0 h-full w-1/3 bg-cover bg-center mix-blend-multiply opacity-20" data-alt="professional clean white electric toothbrush on soft mint green background with water droplets and elegant lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC1eo8lu5VzpRG7Kig2iENxQ4cHrort01zerRl4jZUv-jQDFfzUBkCbYQUQkff0YTE7Eu02aWnSMIG2SnHgNM9OdTgyQHb6tV0m0IjuFcDOREj-cRlwSZwz5KBBF8fXLaWiZmBY1m10d8AsAGOx2cW79uOyhW0KWQGFZoEAT1zjE2KKLsJgGTXltuLjAhuNDsMr56Xi3LDdch7sXZWg29UNNM93Ku1CdXH135Z4ffrLx7t-1QLyDy5_a3dLcxoSx-1Jn5DfOOxT18RG');"></div>
+</section>
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-72 flex-shrink-0 space-y-10">
+<!-- Search within category -->
+<div>
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary mb-4">Search Products</h3>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-outline-variant py-2 focus:border-primary focus:ring-0 transition-colors placeholder:text-outline-variant text-sm" placeholder="Model, feature..." type="text"/>
+<span class="material-symbols-outlined absolute right-0 top-2 text-outline">search</span>
+</div>
+</div>
+<!-- Sort -->
+<div>
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary mb-4">Sort By</h3>
+<select class="w-full bg-surface-container-low border-none rounded-lg text-sm p-3 focus:ring-1 focus:ring-primary">
+<option>Featured Products</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest Arrivals</option>
+<option>Customer Rating</option>
+</select>
+</div>
+<!-- Price Slider -->
+<div>
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary">Price Range</h3>
+<span class="text-xs font-medium text-tertiary">AED 200 - 1500</span>
+</div>
+<input class="w-full h-1 bg-outline-variant rounded-full appearance-none cursor-pointer accent-primary" max="2000" min="0" step="50" type="range"/>
+</div>
+<!-- Brands -->
+<div>
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary mb-4">Brand</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary/20 w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface">Oral-B <span class="text-xs opacity-50 ml-1">(42)</span></span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary/20 w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface">Philips Sonicare <span class="text-xs opacity-50 ml-1">(38)</span></span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary/20 w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface">Waterpik <span class="text-xs opacity-50 ml-1">(12)</span></span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary/20 w-4 h-4" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface">Curaprox <span class="text-xs opacity-50 ml-1">(15)</span></span>
+</label>
+</div>
+</div>
+<!-- Payment Plans -->
+<div class="p-5 rounded-2xl bg-surface-container-low">
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary mb-4">Interest-Free Plans</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium">Tabby</span>
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium">Tamara</span>
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+</div>
+<p class="text-[10px] text-on-surface-variant leading-tight">Split into 4 monthly payments with 0% interest on all electric brushes.</p>
+</div>
+</div>
+<!-- Ratings -->
+<div>
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary mb-4">Rating</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="text-primary focus:ring-primary/20" name="rating" type="radio"/>
+<div class="flex text-tertiary text-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="ml-2 text-on-surface-variant">&amp; Up</span>
+</div>
+</label>
+</div>
+</div>
+</aside>
+<!-- Product Grid Area -->
+<div class="flex-1">
+<!-- Sorting & View Controls -->
+<div class="flex justify-between items-center mb-8">
+<p class="text-sm text-on-surface-variant">Showing 1-24 of 124 products</p>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
+<span class="material-symbols-outlined text-lg">grid_view</span> Grid
+                        </button>
+<button class="flex items-center gap-2 text-xs font-medium text-outline-variant uppercase tracking-wider">
+<span class="material-symbols-outlined text-lg">list</span> List
+                        </button>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<div class="group relative bg-surface-container-lowest rounded-xl border border-outline-variant/15 hover:border-primary/30 transition-all duration-300 p-4">
+<div class="relative aspect-square rounded-lg bg-surface-container-low mb-4 overflow-hidden">
+<img class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110" data-alt="sleek black premium electric toothbrush standing on a stone surface with luxury mood lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHtmo4xe_RB3g44m004nIBRqksZjfoGKPRTTrR4Ze8B1gm3sqxRqmUMZg2-J33f39oROWDXZjqcSn2O1WqdgfOSn7cFCCYMvoRQ7VsWxb_VgE1Wj1BOe_I0WY3CzPa-Ojyxx3r6Ln3vv7pI1qRdN_RqH2ODZN0CoINZFX3oeJsbilf52k6m7HgzkvVf2KdXfHfh0SSN0MMrXpCT_RxrQzmoJzRe4P9N8DpN-oFhKbPpCW0i4PvtmxdtLef8Pr2S-FWv88J_WBGf6AA"/>
+<!-- Quick View Overlay -->
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+<button class="bg-surface-container-lowest text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick View</button>
+</div>
+<!-- Badge -->
+<div class="absolute top-3 left-3 flex flex-col gap-2">
+<span class="bg-tertiary/10 text-tertiary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter">Bestseller</span>
+</div>
+<button class="absolute top-3 right-3 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="px-2">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mb-1">Oral-B</p>
+<h3 class="font-headline font-semibold text-on-surface text-lg mb-2 leading-tight group-hover:text-primary transition-colors">iO Series 9 Onyx Black</h3>
+<div class="flex items-center gap-2 mb-3">
+<span class="text-primary font-bold">AED 1,299</span>
+<span class="text-on-surface-variant/50 text-xs line-through">AED 1,550</span>
+</div>
+<!-- Badges -->
+<div class="flex gap-2 mb-4">
+<span class="text-[9px] font-medium bg-[#5AD6B0]/10 text-[#005440] px-2 py-0.5 rounded border border-[#5AD6B0]/20">tabby</span>
+<span class="text-[9px] font-medium bg-[#FF8D00]/10 text-[#6B3F00] px-2 py-0.5 rounded border border-[#FF8D00]/20">tamara</span>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span> Add to Cart
+                            </button>
+</div>
+</div>
+<!-- Repeat Card for Grid (Representing multiple) -->
+<!-- Product Card 2 -->
+<div class="group relative bg-surface-container-lowest rounded-xl border border-outline-variant/15 hover:border-primary/30 transition-all duration-300 p-4">
+<div class="relative aspect-square rounded-lg bg-surface-container-low mb-4 overflow-hidden">
+<img class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110" data-alt="modern white electric toothbrush with rose gold accents on a marble background with clean clinical aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZCSf3vyYnI6EjI0NmZ8T4suptArof6PqeTzzfiHOyIr_jGak-v9Wr13aZa_QYBNRo4_wLDOx4CNyOP1nwRerKB4rK6RowGREzGIZkWFBwpz1wl5MPblMjIZ2ztfH4jl4lfZ3MxwZZVRr1PZK6lYc7o1-DpKbqp1EsgJWhr5iOGifOvqFUe639aHqlt2yPzgztBIJwbg19FeQmvv4BqC-3D1sQVpj3du44bkBOOhZvG5dXYCeuolViexQ0sm9HU5oL_5W3NjR6q07c"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+<button class="bg-surface-container-lowest text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl">Quick View</button>
+</div>
+</div>
+<div class="px-2">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mb-1">Philips Sonicare</p>
+<h3 class="font-headline font-semibold text-on-surface text-lg mb-2 leading-tight group-hover:text-primary transition-colors">DiamondClean 9900 Prestige</h3>
+<div class="flex items-center gap-2 mb-3">
+<span class="text-primary font-bold">AED 1,445</span>
+</div>
+<div class="flex gap-2 mb-4">
+<span class="text-[9px] font-medium bg-[#5AD6B0]/10 text-[#005440] px-2 py-0.5 rounded border border-[#5AD6B0]/20">tabby</span>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span> Add to Cart
+                            </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative bg-surface-container-lowest rounded-xl border border-outline-variant/15 hover:border-primary/30 transition-all duration-300 p-4">
+<div class="relative aspect-square rounded-lg bg-surface-container-low mb-4 overflow-hidden">
+<img class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110" data-alt="vibrant pink children's electric toothbrush with friendly cartoon design in a bright bathroom setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpO7ZH4c5qvwtHzUriH-Vlda2WTcimItf7Lkmb1d0puWCK0UDegVkEsA0-fDtaN2l5_bz0gWBDiMlUc4YgNrGaREPMEup5SYQ1sJYoSAarFhjhEuL3Ztry9E4BkqLtmXMoGoXc1L-e-PMuFD_ICF72CHKMtRyortSLZU2oyJzHoKRyuUKhRV1NyLTJSPdcVQWyPFU9U2mvULkanNbD9ZDzrj7apqJ5QhCHBpp1Nlpkb0yny20tjtBa5CeMAq36Mh-odCr7fG57OYJ_"/>
+<div class="absolute top-3 left-3">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter">New</span>
+</div>
+</div>
+<div class="px-2">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mb-1">Oral-B Kids</p>
+<h3 class="font-headline font-semibold text-on-surface text-lg mb-2 leading-tight group-hover:text-primary transition-colors">Junior Smart Electric Brush</h3>
+<div class="flex items-center gap-2 mb-3">
+<span class="text-primary font-bold">AED 345</span>
+</div>
+<div class="flex gap-2 mb-4">
+<span class="text-[9px] font-medium bg-[#FF8D00]/10 text-[#6B3F00] px-2 py-0.5 rounded border border-[#FF8D00]/20">tamara</span>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span> Add to Cart
+                            </button>
+</div>
+</div>
+<!-- Simplified placeholder cards for grid visualization -->
+<div class="hidden xl:block opacity-40 border border-dashed border-outline-variant rounded-xl aspect-[3/4]"></div>
+<div class="hidden xl:block opacity-40 border border-dashed border-outline-variant rounded-xl aspect-[3/4]"></div>
+<div class="hidden xl:block opacity-40 border border-dashed border-outline-variant rounded-xl aspect-[3/4]"></div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-surface-container text-on-surface transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white font-bold text-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant font-medium text-sm">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant font-medium text-sm">3</button>
+<span class="px-2 text-outline-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant font-medium text-sm">6</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-surface-container text-on-surface transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-20 bg-[#04342C] text-emerald-50 w-full pt-16 pb-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 max-w-7xl mx-auto text-left font-['Plus_Jakarta_Sans'] text-sm">
+<div class="space-y-6">
+<div class="text-xl font-serif text-white">DentaUAE</div>
+<p class="text-emerald-100/70 leading-relaxed">Your trusted partner in advanced oral healthcare. Providing premium dental solutions across the UAE.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined opacity-70 hover:opacity-100 cursor-pointer">public</span>
+<span class="material-symbols-outlined opacity-70 hover:opacity-100 cursor-pointer">share</span>
+<span class="material-symbols-outlined opacity-70 hover:opacity-100 cursor-pointer">chat</span>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-base tracking-wide underline decoration-tertiary/50 underline-offset-8">Quick Links</h4>
+<ul class="space-y-4">
+<li><a class="text-emerald-100/70 hover:text-white hover:translate-x-1 transition-transform inline-block" href="#">Best Sellers</a></li>
+<li><a class="text-emerald-100/70 hover:text-white hover:translate-x-1 transition-transform inline-block" href="#">New Arrivals</a></li>
+<li><a class="text-emerald-100/70 hover:text-white hover:translate-x-1 transition-transform inline-block" href="#">Our Clinics</a></li>
+<li><a class="text-emerald-100/70 hover:text-white hover:translate-x-1 transition-transform inline-block" href="#">Wholesale</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-base tracking-wide">Customer Service</h4>
+<ul class="space-y-4">
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Shipping &amp; Delivery</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Refund Policy</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Track Your Order</a></li>
+<li><a class="text-emerald-100/70 hover:text-white transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-base tracking-wide">Newsletter</h4>
+<p class="text-emerald-100/70 mb-4 text-xs">Join our elite list for exclusive oral health tips and offers.</p>
+<div class="flex border-b border-emerald-100/20 py-2">
+<input class="bg-transparent border-none focus:ring-0 text-white placeholder:text-emerald-100/40 w-full text-sm" placeholder="Your Email" type="email"/>
+<button class="text-white material-symbols-outlined">east</button>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-emerald-100/10 text-center max-w-7xl mx-auto">
+<p class="text-emerald-100/40 text-[10px] tracking-widest">© 2024 DentaUAE. All rights reserved. VAT Reg No. 100xxxxxxxxx</p>
+</div>
+</footer>
+</body></html>

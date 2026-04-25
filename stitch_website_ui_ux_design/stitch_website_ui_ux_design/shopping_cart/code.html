@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Your Cart | DentaUAE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-bright": "#f9f9f7",
+                      "secondary-fixed-dim": "#b7cbc4",
+                      "primary": "#005440",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed-variant": "#00513e",
+                      "on-primary-fixed": "#002117",
+                      "surface-container-low": "#f4f4f2",
+                      "error": "#ba1a1a",
+                      "surface-container-highest": "#e2e3e1",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "tertiary-fixed": "#ffdcbb",
+                      "outline": "#6f7a74",
+                      "primary-fixed-dim": "#84d6b9",
+                      "surface-dim": "#dadad8",
+                      "outline-variant": "#bec9c3",
+                      "on-primary-container": "#9aedcf",
+                      "inverse-primary": "#84d6b9",
+                      "tertiary-fixed-dim": "#ffb869",
+                      "on-background": "#1a1c1b",
+                      "surface": "#f9f9f7",
+                      "surface-container": "#eeeeec",
+                      "secondary": "#50625d",
+                      "tertiary": "#6b3f00",
+                      "on-tertiary-container": "#ffd5ac",
+                      "secondary-fixed": "#d3e7e0",
+                      "on-secondary": "#ffffff",
+                      "surface-variant": "#e2e3e1",
+                      "on-surface-variant": "#3f4944",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2f3130",
+                      "surface-container-high": "#e8e8e6",
+                      "primary-container": "#0f6e56",
+                      "on-secondary-fixed-variant": "#394a45",
+                      "tertiary-container": "#8c5400",
+                      "on-secondary-fixed": "#0d1f1b",
+                      "surface-tint": "#086b53",
+                      "primary-fixed": "#a0f3d4",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#d3e7e0",
+                      "inverse-on-surface": "#f1f1ef",
+                      "on-surface": "#1a1c1b",
+                      "on-secondary-container": "#566863",
+                      "background": "#f9f9f7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Noto Serif"],
+                      "body": ["Plus Jakarta Sans"],
+                      "label": ["Plus Jakarta Sans"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f9f9f7;
+            color: #1a1c1b;
+        }
+        h1, h2, h3, .serif-display {
+            font-family: 'Noto Serif', serif;
+        }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f9f9f7] dark:bg-neutral-900 opacity-80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-8 flex justify-between items-center h-20">
+<div class="text-2xl font-bold tracking-tighter text-[#005440] dark:text-[#0f6e56] font-['Noto_Serif']">DentaUAE</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#005440] font-bold border-b-2 border-[#005440] pb-1 font-['Noto_Serif'] tracking-tight" href="#">Shop</a>
+<a class="text-neutral-600 dark:text-neutral-400 font-medium hover:text-[#005440] transition-colors duration-300 font-['Noto_Serif'] tracking-tight" href="#">Clinic</a>
+<a class="text-neutral-600 dark:text-neutral-400 font-medium hover:text-[#005440] transition-colors duration-300 font-['Noto_Serif'] tracking-tight" href="#">Education</a>
+<a class="text-neutral-600 dark:text-neutral-400 font-medium hover:text-[#005440] transition-colors duration-300 font-['Noto_Serif'] tracking-tight" href="#">About</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#005440] hover:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="text-[#005440] hover:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div>
+<div class="bg-[#f4f4f2] dark:bg-neutral-800 h-[1px]"></div>
+</nav>
+<main class="max-w-7xl mx-auto px-8 pt-32 pb-24">
+<header class="mb-12">
+<h1 class="text-5xl font-bold tracking-tight text-on-surface serif-display">Your Cart (3 items)</h1>
+<p class="text-on-surface-variant mt-2 text-lg">Your Smile, Delivered.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Column: Cart Items (65%) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Cart Items Container -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<!-- Item 1 -->
+<div class="p-8 flex flex-col md:flex-row gap-6 border-b border-surface-container">
+<div class="w-20 h-20 shrink-0 bg-surface-container-low rounded-lg overflow-hidden">
+<img alt="Smart Toothbrush" class="w-full h-full object-cover" data-alt="Modern electric toothbrush with sleek chrome finish and minimalist charging base on a white marble surface with soft light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnDBdjcKyyVH9mA2dnawQ6V1HlI8mFjvgHLXp35QRL6lc16djYNjLRJj7b_ovD6z2IJR9aMRR17587Vo4G9n7MnpoqWKUUMGk8KzgCJVWYZ4oKEvouPMNksfqX0FhgiNKl1wT9mq6Edi8df-Ko3w07zhfcr2QWVMQ2ZRkXhdb559HqCPobJ5qYCT1oNZAH3ADADDxplBNOK1-WLR87ZhZIr7a0KIWLZxB1dho5EEFDF3wXSYRBXK15_xcU82s7cUmSkiOULdTyCiTp"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-primary mb-1">DentaPro</p>
+<h3 class="text-xl font-bold font-headline">Ultra-Sonic Elite Brush</h3>
+<p class="text-on-surface-variant text-sm mt-1">Midnight Green | Wireless Charging</p>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-primary serif-display">AED 1,798</p>
+<p class="text-sm text-on-surface-variant italic">AED 899 each</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-6">
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-low rounded-lg p-1">
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="w-10 text-center font-bold">2</span>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+<button class="text-sm font-medium text-on-surface-variant hover:text-error transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+                                        Remove
+                                    </button>
+</div>
+<div class="flex items-center gap-2 text-primary text-xs font-semibold bg-primary/5 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm" data-icon="local_shipping">local_shipping</span>
+                                    Free delivery on this item
+                                </div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-8 flex flex-col md:flex-row gap-6 border-b border-surface-container">
+<div class="w-20 h-20 shrink-0 bg-surface-container-low rounded-lg overflow-hidden">
+<img alt="Whitening Kit" class="w-full h-full object-cover" data-alt="Professional grade teeth whitening kit in luxury white packaging with gold foil lettering on a soft cream background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCabqht-UGEMqXm51bBSO6iCmyabmBvltALocoP16uL03ZJr_rz0u2HXwoBJz1NGShqnyMTiatieX3isXP2N_jGRZQ1UIzP4BivM7gtF9_97j2ob8GXEXannDusT-rbUFgxHtbsFesoWdkP6AumSWWQoVs5LBHe6-Dr-W-n64akWfuGN7BdQeChCtyTFVcYru0KR-H8n_wXgJP3NrXAvBkP24gSpld5BGQophP0ZIWZKYei0kROLGcilVeLJPq-nbkRJVKzV_uBdmyc"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-primary mb-1">DentaGlow</p>
+<h3 class="text-xl font-bold font-headline">Professional Whitening System</h3>
+<p class="text-on-surface-variant text-sm mt-1">14-Day Treatment | Sensitive Safe</p>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-primary serif-display">AED 450</p>
+<p class="text-sm text-on-surface-variant italic">AED 450 each</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-6">
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-low rounded-lg p-1">
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="w-10 text-center font-bold">1</span>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+<button class="text-sm font-medium text-on-surface-variant hover:text-error transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+                                        Remove
+                                    </button>
+</div>
+<div class="flex items-center gap-2 text-primary text-xs font-semibold bg-primary/5 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm" data-icon="local_shipping">local_shipping</span>
+                                    Free delivery on this item
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Promo Code Section -->
+<div class="bg-surface-container-lowest border-l-4 border-primary p-8 rounded-xl">
+<h4 class="font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="redeem">redeem</span>
+                        Have a promo code?
+                    </h4>
+<div class="flex gap-4">
+<input class="flex-1 bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 pb-2 transition-all" placeholder="Enter code" type="text"/>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-bold text-sm hover:opacity-90 transition-all uppercase tracking-widest">Apply</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Order Summary (35%) -->
+<div class="lg:col-span-4 sticky top-24">
+<div class="bg-surface-container-lowest border-t-4 border-primary rounded-xl p-8 space-y-6">
+<h2 class="text-2xl font-bold font-headline mb-4">Order Summary</h2>
+<div class="space-y-4 text-on-surface-variant">
+<div class="flex justify-between">
+<span>Subtotal</span>
+<span class="font-medium text-on-surface">AED 2,248</span>
+</div>
+<div class="flex justify-between text-primary">
+<span>Discount (WELCOME10)</span>
+<span class="font-medium">- AED 225</span>
+</div>
+<div class="flex justify-between">
+<span>Delivery</span>
+<span class="font-medium text-tertiary">FREE</span>
+</div>
+<div class="flex justify-between">
+<span>VAT (5%)</span>
+<span class="font-medium text-on-surface">AED 112</span>
+</div>
+</div>
+<div class="h-[1px] bg-surface-container"></div>
+<div class="flex justify-between items-end mb-8">
+<span class="text-xl font-bold">Total</span>
+<div class="text-right">
+<span class="text-4xl font-bold text-primary serif-display">AED 1,365</span>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter mt-1">Inclusive of all taxes</p>
+</div>
+</div>
+<div class="space-y-3 pt-4">
+<button class="w-full h-[52px] bg-primary text-on-primary rounded-lg font-bold text-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                            Proceed to Checkout
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="w-full h-[52px] bg-black text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                            Buy with <span class="text-xl font-bold tracking-tight"> Pay</span>
+</button>
+</div>
+<!-- Trust Row -->
+<div class="pt-6 grid grid-cols-2 gap-y-4 gap-x-2 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest border-t border-surface-container mt-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+                            Secure
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            Authentic
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="receipt_long" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+                            VAT Invoice
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="keyboard_return" style="font-variation-settings: 'FILL' 1;">keyboard_return</span>
+                            Free Returns
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-20 bg-[#f4f4f2] dark:bg-neutral-950 font-['Plus_Jakarta_Sans'] leading-relaxed">
+<div class="max-w-7xl mx-auto px-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="space-y-4">
+<div class="text-xl font-bold text-[#005440]">DentaUAE</div>
+<p class="text-neutral-500 dark:text-neutral-500 text-sm">© 2024 DentaUAE. Excellence in Dental Care.</p>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-neutral-500 dark:text-neutral-500 hover:text-[#005440] underline decoration-[#6b3f00] transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-neutral-500 dark:text-neutral-500 hover:text-[#005440] underline decoration-[#6b3f00] transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-neutral-500 dark:text-neutral-500 hover:text-[#005440] underline decoration-[#6b3f00] transition-opacity opacity-80 hover:opacity-100" href="#">Shipping Info</a>
+<a class="text-neutral-500 dark:text-neutral-500 hover:text-[#005440] underline decoration-[#6b3f00] transition-opacity opacity-80 hover:opacity-100" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>

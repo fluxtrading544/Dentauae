@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | DentaUAE</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus_Jakarta_Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-bright": "#f9f9f7",
+                      "secondary-fixed-dim": "#b7cbc4",
+                      "primary": "#005440",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed-variant": "#00513e",
+                      "on-primary-fixed": "#002117",
+                      "surface-container-low": "#f4f4f2",
+                      "error": "#ba1a1a",
+                      "surface-container-highest": "#e2e3e1",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "tertiary-fixed": "#ffdcbb",
+                      "outline": "#6f7a74",
+                      "primary-fixed-dim": "#84d6b9",
+                      "surface-dim": "#dadad8",
+                      "outline-variant": "#bec9c3",
+                      "on-primary-container": "#9aedcf",
+                      "inverse-primary": "#84d6b9",
+                      "tertiary-fixed-dim": "#ffb869",
+                      "on-background": "#1a1c1b",
+                      "surface": "#f9f9f7",
+                      "surface-container": "#eeeeec",
+                      "secondary": "#50625d",
+                      "tertiary": "#6b3f00",
+                      "on-tertiary-container": "#ffd5ac",
+                      "secondary-fixed": "#d3e7e0",
+                      "on-secondary": "#ffffff",
+                      "surface-variant": "#e2e3e1",
+                      "on-surface-variant": "#3f4944",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2f3130",
+                      "surface-container-high": "#e8e8e6",
+                      "primary-container": "#0f6e56",
+                      "on-secondary-fixed-variant": "#394a45",
+                      "tertiary-container": "#8c5400",
+                      "on-secondary-fixed": "#0d1f1b",
+                      "surface-tint": "#086b53",
+                      "primary-fixed": "#a0f3d4",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#d3e7e0",
+                      "inverse-on-surface": "#f1f1ef",
+                      "on-surface": "#1a1c1b",
+                      "on-secondary-container": "#566863",
+                      "background": "#f9f9f7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Noto Serif"],
+                      "body": ["Plus Jakarta Sans"],
+                      "label": ["Plus Jakarta Sans"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f9f9f7; color: #1a1c1b; }
+        .font-noto { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        input:focus { outline: none; border-bottom: 2px solid #005440 !important; box-shadow: 0 4px 6px -1px rgba(0, 84, 64, 0.1); }
+        .step-active { color: #005440; font-weight: 700; }
+        .step-inactive { color: #6f7a74; }
+        .step-line { border-top: 1px solid #bec9c3; }
+        .premium-gradient { background: linear-gradient(135deg, #005440 0%, #0f6e56 100%); }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Header (Minimal Navigation) -->
+<header class="fixed top-0 w-full z-50 bg-[#f9f9f7] opacity-80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-8 flex justify-between items-center h-20">
+<span class="text-2xl font-bold tracking-tighter text-[#005440] font-noto">DentaUAE</span>
+<div class="flex items-center gap-2 text-primary font-medium">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label">Secure Checkout</span>
+</div>
+</div>
+<div class="bg-surface-container-high h-[1px]"></div>
+</header>
+<main class="pt-32 pb-20 max-w-7xl mx-auto px-8">
+<!-- Progress Indicator -->
+<nav class="mb-16">
+<div class="flex items-center justify-center space-x-8 text-sm uppercase tracking-widest font-label">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-xs">1</span>
+<span class="step-active">Information</span>
+</div>
+<div class="w-16 step-line"></div>
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-surface-container-highest text-outline flex items-center justify-center text-xs">2</span>
+<span class="step-inactive">Shipping</span>
+</div>
+<div class="w-16 step-line"></div>
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-surface-container-highest text-outline flex items-center justify-center text-xs">3</span>
+<span class="step-inactive">Payment</span>
+</div>
+</div>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Left Column: Checkout Forms (60%) -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Contact Information -->
+<section>
+<h2 class="text-2xl font-headline text-on-background mb-8">Contact Information</h2>
+<div class="space-y-6">
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="Email Address" type="email"/>
+</div>
+<div class="flex gap-4">
+<div class="w-24 relative">
+<div class="flex items-center gap-2 border-b border-outline-variant py-4">
+<img alt="UAE Flag" class="w-5 h-4 object-cover rounded-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBolFbW_xdln15ItfzP3T4rEZReJNy73wlNZU2rTVPLzww_g9-mNX4abE76nE1YUee_sb8O3tB_vWUFlnx80fHK32GCWsIj2N_iXiMIodNFAyCVMheOExwcbw_HSIPuP3QtGoOJt5OPYASbuMEeLzhXfWxhzrd-GHhYKcTgLyaQ6oi9V98vSapBMpUSA393FD6Qm-Takqj7rNNSkmqGTrBJF06TAU9cOKk25o5gaTv-2-rkM3GEk-7wdK5zvMZpKD6PpIaLz_0QQz9_"/>
+<span class="text-on-surface">+971</span>
+</div>
+</div>
+<input class="flex-1 bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="Phone Number" type="tel"/>
+</div>
+</div>
+</section>
+<!-- Delivery Address -->
+<section>
+<h2 class="text-2xl font-headline text-on-background mb-8">Delivery Address</h2>
+<div class="grid grid-cols-2 gap-6">
+<input class="bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="First Name" type="text"/>
+<input class="bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="Last Name" type="text"/>
+<input class="col-span-2 bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="Address line 1" type="text"/>
+<select class="bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all appearance-none cursor-pointer">
+<option value="">Select Emirate</option>
+<option>Dubai</option>
+<option>Abu Dhabi</option>
+<option>Sharjah</option>
+<option>Ajman</option>
+<option>Ras Al Khaimah</option>
+</select>
+<input class="bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="Area" type="text"/>
+<input class="col-span-2 bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="Building / Villa / Flat" type="text"/>
+</div>
+</section>
+<!-- Shipping Method -->
+<section>
+<h2 class="text-2xl font-headline text-on-background mb-8">Shipping Method</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="group relative flex cursor-pointer rounded-xl border border-outline-variant p-6 hover:bg-surface-container-low transition-all">
+<input checked="" class="mt-1 h-4 w-4 border-outline text-primary focus:ring-primary" name="shipping" type="radio" value="standard"/>
+<div class="ml-4">
+<span class="block text-base font-semibold text-on-surface">Standard Delivery</span>
+<span class="mt-1 block text-sm text-outline">3 - 5 Business Days</span>
+<span class="mt-4 block text-sm font-bold text-primary">FREE</span>
+</div>
+</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-outline-variant p-6 hover:bg-surface-container-low transition-all">
+<input class="mt-1 h-4 w-4 border-outline text-primary focus:ring-primary" name="shipping" type="radio" value="express"/>
+<div class="ml-4">
+<span class="block text-base font-semibold text-on-surface">Express Next-Day</span>
+<span class="mt-1 block text-sm text-outline">Order by 4 PM</span>
+<span class="mt-4 block text-sm font-bold text-primary">AED 25.00</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Payment -->
+<section>
+<h2 class="text-2xl font-headline text-on-background mb-8">Payment</h2>
+<div class="bg-surface-container-low rounded-xl p-2 mb-8 flex flex-wrap gap-2">
+<button class="flex-1 py-3 px-4 rounded-lg bg-surface-container-lowest shadow-sm text-primary font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">credit_card</span>
+<span class="text-sm">Card</span>
+</button>
+<button class="flex-1 py-3 px-4 rounded-lg text-outline font-medium flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-xl">ios</span>
+<span class="text-sm">Apple Pay</span>
+</button>
+<button class="flex-1 py-3 px-4 rounded-lg text-outline font-medium flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-xl">package_2</span>
+<span class="text-sm">Tabby</span>
+</button>
+<button class="flex-1 py-3 px-4 rounded-lg text-outline font-medium flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-xl">schedule</span>
+<span class="text-sm">Tamara</span>
+</button>
+<button class="flex-1 py-3 px-4 rounded-lg text-outline font-medium flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-xl">payments</span>
+<span class="text-sm">COD</span>
+</button>
+</div>
+<div class="space-y-6">
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="Card Number" type="text"/>
+<div class="absolute right-0 top-4 flex gap-2">
+<span class="material-symbols-outlined text-outline">credit_card</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<input class="bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="MM / YY" type="text"/>
+<input class="bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="CVV" type="text"/>
+</div>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-on-surface focus:ring-0 transition-all placeholder:text-outline/50" placeholder="Name on Card" type="text"/>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary (40%) -->
+<aside class="lg:col-span-5">
+<div class="sticky top-32 bg-surface-container-low rounded-2xl p-8">
+<h3 class="text-xl font-headline mb-8">Order Summary</h3>
+<!-- Cart Items -->
+<div class="space-y-6 mb-8">
+<div class="flex gap-4">
+<div class="h-24 w-20 flex-shrink-0 bg-surface-container-lowest rounded-lg overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Professional grade electric toothbrush with clinical white finish and ergonomic handle on soft neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6d6rOYSq8LoqK7kac6aAFhKa85MfG-cDnZPAQ8m1abwyBjAX1Z39JEMjkCyWaizr9SWfdyPIMfzOxCfbG9_g9dictxomX41Oodf15OOHTqWX5zgWfz4px9WPOhcgRjAVyzvy_fVETeHBNJamvtHdULiu1898ZytW8b-0zDmciG6OEtzYUy4VSF97lqMJUhZxIWAuOgyAOGa1hjMiFxy5CSE9RT5IvPvCrp7Vwx5WUT92f6x74NJoaE8uXnMFqeCLloZXsQCPqSz-A"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<p class="text-on-surface font-semibold text-sm">DentaPro X1000 Electric</p>
+<p class="text-outline text-xs mt-1">Midnight Green | Standard</p>
+</div>
+<p class="text-on-surface font-bold">AED 450.00</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="h-24 w-20 flex-shrink-0 bg-surface-container-lowest rounded-lg overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Luxury dental floss and professional toothpaste kit with premium packaging in soft therapeutic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZXScIXhKSp_Sv2RTb1OqAsQmGRObxNsP0RoESsjmGVTa_kEjA8f76q77M6ef6_fI1yX01-WtCsv2xghYr_UMo0Hb5w6YTIKFcPCV_YucQU6vDy-Ro-6YY0pnPpfZ7lHZ2KWHmi-DTsBdojvOXzmCNsewFu7FMwTHO9ogUIZ3608_VpLbjZEmvuj3Z-oxdD4n7BQ6ORrv-4hiut38hSxrzocxtb7CvV7m7IU82LriWYKfhML3bYtVU_kmKMDG64Q76VMiuuM3rxma8"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<p class="text-on-surface font-semibold text-sm">Whitening Care Bundle</p>
+<p class="text-outline text-xs mt-1">2x Kits</p>
+</div>
+<p class="text-on-surface font-bold">AED 125.00</p>
+</div>
+</div>
+</div>
+<!-- Discount Code -->
+<div class="flex gap-3 mb-8">
+<input class="flex-1 bg-surface-container-lowest rounded-lg px-4 border-0 text-sm focus:ring-1 focus:ring-primary" placeholder="Promo Code" type="text"/>
+<button class="bg-secondary px-6 py-2 rounded-lg text-on-secondary text-sm font-medium hover:bg-on-surface-variant transition-colors">Apply</button>
+</div>
+<!-- Calculations -->
+<div class="space-y-4 pt-8 border-t border-outline-variant/30">
+<div class="flex justify-between text-on-surface-variant">
+<span>Subtotal</span>
+<span>AED 575.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Shipping</span>
+<span class="text-primary font-medium">Free</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>VAT (5%)</span>
+<span>AED 28.75</span>
+</div>
+<div class="flex justify-between text-xl font-bold pt-4 text-on-surface">
+<span>Total</span>
+<span>AED 603.75</span>
+</div>
+</div>
+<button class="w-full mt-10 premium-gradient text-on-primary py-5 rounded-xl font-bold tracking-wide shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3">
+<span>Place Order — AED 603.75</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="mt-6 flex items-center justify-center gap-4 opacity-50">
+<img alt="Visa" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf4h9ppUR6WbVa6wg6rpPiPA9nH2OoXLSywdC8HSVBbmYu5HI1xqvE1rqLiIKyD4i3ah1ZNAIj1khYqr3Q8MWPZJGDOI6dPRlI3CakjvyUjHuso0ScpjK4CJlzsbbYCMqVEaam7ChtYi2nFOXALbvHbbGhLETcJphRd5tdnlMcHwd55HQDODo-LxFG_VpefDWErpcG6OFOrwuvTsLelUyNTjlvNlghrW-om7br4UHBHU2UqCvktHOYar272QL54Fgphwl7Cca4kalF"/>
+<img alt="Mastercard" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWIXYxjV8Mp6NfbEZe5AmJ_QEvC7rp57nTNXjt5wg7oJADMBZwGrRSS1CSEdaJUmp9F-o7UMkzHF185-XsgaEmLQ84RnrZJYafbedFVkzzPqNahvPLP8R12qA_bNSfYFeddMROCZtHqZgjDu5QLqJWIOHYC1mvCn6Z4r-Kn2Y-UmI6sTFAqWQVnIeXKyOBlqPh0AWYvemG70hELmFbUwsc4_kOCFtGgX6jlIcPoNOb-GbhMGfejG3VqJQbCecmX3HZhFshaP9qZd7S"/>
+<img alt="PayPal" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF5MLB5zqaqBw1qQ460ppTDgBizxue51eqsjOsTVbtejnU1UDuE2Hhne0z1K38th9gPBcw4VKht3lg8Xp16Lac4tI0Lf4pCFh1PK3LYE5TubaWxZJM7sXZWPPTQZCsG0tk4HOL0K7vGd9NLPRox3bCSUel7_j4AfzeclvG--CBSAer2luE9GWuWWCXvXElQgDOxFK-VdO-KBzq74ARvr5t15dwp0HyRzoRvvv-brh--Hh9ooXyk5j1EQuGXV170A9ZcF-giC0z3D47"/>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-20 bg-[#f4f4f2]">
+<div class="max-w-7xl mx-auto px-16 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+<div class="space-y-2">
+<span class="text-xl font-bold text-[#005440] font-noto">DentaUAE</span>
+<p class="text-neutral-500 text-sm">Excellence in Dental Care.</p>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 justify-center md:justify-start">
+<a class="text-neutral-500 text-sm hover:text-[#005440] underline decoration-[#6b3f00] transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-neutral-500 text-sm hover:text-[#005440] underline decoration-[#6b3f00] transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-neutral-500 text-sm hover:text-[#005440] underline decoration-[#6b3f00] transition-opacity opacity-80 hover:opacity-100" href="#">Shipping Info</a>
+</div>
+<div class="md:text-right">
+<p class="text-neutral-500 text-sm font-label">© 2024 DentaUAE. Excellence in Dental Care.</p>
+</div>
+</div>
+</footer>
+</body></html>

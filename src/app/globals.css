@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #FAFAF8;
+    --foreground: #1A1C1B;
+    --primary: #0F6E56;
+    --primary-light: #E1F5EE;
+    --primary-dark: #04342C;
+    --primary-mid: #1D9E75;
+    --accent: #BA7517;
+    --accent-light: #FAEEDA;
+    --border: rgba(15, 110, 86, 0.12);
+    
+    /* Stitch Tokens */
+    --surface-container-low: #F4F4F2;
+    --surface-container-lowest: #FFFFFF;
+  }
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-mid: var(--primary-mid);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-surface: var(--background);
+  --color-border-custom: var(--border);
+  
+  --font-serif: "Noto Serif", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+}
