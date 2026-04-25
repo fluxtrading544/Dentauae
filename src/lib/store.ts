@@ -5,6 +5,12 @@ import { createCart, retrieveCart, addToCart, updateLineItem, deleteLineItem } f
 import { getRegionAe } from './data/products';
 import { HttpTypes } from '@medusajs/types';
 
+// Define missing types for Medusa v2 Storefront
+interface StoreAuthEmailPassword {
+  email: string;
+  password?: string;
+}
+
 export interface CartItem extends Product {
   quantity: number;
   lineId?: string; // ID from Medusa line item for easy mapping
@@ -17,9 +23,9 @@ interface CartStore {
   isLoading: boolean;
   
   // Checkout State
-  shippingMethods: HttpTypes.StoreFulfillmentOption[];
+  shippingMethods: HttpTypes.StoreCartShippingOption[];
   selectedShippingOptionId: string | null;
-  selectedShippingMethod: HttpTypes.StoreFulfillmentOption | null;
+  selectedShippingMethod: HttpTypes.StoreCartShippingOption | null;
   checkoutEmail: string;
   shippingAddress: Partial<HttpTypes.StoreCartAddress> | null;
 
@@ -38,7 +44,7 @@ interface CartStore {
   
   // Auth Actions
   fetchCustomer: () => Promise<void>;
-  login: (credentials: HttpTypes.StoreAuthEmailPassword) => Promise<void>;
+  login: (credentials: StoreAuthEmailPassword) => Promise<void>;
   logout: () => Promise<void>;
   
   // Checkout Actions
@@ -67,26 +73,26 @@ export const useCartStore = create<CartStore>()(
         if (!medusaCart || !medusaCart.items) return;
         
         const mappedItems: CartItem[] = medusaCart.items.map((item: HttpTypes.StoreCartLineItem) => {
-          let brand = (item as Record<string, unknown>).product_subtitle || "Professional Selection";
+          let brand: string = (item as any).product_subtitle || "Professional Selection";
           if (brand.toLowerCase().includes("imported from amazon")) {
             // Attempt to get brand from metadata if it's passed in the line item
-            brand = (item.metadata as Record<string, unknown>)?.tech_specs?.[("Brand" as string)] || "Professional Selection";
+            brand = (item.metadata as any)?.tech_specs?.["Brand"] || "Professional Selection";
           }
 
           return {
-            id: item.product_handle || item.variant_id, // Map back to our handle-based ID
-            variantId: item.variant_id,
-            lineId: item.id,
-            name: item.title,
+            id: (item.product_handle || item.variant_id || item.id) as string, // Ensure ID is string
+            variantId: item.variant_id as string,
+            lineId: item.id as string,
+            name: item.title as string,
             brand,
-            price: item.unit_price,
-            description: "", // Descriptions are usually not in line items
+            price: item.unit_price as number,
+            description: "",
             features: [],
-            image: item.thumbnail || "",
+            image: (item.thumbnail || "") as string,
             reviews: 128,
             rating: 4.8,
             category: "",
-            quantity: item.quantity,
+            quantity: item.quantity as number,
           };
         });
 
@@ -221,8 +227,8 @@ export const useCartStore = create<CartStore>()(
           const { updateCart } = await import('./data/cart');
           const cart = await updateCart(cartId, {
             email,
-            shipping_address: address,
-            billing_address: address, // Assume same for now
+            shipping_address: address as any,
+            billing_address: address as any, // Assume same for now
           });
           if (cart) get().syncWithMedusa(cart);
         } catch (error) {
@@ -292,12 +298,11 @@ export const useCartStore = create<CartStore>()(
 
         set({ isLoading: true });
         try {
-          const { completeCart } = await import('./data/cart');
-          const result = await completeCart(cartId);
+          const result: any = await completeCart(cartId);
           
           if (result.type === "order" || result.order) {
             clearCart();
-            return result.order as HttpTypes.StoreOrder;
+            return result.order;
           }
           return null;
         } catch (error) {
@@ -315,7 +320,7 @@ export const useCartStore = create<CartStore>()(
         set({ customer });
       },
 
-      login: async (credentials: HttpTypes.StoreAuthEmailPassword) => {
+      login: async (credentials: StoreAuthEmailPassword) => {
         const { loginCustomer } = await import('./data/customer');
         set({ isLoading: true });
         try {

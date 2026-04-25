@@ -4,7 +4,7 @@ import { HttpTypes } from "@medusajs/types";
 /**
  * Logs in a customer using email and password.
  */
-export async function loginCustomer(credentials: HttpTypes.StoreAuthEmailPassword) {
+export async function loginCustomer(credentials: any) {
   try {
     const token = await sdk.auth.login("customer", "emailpass", credentials);
     if (typeof token !== "string") {
