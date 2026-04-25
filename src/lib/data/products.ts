@@ -29,11 +29,11 @@ export function mapMedusaProductToStorefront(medusaProduct: HttpTypes.StoreProdu
     sku: v.sku!,
     price: v.calculated_price?.calculated_amount ?? 0,
     thumbnail: (v as { metadata?: { thumbnail_url?: string; image_url?: string } }).metadata?.thumbnail_url || (v as { metadata?: { thumbnail_url?: string; image_url?: string } }).metadata?.image_url,
-    options: v.options?.reduce((acc: Record<string, string | undefined>, opt: HttpTypes.StoreProductOptionValue) => {
+    options: (v.options?.reduce((acc: Record<string, string>, opt: HttpTypes.StoreProductOptionValue) => {
       const key = (opt.option?.title || opt.option_id) as string;
-      if (key) acc[key] = opt.value;
+      if (key && opt.value) acc[key] = opt.value;
       return acc;
-    }, {}) || {}
+    }, {} as Record<string, string>) || {}) as Record<string, string>
   }));
 
   // Map Options
@@ -45,7 +45,7 @@ export function mapMedusaProductToStorefront(medusaProduct: HttpTypes.StoreProdu
 
   // Map Promos from Metadata
   const metadata = medusaProduct.metadata as { promos?: unknown[]; coupon_timer?: string; tech_specs?: Record<string, string> } | undefined;
-  const promos = metadata?.promos || [];
+  const promos = (metadata?.promos as any) || [];
   const couponTimer = metadata?.coupon_timer;
   const techSpecs = metadata?.tech_specs || {};
 
@@ -76,7 +76,7 @@ export function mapMedusaProductToStorefront(medusaProduct: HttpTypes.StoreProdu
 export async function getRegionAe(): Promise<HttpTypes.StoreRegion | undefined> {
   try {
     const { regions } = await sdk.store.region.list();
-    return regions?.find((r: HttpTypes.StoreRegion) => r.countries?.some((c: Record<string, unknown>) => c.iso_2 === "ae")) || regions?.[0];
+    return regions?.find((r: HttpTypes.StoreRegion) => r.countries?.some((c: any) => c.iso_2 === "ae")) || regions?.[0];
   } catch (error) {
     console.error("Failed to fetch region:", error);
     return undefined;
