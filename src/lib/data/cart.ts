@@ -70,8 +70,8 @@ export async function updateLineItem(cartId: string, lineId: string, quantity: n
 
 export async function deleteLineItem(cartId: string, lineId: string) {
   try {
-    const { cart } = await sdk.store.cart.deleteLineItem(cartId, lineId);
-    return cart;
+    const response: any = await sdk.store.cart.deleteLineItem(cartId, lineId);
+    return response.parent || response.cart;
   } catch (error) {
     console.error("Failed to delete Medusa cart item:", error);
     return null;
