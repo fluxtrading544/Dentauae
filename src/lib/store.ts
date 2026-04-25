@@ -298,6 +298,7 @@ export const useCartStore = create<CartStore>()(
 
         set({ isLoading: true });
         try {
+          const { completeCart } = await import('./data/cart');
           const result: any = await completeCart(cartId);
           
           if (result.type === "order" || result.order) {
