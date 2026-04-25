@@ -21,7 +21,7 @@ export async function loginCustomer(credentials: any) {
 /**
  * Registers a new customer.
  */
-export async function registerCustomer(data: HttpTypes.StoreCreateCustomer) {
+export async function registerCustomer(data: any) {
   try {
     // 1. Register with Identity
     await sdk.auth.register("customer", "emailpass", {
