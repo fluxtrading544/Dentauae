@@ -21,7 +21,7 @@ interface CartStore {
   selectedShippingOptionId: string | null;
   selectedShippingMethod: HttpTypes.StoreFulfillmentOption | null;
   checkoutEmail: string;
-  shippingAddress: HttpTypes.StoreCartAddress | null;
+  shippingAddress: Partial<HttpTypes.StoreCartAddress> | null;
 
   // Auth State
   customer: HttpTypes.StoreCustomer | null;
@@ -42,7 +42,7 @@ interface CartStore {
   logout: () => Promise<void>;
   
   // Checkout Actions
-  updateCheckoutData: (email: string, address: HttpTypes.StoreCartAddress) => Promise<void>;
+  updateCheckoutData: (email: string, address: Partial<HttpTypes.StoreCartAddress>) => Promise<void>;
   fetchShippingMethods: () => Promise<void>;
   setShippingOption: (optionId: string) => Promise<void>;
   initPayment: (providerId: string) => Promise<HttpTypes.StorePaymentCollection | undefined>;
@@ -212,7 +212,7 @@ export const useCartStore = create<CartStore>()(
       },
 
       // Checkout Implementation
-      updateCheckoutData: async (email: string, address: HttpTypes.StoreCartAddress) => {
+      updateCheckoutData: async (email: string, address: Partial<HttpTypes.StoreCartAddress>) => {
         const { cartId } = get();
         if (!cartId) return;
 
