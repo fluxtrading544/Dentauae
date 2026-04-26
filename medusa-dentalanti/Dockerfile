@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM node:20-slim AS builder
+FROM node:20 AS builder
 
 WORKDIR /app
 
@@ -14,15 +14,11 @@ RUN npm install
 
 COPY . .
 
-# Build server and admin
+# Build everything
 RUN npx medusa build
 
-# MOVE ADMIN FILES TO ALL POSSIBLE LOCATIONS TO BE SAFE
-RUN mkdir -p .medusa/admin && cp -r .medusa/server/public/admin/* .medusa/admin/ || true
-RUN mkdir -p .medusa/dashboard && cp -r .medusa/server/public/admin/* .medusa/dashboard/ || true
-
 # Stage 2: Runner
-FROM node:20-slim AS runner
+FROM node:20 AS runner
 
 WORKDIR /app
 
@@ -35,10 +31,9 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-# Copy everything from builder
 COPY --from=builder /app ./
 
 EXPOSE 9000
 
-# Run migrations and start the server (with debug ls)
-CMD ["sh", "-c", "ls -R .medusa/admin && ls -R .medusa/dashboard && npx medusa db:migrate && npx medusa start"]
+# Run migrations and start the server
+CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start"]
