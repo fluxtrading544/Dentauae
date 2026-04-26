@@ -11,4 +11,7 @@ export const sdk = new Medusa({
   auth: {
     type: "session",
   },
+  globalHeaders: {
+    "bypass-tunnel-reminder": "true",
+  },
 });
