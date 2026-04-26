@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
+# Medusa v2 build output is in .medusa
 COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/medusa-config.ts ./medusa-config.ts
 COPY --from=builder /app/src ./src
@@ -39,4 +39,4 @@ COPY --from=builder /app/src ./src
 EXPOSE 9000
 
 # Run migrations and start the server
-CMD ["sh", "-c", "npx medusa db:migrate && npm run start"]
+CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start"]
