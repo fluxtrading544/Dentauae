@@ -14,8 +14,8 @@ RUN npm install
 
 COPY . .
 
-# Build the Medusa application (including Admin)
-RUN npm run build
+# Build everything (Server + Admin)
+RUN npx medusa build
 
 # Stage 2: Runner
 FROM node:20-slim AS runner
@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-# Medusa v2 build output is in .medusa (Server) and .medusa/admin
+# Copy the entire build output
 COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/medusa-config.ts ./medusa-config.ts
 COPY --from=builder /app/tsconfig.json ./tsconfig.json
