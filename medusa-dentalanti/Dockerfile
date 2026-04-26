@@ -15,7 +15,11 @@ RUN npm install
 COPY . .
 
 # Explicitly build server and admin
-RUN npx medusa build && ls -R .medusa
+RUN npx medusa build
+
+# MOVE ADMIN FILES TO CORRECT LOCATION
+# Medusa v2 expects admin at .medusa/admin, but build puts it in server/public/admin
+RUN mkdir -p .medusa/admin && cp -r .medusa/server/public/admin/* .medusa/admin/
 
 # Stage 2: Runner
 FROM node:20-slim AS runner
@@ -31,7 +35,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-# Copy the entire app to ensure no missing folders
+# Copy everything from builder
 COPY --from=builder /app ./
 
 EXPOSE 9000
