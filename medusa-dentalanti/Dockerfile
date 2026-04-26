@@ -14,7 +14,7 @@ RUN npm install
 
 COPY . .
 
-# Build everything (Server + Admin)
+# Explicitly build server and admin
 RUN npx medusa build
 
 # Stage 2: Runner
@@ -31,11 +31,8 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-# Copy the entire build output
-COPY --from=builder /app/.medusa ./.medusa
-COPY --from=builder /app/medusa-config.ts ./medusa-config.ts
-COPY --from=builder /app/tsconfig.json ./tsconfig.json
-COPY --from=builder /app/src ./src
+# Copy the entire app to ensure no missing folders
+COPY --from=builder /app ./
 
 EXPOSE 9000
 
