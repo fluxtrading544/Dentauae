@@ -15,7 +15,7 @@ RUN npm install
 COPY . .
 
 # Explicitly build server and admin
-RUN npx medusa build
+RUN npx medusa build && ls -R .medusa
 
 # Stage 2: Runner
 FROM node:20-slim AS runner
