@@ -14,12 +14,12 @@ RUN npm install
 
 COPY . .
 
-# Explicitly build server and admin
+# Build server and admin
 RUN npx medusa build
 
-# MOVE ADMIN FILES TO CORRECT LOCATION
-# Medusa v2 expects admin at .medusa/admin, but build puts it in server/public/admin
-RUN mkdir -p .medusa/admin && cp -r .medusa/server/public/admin/* .medusa/admin/
+# MOVE ADMIN FILES TO ALL POSSIBLE LOCATIONS TO BE SAFE
+RUN mkdir -p .medusa/admin && cp -r .medusa/server/public/admin/* .medusa/admin/ || true
+RUN mkdir -p .medusa/dashboard && cp -r .medusa/server/public/admin/* .medusa/dashboard/ || true
 
 # Stage 2: Runner
 FROM node:20-slim AS runner
@@ -40,5 +40,5 @@ COPY --from=builder /app ./
 
 EXPOSE 9000
 
-# Run migrations and start the server
-CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start"]
+# Run migrations and start the server (with debug ls)
+CMD ["sh", "-c", "ls -R .medusa/admin && ls -R .medusa/dashboard && npx medusa db:migrate && npx medusa start"]
