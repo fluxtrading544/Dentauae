@@ -1,10 +1,13 @@
 # Stage 1: Build
-FROM node:20-alpine AS builder
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
-# Install build dependencies for sharp and other native modules
-RUN apk add --no-cache libc6-compat build-base python3
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
 RUN npm install
@@ -15,14 +18,16 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Runner
-FROM node:20-alpine AS runner
+FROM node:20-slim AS runner
 
 WORKDIR /app
 
 ENV NODE_ENV production
 
 # Install runtime dependencies for sharp
-RUN apk add --no-cache libvips
+RUN apt-get update && apt-get install -y \
+    libvips-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
@@ -34,4 +39,4 @@ COPY --from=builder /app/src ./src
 EXPOSE 9000
 
 # Run migrations and start the server
-CMD ["npx", "medusa", "db:migrate", "&&", "npm", "run", "start"]
+CMD ["sh", "-c", "npx medusa db:migrate && npm run start"]
