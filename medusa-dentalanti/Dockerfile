@@ -14,13 +14,14 @@ RUN npm install
 
 COPY . .
 
-# Build everything in the final image
+# Build everything
 RUN npx medusa build
 
-# MAP ADMIN FOLDERS
+# MAP ADMIN FOLDERS AGGRESSIVELY
 RUN mkdir -p .medusa/admin && cp -r .medusa/client/* .medusa/admin/ || true
+RUN mkdir -p .medusa/server/public/admin && cp -r .medusa/client/* .medusa/server/public/admin/ || true
 
 EXPOSE 9000
 
-# Run migrations and start the server
-CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start"]
+# Run migrations and start the server (with a deep search for index.html)
+CMD ["sh", "-c", "echo '🔍 Searching for index.html...' && find . -name index.html && npx medusa db:migrate && npx medusa start"]
