@@ -36,16 +36,16 @@ RUN \
     [ -f /app/.medusa/client/index.html ]        && HAS_CLIENT=1        || true; \
     \
     if [ "$HAS_SERVER_PUBLIC" = "1" ]; then \
-        echo "✅ Admin at .medusa/server/public/ — mirroring to .medusa/client/"; \
-        mkdir -p /app/.medusa/client; \
-        cp -r /app/.medusa/server/public/. /app/.medusa/client/; \
+        echo "✅ Admin at .medusa/server/public/ — mirroring to public/admin/"; \
+        mkdir -p /app/public/admin; \
+        cp -r /app/.medusa/server/public/. /app/public/admin/; \
     elif [ "$HAS_CLIENT" = "1" ]; then \
-        echo "✅ Admin at .medusa/client/ — copying to .medusa/server/public/"; \
-        mkdir -p /app/.medusa/server/public; \
-        cp -r /app/.medusa/client/. /app/.medusa/server/public/; \
+        echo "✅ Admin at .medusa/client/ — copying to public/admin/"; \
+        mkdir -p /app/public/admin; \
+        cp -r /app/.medusa/client/. /app/public/admin/; \
     else \
         echo "⚠️  No admin index.html found — admin UI will be unavailable"; \
-        find /app/.medusa -name "*.html" 2>/dev/null || true; \
+        find /app -name "*.html" 2>/dev/null || true; \
     fi
 
 EXPOSE 9000
