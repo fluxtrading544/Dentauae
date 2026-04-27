@@ -20,11 +20,18 @@ module.exports = defineConfig({
       authCors: process.env.AUTH_CORS!,
       jwtSecret: "dentauae_super_secret_123",
       cookieSecret: "dentauae_super_secret_123",
-      cookieSecure: true,
-      cookieSameSite: "lax",
     }
   },
   modules: [
+    {
+      resolve: "@medusajs/medusa/auth",
+      options: {
+        session_cookie: {
+          sameSite: "lax",
+          secure: true,
+        },
+      },
+    },
     {
       resolve: "@medusajs/medusa/payment",
       options: {
