@@ -1,31 +1,30 @@
-import { getProductByHandle, getProductsList } from "@/lib/data/products";
+import { getProductByHandle, getRelatedProducts } from "@/lib/data/products";
 import ProductPageContent from "./ProductPageContent";
 import { notFound } from "next/navigation";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  
-  const product = await getProductByHandle(id);
-  
+
+  // FIX: Run both fetches in parallel — previously they were sequential,
+  // adding unnecessary latency to every product page load.
+  const [product, bundleItem] = await Promise.all([
+    getProductByHandle(id),
+    getProductByHandle("io-heads"),
+  ]);
+
   if (!product) {
     notFound();
   }
 
-  const bundleItem = await getProductByHandle("io-heads");
-  
-  // Fetch related products data on the server
-  const { response: relatedResponse } = await getProductsList({ 
-    limit: 5,
-    category_id: [] // We don't have category filtering in basic sdk yet, filter manually below
-  });
-  
-  const relatedData = relatedResponse.products
-    .filter(p => p.id !== product.id)
-    .slice(0, 4);
+  // FIX: Use getRelatedProducts() which passes the product's category IDs to
+  // the backend query, so only relevant products come back.
+  // The old code called getProductsList({ limit: 5 }) which fetched ALL products
+  // (with no category filter) and discarded most of the results client-side.
+  const relatedData = await getRelatedProducts(product.id, product.categoryIds ?? [], 4);
 
   return (
-    <ProductPageContent 
-      product={product} 
+    <ProductPageContent
+      product={product}
       bundleItem={bundleItem}
       relatedProductsData={relatedData}
     />

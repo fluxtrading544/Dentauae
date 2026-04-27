@@ -32,6 +32,8 @@ export interface Product {
   }[];
   couponTimer?: string;
   techSpecs?: Record<string, string | number | boolean>;
+  // Raw Medusa category IDs — used for server-side related-products filtering
+  categoryIds?: string[];
 }
 
 export const PRODUCTS: Product[] = [

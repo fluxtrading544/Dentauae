@@ -1,14 +1,13 @@
 import { sdk } from "@/lib/medusa";
-import { HttpTypes } from "@medusajs/types";
 
 /**
  * Logs in a customer using email and password.
  */
-export async function loginCustomer(credentials: any) {
+export async function loginCustomer(credentials: { email: string; password: string }) {
   try {
     const token = await sdk.auth.login("customer", "emailpass", credentials);
     if (typeof token !== "string") {
-      throw new Error("Authentication requires additional steps");
+      throw new Error("Authentication requires additional steps (e.g. 2FA)");
     }
     const { customer } = await sdk.store.customer.retrieve();
     return customer;
@@ -19,18 +18,44 @@ export async function loginCustomer(credentials: any) {
 }
 
 /**
- * Registers a new customer.
+ * Registers a new customer and automatically logs them in.
+ *
+ * FIX: The old implementation called sdk.auth.register then sdk.store.customer.create
+ * but never logged the user in. After registration the user had to manually log in,
+ * which is unexpected UX and left the auth state in an inconsistent half-created state.
+ * Now we: register identity → log in to get a session → create the customer profile.
  */
-export async function registerCustomer(data: any) {
+export async function registerCustomer(data: {
+  email: string;
+  password: string;
+  first_name?: string;
+  last_name?: string;
+  phone?: string;
+}) {
   try {
-    // 1. Register with Identity
+    // 1. Register the identity (creates credentials but no session yet)
     await sdk.auth.register("customer", "emailpass", {
       email: data.email,
-      password: data.password!,
+      password: data.password,
     });
 
-    // 2. Create the customer profile in the store
-    const { customer } = await sdk.store.customer.create(data);
+    // 2. Log in immediately to establish a session
+    const token = await sdk.auth.login("customer", "emailpass", {
+      email: data.email,
+      password: data.password,
+    });
+    if (typeof token !== "string") {
+      throw new Error("Login after registration failed — unexpected token type");
+    }
+
+    // 3. Create the customer profile now that we have a session
+    const { customer } = await sdk.store.customer.create({
+      email: data.email,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      phone: data.phone,
+    });
+
     return customer;
   } catch (error) {
     console.error("Registration failed:", error);
@@ -40,13 +65,13 @@ export async function registerCustomer(data: any) {
 
 /**
  * Retrieves the currently authenticated customer.
+ * Returns null if not logged in (normal case — not an error).
  */
 export async function getCustomer() {
   try {
     const { customer } = await sdk.store.customer.retrieve();
     return customer;
   } catch {
-    // Not logged in is a common case, don't flood logs
     return null;
   }
 }
@@ -63,7 +88,7 @@ export async function logoutCustomer() {
 }
 
 /**
- * Fetches order history for the current customer.
+ * Fetches paginated order history for the current customer.
  */
 export async function listCustomerOrders(limit = 10, offset = 0) {
   try {

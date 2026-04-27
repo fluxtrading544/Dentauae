@@ -2,15 +2,24 @@ import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
+// S3_ENDPOINT is the canonical env var name (also accepts legacy S3_URL for local dev)
+const s3Endpoint = process.env.S3_ENDPOINT || process.env.S3_URL
+
+// Redis URL (provided by docker-compose in production, local .env in dev)
+const redisUrl = process.env.REDIS_URL || "redis://localhost:6379"
+
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
+    // Wire up Redis so Medusa uses a real cache/queue instead of the fake in-memory fallback
+    redisUrl,
+    workerMode: "shared",
     http: {
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
       authCors: process.env.AUTH_CORS!,
-      jwtSecret: process.env.JWT_SECRET,
-      cookieSecret: process.env.COOKIE_SECRET,
+      jwtSecret: process.env.JWT_SECRET || "supersecret",
+      cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }
   },
   modules: [
@@ -43,7 +52,8 @@ module.exports = defineConfig({
                 secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
                 region: process.env.S3_REGION || "auto",
                 bucket: process.env.S3_BUCKET,
-                endpoint: process.env.S3_URL,
+                // FIX: Accept both S3_ENDPOINT (production) and legacy S3_URL (local dev)
+                endpoint: s3Endpoint,
               },
             }
             : {
