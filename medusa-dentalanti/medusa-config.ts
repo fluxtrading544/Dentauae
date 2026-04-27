@@ -20,7 +20,7 @@ module.exports = defineConfig({
       authCors: process.env.AUTH_CORS!,
       jwtSecret: "dentauae_super_secret_123",
       cookieSecret: "dentauae_super_secret_123",
-      cookieSecure: false,
+      cookieSecure: true,
       cookieSameSite: "lax",
     }
   },
@@ -71,6 +71,7 @@ module.exports = defineConfig({
     },
   ],
   admin: {
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://api.dentauae.com:9000",
+    disable: false,
+    backendUrl: "https://api.dentauae.com",
   },
 })
