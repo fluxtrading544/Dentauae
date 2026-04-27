@@ -69,7 +69,6 @@ module.exports = defineConfig({
     },
   ],
   admin: {
-    disable: false,
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "https://api.dentauae.com",
+    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://api.dentauae.com:9000",
   },
 })
