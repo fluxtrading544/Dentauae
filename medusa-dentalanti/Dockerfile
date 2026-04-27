@@ -32,13 +32,13 @@ RUN echo "=== .medusa directory after build ===" \
 RUN \
     HAS_SERVER_PUBLIC=0; \
     HAS_CLIENT=0; \
-    [ -f /app/.medusa/server/public/index.html ] && HAS_SERVER_PUBLIC=1 || true; \
+    [ -f /app/.medusa/server/public/admin/index.html ] && HAS_SERVER_PUBLIC=1 || true; \
     [ -f /app/.medusa/client/index.html ]        && HAS_CLIENT=1        || true; \
     \
     if [ "$HAS_SERVER_PUBLIC" = "1" ]; then \
-        echo "✅ Admin at .medusa/server/public/ — mirroring to public/admin/"; \
+        echo "✅ Admin at .medusa/server/public/admin/ — mirroring to public/admin/"; \
         mkdir -p /app/public/admin; \
-        cp -r /app/.medusa/server/public/. /app/public/admin/; \
+        cp -r /app/.medusa/server/public/admin/. /app/public/admin/; \
     elif [ "$HAS_CLIENT" = "1" ]; then \
         echo "✅ Admin at .medusa/client/ — copying to public/admin/"; \
         mkdir -p /app/public/admin; \
