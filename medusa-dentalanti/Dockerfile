@@ -17,6 +17,11 @@ COPY . .
 # Build everything
 RUN npx medusa build
 
+# THE FIX: Medusa v2 builds to .medusa/client, but the loader looks for .medusa/admin
+RUN mkdir -p .medusa/admin && cp -r .medusa/client/* .medusa/admin/
+# Also ensure the server/public/admin is covered just in case
+RUN mkdir -p .medusa/server/public/admin && cp -r .medusa/client/* .medusa/server/public/admin/ || true
+
 # Stage 2: Runner
 FROM node:20 AS runner
 
