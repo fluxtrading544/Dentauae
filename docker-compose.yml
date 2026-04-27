@@ -41,7 +41,7 @@ services:
       S3_ENDPOINT: ${S3_ENDPOINT}
       STRIPE_API_KEY: ${STRIPE_API_KEY}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
-      MEDUSA_ADMIN_ON_SERVER: "true"
+      MEDUSA_ADMIN_ON_SERVER: "false"
     depends_on:
       - postgres
       - redis
