@@ -84,10 +84,13 @@ services:
       NEXT_PUBLIC_MEDUSA_BACKEND_URL: ${NEXT_PUBLIC_MEDUSA_BACKEND_URL}
       NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY}
       NEXT_PUBLIC_STRIPE_KEY: ${NEXT_PUBLIC_STRIPE_KEY}
-    # FIX: Frontend waits for backend to be healthy before starting
+    # Frontend starts as soon as the backend container is running.
+    # service_started (not service_healthy) prevents cascade failure —
+    # if backend takes 2+ min to boot, frontend would 502 unnecessarily.
+    # Next.js fetches from backend at request-time, so it self-heals once backend is up.
     depends_on:
       backend:
-        condition: service_healthy
+        condition: service_started
     ports:
       - "3000:3000"
 

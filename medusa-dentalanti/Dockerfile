@@ -2,7 +2,6 @@ FROM node:20
 
 WORKDIR /app
 
-# Install build dependencies (sharp image processing, native addons)
 RUN apt-get update && apt-get install -y \
     python3 \
     build-essential \
@@ -14,41 +13,41 @@ RUN npm install
 
 COPY . .
 
-# ── Build ──────────────────────────────────────────────────────────────────
-# medusa build v2 produces:
-#   .medusa/server/          → compiled backend Node.js server
-#   .medusa/server/public/   → compiled admin UI (index.html lives here)
-# Some medusa versions may also use .medusa/client/ as an intermediate step.
+# ── Build ──────────────────────────────────────────────────────────────────────
+# medusa build v2 outputs:
+#   .medusa/server/           → compiled backend (medusa-config.js, src/, etc.)
+#   .medusa/server/public/    → compiled admin UI  (index.html, assets)
+#   .medusa/client/           → intermediate client bundle (same content)
 RUN npx medusa build
 
-# ── Diagnostics (visible in docker build log) ──────────────────────────────
-RUN echo "=== .medusa directory after build ===" \
+# ── Show build output (visible in docker build --progress=plain logs) ──────────
+RUN echo "=== .medusa tree after build ===" \
     && find /app/.medusa -maxdepth 4 | sort 2>/dev/null || true
 
-# ── Guarantee admin files exist at both paths the loader might check ───────
-# The admin-bundler's serve() resolves: path.resolve(outDir, "index.html")
-# outDir defaults to .medusa/server/public in Medusa v2.
-# Cross-copy so the server can find it regardless of which path it checks.
+# ── Guarantee admin index.html at /app/.medusa/server/public/ ─────────────────
+# WHY: medusa-config.ts sets admin.outDir = path.join(__dirname, "public").
+#      __dirname in the compiled medusa-config.js = /app/.medusa/server/
+#      so outDir = /app/.medusa/server/public/
+#
+# medusa build already writes index.html to .medusa/server/public/, but if it
+# only wrote to .medusa/client/ we need to copy it across.
 RUN \
-    HAS_SERVER_PUBLIC=0; \
-    HAS_CLIENT=0; \
-    [ -f /app/.medusa/server/public/admin/index.html ] && HAS_SERVER_PUBLIC=1 || true; \
-    [ -f /app/.medusa/client/index.html ]        && HAS_CLIENT=1        || true; \
-    \
-    if [ "$HAS_SERVER_PUBLIC" = "1" ]; then \
-        echo "✅ Admin at .medusa/server/public/admin/ — mirroring to public/admin/"; \
-        mkdir -p /app/public/admin; \
-        cp -r /app/.medusa/server/public/admin/. /app/public/admin/; \
-    elif [ "$HAS_CLIENT" = "1" ]; then \
-        echo "✅ Admin at .medusa/client/ — copying to public/admin/"; \
-        mkdir -p /app/public/admin; \
-        cp -r /app/.medusa/client/. /app/public/admin/; \
-    else \
-        echo "⚠️  No admin index.html found — admin UI will be unavailable"; \
-        find /app -name "*.html" 2>/dev/null || true; \
-    fi
+  if [ -f /app/.medusa/server/public/index.html ]; then \
+    echo "✅ index.html confirmed at .medusa/server/public/"; \
+  elif [ -f /app/.medusa/client/index.html ]; then \
+    echo "⚠️  index.html only in .medusa/client/ — copying to .medusa/server/public/"; \
+    mkdir -p /app/.medusa/server/public; \
+    cp -r /app/.medusa/client/. /app/.medusa/server/public/; \
+    echo "✅ Copied"; \
+  else \
+    echo "❌ No admin index.html found anywhere — admin UI will not work"; \
+    find /app/.medusa -name "*.html" 2>/dev/null || true; \
+  fi
+
+# ── Final verification ─────────────────────────────────────────────────────────
+RUN echo "=== Verifying admin file ===" \
+    && ls -la /app/.medusa/server/public/ 2>/dev/null || echo "public/ not found"
 
 EXPOSE 9000
 
-# Run DB migrations first, then start the production Medusa server.
 CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start"]
