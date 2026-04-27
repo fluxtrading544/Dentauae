@@ -21,6 +21,7 @@ module.exports = defineConfig({
       jwtSecret: "dentauae_super_secret_123",
       cookieSecret: "dentauae_super_secret_123",
       cookieSecure: false,
+      cookieSameSite: "lax",
     }
   },
   modules: [

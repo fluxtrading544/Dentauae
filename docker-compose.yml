@@ -40,6 +40,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
+      NODE_ENV: development
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-medusa-dentalanti}?sslmode=disable
       REDIS_URL: redis://redis:6379
       JWT_SECRET: ${JWT_SECRET}
