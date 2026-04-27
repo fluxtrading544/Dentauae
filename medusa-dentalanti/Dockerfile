@@ -17,10 +17,11 @@ COPY . .
 # Build everything
 RUN npx medusa build
 
-# THE FIX: Medusa v2 builds to .medusa/client, but the loader looks for .medusa/admin
-RUN mkdir -p .medusa/admin && cp -r .medusa/client/* .medusa/admin/
-# Also ensure the server/public/admin is covered just in case
+# MAP ALL POSSIBLE ADMIN FOLDERS
+# Medusa v2 is inconsistent with folder names (client vs admin)
+RUN mkdir -p .medusa/admin && cp -r .medusa/client/* .medusa/admin/ || true
 RUN mkdir -p .medusa/server/public/admin && cp -r .medusa/client/* .medusa/server/public/admin/ || true
+RUN mkdir -p .medusa/server/public/dashboard && cp -r .medusa/client/* .medusa/server/public/dashboard/ || true
 
 # Stage 2: Runner
 FROM node:20 AS runner
@@ -36,7 +37,11 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app ./
+# Copy the entire build output explicitly
+COPY --from=builder /app/.medusa ./.medusa
+COPY --from=builder /app/medusa-config.ts ./medusa-config.ts
+COPY --from=builder /app/tsconfig.json ./tsconfig.json
+COPY --from=builder /app/src ./src
 
 EXPOSE 9000
 
