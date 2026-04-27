@@ -18,12 +18,24 @@ module.exports = defineConfig({
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
       authCors: process.env.AUTH_CORS!,
-      jwtSecret: process.env.JWT_SECRET || "supersecret",
-      cookieSecret: process.env.COOKIE_SECRET || "supersecret",
+      jwtSecret: "dentauae_super_secret_123",
+      cookieSecret: "dentauae_super_secret_123",
       cookieSecure: false,
     }
   },
   modules: [
+    {
+      resolve: "@medusajs/medusa/auth",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/auth-emailpass",
+            id: "emailpass",
+            options: {},
+          },
+        ],
+      },
+    },
     {
       resolve: "@medusajs/medusa/payment",
       options: {
