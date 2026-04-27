@@ -14,8 +14,11 @@ RUN npm install
 
 COPY . .
 
-# Build everything
+# Build everything (builds admin to .medusa/client/ and server to .medusa/server/)
 RUN npx medusa build
+
+# Ensure admin files are at the path the admin bundler checks
+RUN cp -r .medusa/client/. .medusa/server/public/admin/ 2>/dev/null || true
 
 EXPOSE 9000
 
