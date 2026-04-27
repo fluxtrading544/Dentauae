@@ -26,18 +26,6 @@ module.exports = defineConfig({
   },
   modules: [
     {
-      resolve: "@medusajs/medusa/auth",
-      options: {
-        providers: [
-          {
-            resolve: "@medusajs/auth-emailpass",
-            id: "emailpass",
-            options: {},
-          },
-        ],
-      },
-    },
-    {
       resolve: "@medusajs/medusa/payment",
       options: {
         providers: [
