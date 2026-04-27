@@ -5,10 +5,10 @@ import { createCart, retrieveCart, addToCart, updateLineItem, deleteLineItem } f
 import { getRegionAe } from './data/products';
 import { HttpTypes } from '@medusajs/types';
 
-// Define missing types for Medusa v2 Storefront
+// Login always requires both email and password
 interface StoreAuthEmailPassword {
   email: string;
-  password?: string;
+  password: string;
 }
 
 export interface CartItem extends Product {
