@@ -59,6 +59,9 @@ services:
       STRIPE_API_KEY: ${STRIPE_API_KEY}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
       MEDUSA_ADMIN_ON_SERVER: "false"
+      # Tells medusa-config.ts where the built admin index.html lives in the container.
+      # Dockerfile copies .medusa/server/public/admin/* → public/ at build + startup.
+      ADMIN_OUT_DIR: /app/.medusa/server/public
     # FIX: Use condition: service_healthy so backend only starts after Postgres
     # and Redis pass their health checks — eliminates the startup race condition
     depends_on:

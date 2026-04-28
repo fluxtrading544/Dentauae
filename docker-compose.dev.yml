@@ -1,0 +1,46 @@
+version: '3.8'
+
+# ── Local Development Compose ─────────────────────────────────────────────────
+# Spins up ONLY the infrastructure services (Postgres + Redis).
+# Backend and Frontend run natively with hot-reload:
+#
+#   Backend:   cd medusa-dentalanti && npm run dev   (medusa develop, port 9000)
+#   Frontend:  npm run dev                            (next dev, port 3000)
+#
+# Start:  docker compose -f docker-compose.dev.yml up -d
+# Stop:   docker compose -f docker-compose.dev.yml down
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: medusa-dev
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d medusa-dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  postgres_dev_data:

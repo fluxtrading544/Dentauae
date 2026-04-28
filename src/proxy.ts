@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Middleware to protect account and checkout routes.
+ * Proxy (formerly middleware) to protect account and checkout routes.
  *
- * FIX: The old code checked for "_medusa_jwt" which doesn't exist in Medusa v2.
- * Medusa v2 uses session-based auth. The SDK stores a JWT in the cookie named
- * "_medusa_jwt_token" (or "medusa_auth_token" depending on version).
- * We now check for ALL known Medusa v2 auth cookie names so auth guard
- * doesn't silently pass everyone through unauthenticated.
+ * Renamed from middleware.ts → proxy.ts for Next.js 16 compatibility.
+ * FIX: Checks all known Medusa v2 auth cookie names — the SDK version
+ * determines which name is used ("_medusa_jwt_token", "medusa_auth_token", etc.)
  *
- * Note: Middleware cookie checks are a first-pass UI guard only.
+ * Note: This is a first-pass UI guard only.
  * Real authorization is enforced by the Medusa backend on every API call.
  */
 

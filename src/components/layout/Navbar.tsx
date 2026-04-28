@@ -60,7 +60,7 @@ export const Navbar = () => {
           <Link href="/account" className="p-1 hover:text-accent transition-colors" aria-label="User Account">
             <User size={20} />
           </Link>
-          <Link href="/cart" className="p-1 hover:text-accent transition-colors relative group" aria-label={`Shopping Bag with ${cartCount} items`}>
+          <Link href="/cart" className="p-1 hover:text-accent transition-colors relative group" aria-label={mounted ? `Shopping Bag with ${cartCount} items` : "Shopping Bag"}>
             <ShoppingBag size={20} />
             {mounted && cartCount > 0 && (
               <span className="absolute -top-1.5 -right-1.5 bg-accent text-[10px] text-white w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">

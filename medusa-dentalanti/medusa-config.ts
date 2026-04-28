@@ -9,13 +9,15 @@ const s3Endpoint = process.env.S3_ENDPOINT || process.env.S3_URL
 // Redis URL – docker-compose injects this; falls back to local for dev
 const redisUrl = process.env.REDIS_URL || "redis://localhost:6379"
 
-// ── Admin outDir (DEFINITIVE FIX v3) ─────────────────────────────────────────
-// medusa build emits: /app/.medusa/server/public/admin/index.html
-//                                                   ^^^^^^
-// admin-bundler serve() checks: path.resolve(outDir, "index.html")
-// Dockerfile copies admin/* → public/ so index.html lands at public/index.html
-// outDir = "/app/.medusa/server/public" → checks public/index.html ✓
-const adminOutDir = "/app/.medusa/server/public"
+// ── Admin outDir ──────────────────────────────────────────────────────────────
+// Production (Docker): ADMIN_OUT_DIR=/app/.medusa/server/public
+//   → Dockerfile copies admin/* → public/ so index.html is at public/index.html
+//   → admin-bundler serve() checks path.resolve(outDir, "index.html") ✓
+//
+// Local dev: `medusa develop` runs Vite dev server and never reads outDir,
+//   so the fallback value here doesn't matter for local development.
+//   Only used when you run `medusa build && medusa start` locally.
+const adminOutDir = process.env.ADMIN_OUT_DIR || "/app/.medusa/server/public"
 
 module.exports = defineConfig({
   projectConfig: {

@@ -3,7 +3,7 @@
 import { useCartStore } from "@/lib/store";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { CreditCard, Truck, AlertCircle, ChevronRight, Lock, Calendar } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -111,15 +111,14 @@ export const CheckoutClient = () => {
           throw new Error("Payment session could not be established. Please try again or contact support.");
         }
       } else {
-        // Handle COD or Tabby (Simulated for now)
-        await initPayment(paymentMethod === "cod" ? "pp_system_default" : "pp_system_default");
+        // COD: use the system default manual payment provider
+        await initPayment("pp_system_default");
         handlePaymentSuccess();
       }
     } catch (err: unknown) {
       console.error("Info submission failed:", err);
       const errorMessage = err instanceof Error ? err.message : "An error occurred. Check backend logs.";
       setError(errorMessage);
-      setIsSubmitting(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -332,7 +331,7 @@ export const CheckoutClient = () => {
           {items.map(item => (
             <div key={item.id} className="flex gap-4 items-center">
               <div className="relative w-16 h-16 bg-white rounded-lg border border-gray-100 overflow-hidden">
-                <Image src={item.image} alt={item.name} fill className="object-contain p-2" />
+                <SafeImage src={item.image} alt={item.name} fill sizes="64px" className="object-contain p-2" />
                 <span className="absolute -top-2 -right-2 bg-gray-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">{item.quantity}</span>
               </div>
               <div className="flex flex-col flex-1">

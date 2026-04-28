@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { ChevronRight, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { ProductDetailsClient } from "@/components/products/ProductDetailsClient";
@@ -64,11 +64,12 @@ export default function ProductPage({
                   activeImage === img ? "border-primary ring-2 ring-primary/10 shadow-lg" : "border-border-custom hover:border-primary/50"
                 }`}
               >
-                <Image 
-                  src={img} 
-                  alt={`${product.name} gallery ${i}`} 
-                  fill 
-                  className={`object-contain p-2 transition-opacity ${activeImage === img ? "opacity-100" : "opacity-60 group-hover:opacity-100"}`} 
+                <SafeImage
+                  src={img}
+                  alt={`${product.name} view ${i + 1}`}
+                  fill
+                  sizes="96px"
+                  className={`object-contain p-2 transition-opacity ${activeImage === img ? "opacity-100" : "opacity-60 group-hover:opacity-100"}`}
                 />
               </div>
             ))}
@@ -86,12 +87,14 @@ export default function ProductPage({
                 </div>
              </div>
             <div className={`relative w-full h-full transition-transform duration-700 ease-out ${isZoomed ? "scale-125 cursor-zoom-in" : "scale-100"}`}>
-              <Image 
+              <SafeImage
                 src={activeImage}
                 alt={product.name}
                 fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-contain p-12 lg:p-24"
                 priority
+                loading="eager"
               />
             </div>
           </div>

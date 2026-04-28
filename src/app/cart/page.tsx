@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ShoppingBag, Trash2, Minus, Plus } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 
 export default function CartPage() {
   const [mounted, setMounted] = useState(false);
@@ -53,7 +53,7 @@ export default function CartPage() {
                 {items.map((item) => (
                   <div key={item.lineId || item.id} className="flex flex-col md:flex-row gap-6 relative py-6 border-b border-gray-100 last:border-0 last:pb-0 first:pt-0">
                     <div className="relative w-24 h-24 bg-[#f9f9f7] rounded-xl flex-shrink-0 border border-border-custom shadow-sm overflow-hidden p-2">
-                      <Image src={item.image} alt={item.name} fill className="object-contain" />
+                      <SafeImage src={item.image} alt={item.name} fill sizes="96px" className="object-contain" />
                     </div>
                     <div className="flex flex-col justify-center flex-1 gap-1">
                       <h3 className="text-lg font-serif font-semibold text-primary-dark">{item.name}</h3>
