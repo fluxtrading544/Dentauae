@@ -24,19 +24,24 @@ RUN npx medusa build
 RUN echo "=== .medusa tree after build ===" \
     && find /app/.medusa -maxdepth 4 | sort 2>/dev/null || true
 
-# ── Verify admin index.html exists at the correct location ────────────────────
-# medusa build ALWAYS puts admin files in .medusa/server/public/admin/
-# admin.outDir in config = "/app/.medusa/server/public/admin"
-# admin-bundler serve() checks: path.resolve(outDir, "index.html")
-#                              = /app/.medusa/server/public/admin/index.html
-# This step fails the build early if the file is missing (no silent failures).
+# ── Move admin files UP one level so index.html is at outDir root ─────────────
+# medusa build puts admin UI at:  /app/.medusa/server/public/admin/
+# admin.outDir in config is:      /app/.medusa/server/public
+# serve() checks: path.resolve(outDir, "index.html")
+#               = /app/.medusa/server/public/index.html  ← must exist here
+#
+# Fix: copy admin/* → public/ so index.html is directly in outDir.
+# Assets end up at public/assets/ (correct — SPA references /assets/...).
 RUN \
-  TARGET="/app/.medusa/server/public/admin/index.html" && \
-  if [ -f "$TARGET" ]; then \
-    echo "✅ index.html confirmed at $TARGET"; \
+  SRC="/app/.medusa/server/public/admin" && \
+  DST="/app/.medusa/server/public" && \
+  if [ -f "$SRC/index.html" ]; then \
+    echo "Copying $SRC → $DST ..." && \
+    cp -r "$SRC/." "$DST/" && \
+    echo "✅ index.html confirmed at $DST/index.html" && \
+    ls -la "$DST/"; \
   else \
-    echo "❌ FATAL: index.html not found at $TARGET" && \
-    echo "=== Full .medusa tree ===" && \
+    echo "❌ FATAL: no index.html at $SRC" && \
     find /app/.medusa -name "*.html" 2>/dev/null | sort && \
     exit 1; \
   fi
@@ -47,4 +52,22 @@ RUN echo "=== Verifying admin file ===" \
 
 EXPOSE 9000
 
-CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start"]
+# ── Startup: guarantee admin index.html is at outDir root before medusa start ─
+# outDir = /app/.medusa/server/public
+# medusa build puts admin files in /app/.medusa/server/public/admin/
+# serve() checks /app/.medusa/server/public/index.html → must exist there
+# This runs at container start, guaranteeing the file is always present.
+CMD ["sh", "-c", "\
+  echo '--- Pre-start: ensuring admin index.html is at outDir ---' && \
+  SRC=/app/.medusa/server/public/admin && \
+  DST=/app/.medusa/server/public && \
+  if [ -f \"$DST/index.html\" ]; then \
+    echo 'index.html already at outDir root'; \
+  elif [ -f \"$SRC/index.html\" ]; then \
+    echo 'Copying admin/* to outDir root...' && \
+    cp -r \"$SRC/.\" \"$DST/\" && \
+    echo 'Done.' ; \
+  else \
+    echo 'WARNING: no index.html found in admin build'; \
+  fi && \
+  npx medusa db:migrate && npx medusa start"]
