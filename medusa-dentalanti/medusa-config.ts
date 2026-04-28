@@ -10,16 +10,17 @@ const s3Endpoint = process.env.S3_ENDPOINT || process.env.S3_URL
 const redisUrl = process.env.REDIS_URL || "redis://localhost:6379"
 
 // ── Admin outDir (DEFINITIVE FIX) ────────────────────────────────────────────
-// DO NOT use path.join(__dirname, ...) or process.cwd() here.
+// medusa build ALWAYS emits admin files to: {publicDir}/admin/
+// Proof from docker build log tree:
+//   /app/.medusa/server/public/admin/assets/
+//   /app/.medusa/server/public/admin/index.html   ← actual location
 //
-// Problem: `medusa build` loads this config from /app/medusa-config.ts,
-// so __dirname = "/app/". But `medusa start` loads the compiled version at
-// /app/.medusa/server/medusa-config.js, so __dirname = "/app/.medusa/server/".
-// These are different — any relative derivation breaks on one or the other.
+// The admin-bundler serve() checks: path.resolve(outDir, "index.html")
+// So outDir must point to the admin/ subdirectory, not the parent.
 //
-// Fix: hardcode the Docker container absolute path where medusa build
-// ALWAYS emits the admin UI. This is constant regardless of who loads the config.
-const adminOutDir = "/app/.medusa/server/public"
+// WRONG: "/app/.medusa/server/public"        → checks /public/index.html  ✗
+// RIGHT: "/app/.medusa/server/public/admin"  → checks /public/admin/index.html ✓
+const adminOutDir = "/app/.medusa/server/public/admin"
 
 module.exports = defineConfig({
   projectConfig: {
