@@ -140,8 +140,8 @@ export default function ProductPage({
               </div>
            </div>
            <div className="relative aspect-[1.2/1] rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] order-1 lg:order-2 border-8 border-white/50">
-              <Image 
-                src={product.image} 
+              <SafeImage
+                src={product.image}
                 alt="Product Lifestyle"
                 fill
                 className="object-cover scale-150 grayscale-[0.2] brightness-95 hover:scale-110 transition-transform duration-[2000ms]"
@@ -160,11 +160,11 @@ export default function ProductPage({
             <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
               <div className="flex items-center gap-6 lg:gap-14">
                 <div className="relative w-36 h-36 lg:w-48 lg:h-48 bg-white rounded-[2rem] p-6 shadow-xl shadow-slate-200 border border-white flex items-center justify-center group">
-                  <Image src={product.image} alt="Original" fill className="object-contain p-6 group-hover:scale-105 transition-transform" />
+                  <SafeImage src={product.image} alt="Original" fill className="object-contain p-6 group-hover:scale-105 transition-transform" />
                 </div>
                 <div className="text-5xl text-slate-200 font-light">+</div>
                 <div className="relative w-36 h-36 lg:w-48 lg:h-48 bg-white rounded-[2rem] p-6 shadow-xl shadow-slate-200 border border-white flex items-center justify-center group">
-                  <Image src={bundleItem.image} alt="Heads" fill className="object-contain p-6 group-hover:scale-105 transition-transform" />
+                  <SafeImage src={bundleItem.image} alt="Heads" fill className="object-contain p-6 group-hover:scale-105 transition-transform" />
                 </div>
               </div>
               
@@ -207,7 +207,7 @@ export default function ProductPage({
             {relatedProductsData.map((p) => (
               <div key={p.id} className="group relative bg-white rounded-3xl p-6 border border-gray-100 hover:shadow-2xl transition-all h-[400px] flex flex-col">
                 <div className="relative aspect-square mb-6 overflow-hidden rounded-2xl bg-gray-50">
-                   <Image src={p.image} alt={p.name} fill className="object-contain p-6 group-hover:scale-110 transition-transform duration-500" />
+                   <SafeImage src={p.image} alt={p.name} fill className="object-contain p-6 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div className="flex flex-col gap-2 mt-auto">
                    <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">{p.brand}</span>
