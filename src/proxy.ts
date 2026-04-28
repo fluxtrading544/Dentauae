@@ -22,7 +22,7 @@ function isAuthenticated(request: NextRequest): boolean {
   return MEDUSA_AUTH_COOKIES.some((name) => !!request.cookies.get(name)?.value);
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Protect all /account/* routes except the login page itself
