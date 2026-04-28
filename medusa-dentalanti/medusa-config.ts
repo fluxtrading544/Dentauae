@@ -9,16 +9,17 @@ const s3Endpoint = process.env.S3_ENDPOINT || process.env.S3_URL
 // Redis URL – docker-compose injects this; falls back to local for dev
 const redisUrl = process.env.REDIS_URL || "redis://localhost:6379"
 
-// ── Admin outDir (CRITICAL FIX) ───────────────────────────────────────────────
-// `medusa start` does process.chdir(".medusa/server/") before calling the admin
-// loader, so process.cwd() is "/app/.medusa/server/" at runtime — NOT "/app/".
-// The default outDir calculation: path.join(cwd, ".medusa/server/public")
-// becomes /app/.medusa/server/.medusa/server/public  ← DOES NOT EXIST → crash!
+// ── Admin outDir (DEFINITIVE FIX) ────────────────────────────────────────────
+// DO NOT use path.join(__dirname, ...) or process.cwd() here.
 //
-// Fix: hardcode the absolute path where medusa build actually puts the admin UI.
-// __dirname in compiled medusa-config.js = /app/.medusa/server/
-// so path.join(__dirname, "public") = /app/.medusa/server/public  ✅
-const adminOutDir = path.join(__dirname, "public")
+// Problem: `medusa build` loads this config from /app/medusa-config.ts,
+// so __dirname = "/app/". But `medusa start` loads the compiled version at
+// /app/.medusa/server/medusa-config.js, so __dirname = "/app/.medusa/server/".
+// These are different — any relative derivation breaks on one or the other.
+//
+// Fix: hardcode the Docker container absolute path where medusa build
+// ALWAYS emits the admin UI. This is constant regardless of who loads the config.
+const adminOutDir = "/app/.medusa/server/public"
 
 module.exports = defineConfig({
   projectConfig: {
@@ -44,11 +45,13 @@ module.exports = defineConfig({
             options: {},
           },
         ],
-        // secure: false so cookies work over HTTP in the Docker internal network
-        // and in development. HTTPS enforcement is handled by Nginx in production.
+        // secure: false — Nginx terminates TLS and forwards HTTP internally.
+        // The backend sees an HTTP connection so "secure: true" prevents session
+        // cookies from being set (express/koa honours req.secure before writing Secure).
+        // HTTPS is enforced at the Nginx layer — setting secure: false here is safe.
         session_cookie: {
           sameSite: "lax",
-          secure: true,
+          secure: false,
         },
       },
     },

@@ -25,23 +25,48 @@ RUN echo "=== .medusa tree after build ===" \
     && find /app/.medusa -maxdepth 4 | sort 2>/dev/null || true
 
 # ── Guarantee admin index.html at /app/.medusa/server/public/ ─────────────────
-# WHY: medusa-config.ts sets admin.outDir = path.join(__dirname, "public").
-#      __dirname in the compiled medusa-config.js = /app/.medusa/server/
-#      so outDir = /app/.medusa/server/public/
-#
-# medusa build already writes index.html to .medusa/server/public/, but if it
-# only wrote to .medusa/client/ we need to copy it across.
+# medusa-config.ts now uses hardcoded outDir = "/app/.medusa/server/public"
+# so medusa build writes the admin UI there directly.
+# BUT: if build put it elsewhere (e.g. /app/public or .medusa/client),
+# this step finds it and copies it to the required location.
 RUN \
-  if [ -f /app/.medusa/server/public/index.html ]; then \
-    echo "✅ index.html confirmed at .medusa/server/public/"; \
-  elif [ -f /app/.medusa/client/index.html ]; then \
-    echo "⚠️  index.html only in .medusa/client/ — copying to .medusa/server/public/"; \
-    mkdir -p /app/.medusa/server/public; \
-    cp -r /app/.medusa/client/. /app/.medusa/server/public/; \
-    echo "✅ Copied"; \
+  TARGET="/app/.medusa/server/public" && \
+  if [ -f "$TARGET/index.html" ]; then \
+    echo "✅ index.html confirmed at $TARGET/"; \
   else \
-    echo "❌ No admin index.html found anywhere — admin UI will not work"; \
-    find /app/.medusa -name "*.html" 2>/dev/null || true; \
+    echo "⚠️  index.html not at $TARGET — searching all locations..." && \
+    SRC_DIR="" && \
+    for CANDIDATE in \
+      /app/.medusa/client \
+      /app/public \
+      /app/.medusa/server/public/admin \
+      /app/.medusa/client/admin; \
+    do \
+      if [ -f "$CANDIDATE/index.html" ]; then \
+        SRC_DIR="$CANDIDATE"; \
+        break; \
+      fi; \
+    done && \
+    if [ -n "$SRC_DIR" ]; then \
+      echo "Found at $SRC_DIR — copying to $TARGET" && \
+      mkdir -p "$TARGET" && \
+      cp -r "$SRC_DIR/." "$TARGET/" && \
+      echo "✅ Copied successfully"; \
+    else \
+      echo "No candidate dirs found — deep searching..." && \
+      FOUND=$(find /app -name "index.html" 2>/dev/null | grep -v node_modules | head -1) && \
+      if [ -n "$FOUND" ]; then \
+        FOUND_DIR=$(dirname "$FOUND") && \
+        echo "Deep found at $FOUND_DIR — copying to $TARGET" && \
+        mkdir -p "$TARGET" && \
+        cp -r "$FOUND_DIR/." "$TARGET/" && \
+        echo "✅ Copied (deep search)"; \
+      else \
+        echo "❌ FATAL: No admin index.html found ANYWHERE after build" && \
+        find /app/.medusa -maxdepth 5 | sort 2>/dev/null || true && \
+        exit 1; \
+      fi; \
+    fi; \
   fi
 
 # ── Final verification ─────────────────────────────────────────────────────────
