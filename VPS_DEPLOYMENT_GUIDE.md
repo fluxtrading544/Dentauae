@@ -1,79 +1,76 @@
-# Medusa v2 & Next.js VPS Deployment: Troubleshooting Guide
+# VPS Deployment Guide
 
-This guide documents the specific challenges faced when moving the DentaUAE Medusa v2 project from a local Windows environment to a Linux Hostinger VPS using Docker. Keep this as a reference for your future headless e-commerce deployments.
+This is the current deployment runbook for `dentauae.com` and `api.dentauae.com`.
 
----
+## Stack
 
-## 1. Admin Dashboard "index.html Not Found" Error
-**The Problem:** 
-After deploying the backend, navigating to the Admin URL resulted in a blank page or an `index.html not found` error.
-**The Cause:**
-Medusa v2 compiles its Admin Dashboard into a hidden folder structure (`.medusa/server/public/admin`). In our `docker-compose.yml`, we had a `volumes` mapping that was overwriting the container's freshly built files with the empty folders from the host machine.
-**The Solution:**
-1. Removed the `volumes: - ./medusa-dentalanti:/app` mapping for the backend in `docker-compose.yml`. The container must rely on its own internal built files.
-2. Updated the `Dockerfile` to automatically locate the built admin files and explicitly copy them to `/app/public/admin/` so the Medusa server can serve them correctly.
+- Next.js storefront
+- Medusa v2 backend
+- Postgres and Redis in Docker
 
----
+## Live URLs
 
-## 2. PostgreSQL Backup Failure (`pg_dump`)
-**The Problem:** 
-When trying to export the local database using the connection string, it threw an `Invalid argument` error regarding the socket.
-**The Cause:**
-Your database password contained special characters (`@@`). In a database URL (`postgresql://user:password@host/db`), the `@` symbol is reserved to separate the password from the host. The extra `@` symbols confused the system.
-**The Solution:**
-URL-encoded the password. We replaced `@@` with `%40%40` in the connection string.
-*Example: `postgresql://SharyarAhmed:Sohail%40%405442626@localhost...`*
+- storefront: `https://dentauae.com`
+- backend: `https://api.dentauae.com`
+- admin: `https://api.dentauae.com/app`
+- health: `https://api.dentauae.com/health`
 
----
+## Required env alignment
 
-## 3. Cloudflare Blocking the Admin Dashboard
-**The Problem:** 
-The Admin Dashboard was accessible via the raw IP address (`http://76.13.254.103:9000/app`), but navigating to `http://api.dentauae.com:9000/app` timed out.
-**The Cause:**
-Cloudflare's "Orange Cloud" (Proxied mode) provides DDOS protection but strictly blocks non-standard ports like `9000`. It only allows standard website traffic (Ports 80 and 443).
-**The Solution:**
-In the Cloudflare DNS dashboard, we edited the `api` A-Record and turned off the Proxy status (changing it to a "Grey Cloud" / DNS Only). This allowed direct traffic to hit port 9000 on the VPS.
+The live VPS `.env` must keep these values aligned:
 
----
-
-## 4. Admin API "ERR_CONNECTION_TIMED_OUT" & CORS
-**The Problem:** 
-The Admin Dashboard loaded visually, but trying to log in resulted in timeouts in the browser console (`/admin/feature-flags`).
-**The Cause:**
-1. **Wrong API URL:** The Admin UI was pre-compiled to send API requests to `https://api.dentauae.com` (Port 443). Because we bypassed Cloudflare, port 443 wasn't answering.
-2. **CORS Block:** The backend's security rules (`ADMIN_CORS`) didn't know about the `api.dentauae.com:9000` domain, so it would have rejected the requests anyway.
-**The Solution:**
-1. Updated `medusa-config.ts` to explicitly set `backendUrl: "http://api.dentauae.com:9000"`.
-2. Appended `http://api.dentauae.com:9000` to the `ADMIN_CORS` variable in `docker-compose.yml`.
-
----
-
-## 5. Storefront Products Not Showing (Empty Grid)
-**The Problem:** 
-The database had 11 products successfully imported, but the Next.js frontend was completely empty.
-**The Cause:**
-Medusa v2 has strict Headless security. The frontend cannot query products unless it provides a valid **Publishable API Key**. Because `.env` files are not tracked in GitHub, the VPS frontend was missing the specific API key that was linked to the imported database.
-**The Solution:**
-Opened the `.env` file on the VPS and manually pasted the exact `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` from the local Windows environment. After rebuilding the frontend (`docker-compose up -d --build frontend`), the products appeared.
-
----
-
-## 6. Docker-Compose Python Crash (`KeyError: ContainerConfig`)
-**The Problem:** 
-When trying to start the frontend, the terminal threw a massive Python traceback ending in `KeyError: 'ContainerConfig'`.
-**The Cause:**
-This is a known bug in older versions of the `docker-compose` tool (v1.29.2). It crashes when trying to intelligently "Recreate" a container that was built using modern Docker features (BuildKit).
-**The Solution:**
-Bypassed the buggy "Recreate" step by forcing Docker to delete the container entirely before starting it:
-```bash
-docker-compose rm -f frontend
-docker-compose up -d frontend
+```env
+MEDUSA_BACKEND_URL=https://api.dentauae.com
+NEXT_PUBLIC_MEDUSA_BACKEND_URL=https://api.dentauae.com
+MEDUSA_ADMIN_ON_SERVER=true
+ADMIN_OUT_DIR=/app/.medusa/server/public
+NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=<must match api_key.token in Postgres>
 ```
 
----
+If the database changes, re-check the publishable key in Postgres:
 
-### 💡 Golden Rules for Future Medusa Deployments:
-1. **Never use local volumes in production** (`docker-compose.yml`). Let the Docker container build and serve its own internal files.
-2. **Always sync your API Keys.** If you migrate a database, your Publishable Keys must migrate to the frontend's `.env` file too.
-3. **Beware of Cloudflare Proxy.** If you are using custom ports like `9000` without a reverse proxy (like Nginx), you must set the DNS record to "DNS Only" (Grey Cloud).
-4. **CORS is King.** Every time you introduce a new domain or port, it MUST be added to `STORE_CORS` or `ADMIN_CORS`.
+```sql
+SELECT token
+FROM api_key
+WHERE type = 'publishable'
+ORDER BY created_at DESC
+LIMIT 1;
+```
+
+If that key changes, rebuild the frontend container.
+
+## Admin panel behavior
+
+The Medusa admin bundle is built under:
+
+```text
+.medusa/server/public/admin
+```
+
+Production admin serving is kept working by:
+- enabling admin serving in `medusa-config.ts`
+- copying the built admin bundle into runtime paths in `medusa-dentalanti/Dockerfile`
+
+If `/app` breaks, inspect those two files first.
+
+## Catalog recovery workflow
+
+If products or images disappear:
+
+1. Check backend health.
+2. Query `product` and `image` counts in Postgres.
+3. If counts are empty but health is `200`, treat it as a data/volume problem, not a connection problem.
+4. Restore from a known-good SQL dump.
+5. Re-check the publishable key.
+6. Rebuild the frontend if the key changed.
+
+## Post-deploy verification
+
+After each production rebuild, verify:
+
+1. `https://api.dentauae.com/health` returns `200`
+2. `https://api.dentauae.com/app` returns `200`
+3. admin auth works through `/auth/user/emailpass`
+4. `/admin/products` returns products with a valid admin token
+5. store API returns products with the current publishable key
+6. `https://dentauae.com/shop` renders catalog data

@@ -24,22 +24,26 @@ RUN npx medusa build
 RUN echo "=== .medusa tree after build ===" \
     && find /app/.medusa -maxdepth 4 | sort 2>/dev/null || true
 
-# ── Move admin files UP one level so index.html is at outDir root ─────────────
+# ── Mirror admin build to every path Medusa can serve from ────────────────────
 # medusa build puts admin UI at:  /app/.medusa/server/public/admin/
-# admin.outDir in config is:      /app/.medusa/server/public
-# serve() checks: path.resolve(outDir, "index.html")
-#               = /app/.medusa/server/public/index.html  ← must exist here
-#
-# Fix: copy admin/* → public/ so index.html is directly in outDir.
-# Assets end up at public/assets/ (correct — SPA references /assets/...).
+# Our config keeps a copy at:      /app/.medusa/server/public/index.html
+# Medusa's production admin loader also resolves from:
+#   rootDirectory/public/admin
+# In the container, rootDirectory resolves to /app, so we also need:
+#   /app/public/admin/index.html
 RUN \
   SRC="/app/.medusa/server/public/admin" && \
   DST="/app/.medusa/server/public" && \
+  ALT="/app/public/admin" && \
   if [ -f "$SRC/index.html" ]; then \
-    echo "Copying $SRC → $DST ..." && \
+    echo "Copying $SRC → $DST and $ALT ..." && \
     cp -r "$SRC/." "$DST/" && \
+    mkdir -p "$ALT" && \
+    cp -r "$SRC/." "$ALT/" && \
     echo "✅ index.html confirmed at $DST/index.html" && \
-    ls -la "$DST/"; \
+    echo "✅ index.html confirmed at $ALT/index.html" && \
+    ls -la "$DST/" && \
+    ls -la "$ALT/"; \
   else \
     echo "❌ FATAL: no index.html at $SRC" && \
     find /app/.medusa -name "*.html" 2>/dev/null | sort && \
@@ -52,21 +56,28 @@ RUN echo "=== Verifying admin file ===" \
 
 EXPOSE 9000
 
-# ── Startup: guarantee admin index.html is at outDir root before medusa start ─
-# outDir = /app/.medusa/server/public
-# medusa build puts admin files in /app/.medusa/server/public/admin/
-# serve() checks /app/.medusa/server/public/index.html → must exist there
-# This runs at container start, guaranteeing the file is always present.
+# ── Startup: guarantee both admin serve paths exist before medusa start ───────
 CMD ["sh", "-c", "\
-  echo '--- Pre-start: ensuring admin index.html is at outDir ---' && \
+  echo '--- Pre-start: ensuring admin index.html is in every serve path ---' && \
   SRC=/app/.medusa/server/public/admin && \
   DST=/app/.medusa/server/public && \
-  if [ -f \"$DST/index.html\" ]; then \
-    echo 'index.html already at outDir root'; \
-  elif [ -f \"$SRC/index.html\" ]; then \
-    echo 'Copying admin/* to outDir root...' && \
-    cp -r \"$SRC/.\" \"$DST/\" && \
-    echo 'Done.' ; \
+  ALT=/app/public/admin && \
+  mkdir -p \"$ALT\" && \
+  if [ -f \"$SRC/index.html\" ]; then \
+    if [ ! -f \"$DST/index.html\" ]; then \
+      echo 'Copying admin/* to outDir root...' && \
+      cp -r \"$SRC/.\" \"$DST/\" ; \
+    else \
+      echo 'index.html already at outDir root'; \
+    fi && \
+    if [ ! -f \"$ALT/index.html\" ]; then \
+      echo 'Copying admin/* to loader path...' && \
+      cp -r \"$SRC/.\" \"$ALT/\" ; \
+    else \
+      echo 'index.html already at loader path'; \
+    fi && \
+    ls -la \"$DST/\" && \
+    ls -la \"$ALT/\"; \
   else \
     echo 'WARNING: no index.html found in admin build'; \
   fi && \

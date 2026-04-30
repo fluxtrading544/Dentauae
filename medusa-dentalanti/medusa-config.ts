@@ -18,6 +18,9 @@ const redisUrl = process.env.REDIS_URL || "redis://localhost:6379"
 //   so the fallback value here doesn't matter for local development.
 //   Only used when you run `medusa build && medusa start` locally.
 const adminOutDir = process.env.ADMIN_OUT_DIR || "/app/.medusa/server/public"
+const adminEnabled = !["false", "0", "no"].includes(
+  (process.env.MEDUSA_ADMIN_ON_SERVER || "true").toLowerCase()
+)
 
 module.exports = defineConfig({
   projectConfig: {
@@ -43,13 +46,11 @@ module.exports = defineConfig({
             options: {},
           },
         ],
-        // secure: false — Nginx terminates TLS and forwards HTTP internally.
-        // The backend sees an HTTP connection so "secure: true" prevents session
-        // cookies from being set (express/koa honours req.secure before writing Secure).
-        // HTTPS is enforced at the Nginx layer — setting secure: false here is safe.
+        // Set secure: true if we are on HTTPS (production)
+        // Medusa v2 requires trustProxy: true to correctly handle this behind Nginx
         session_cookie: {
           sameSite: "lax",
-          secure: false,
+          secure: process.env.NODE_ENV === "production" || !!process.env.MEDUSA_BACKEND_URL?.includes("https"),
         },
       },
     },
@@ -98,7 +99,7 @@ module.exports = defineConfig({
     },
   ],
   admin: {
-    disable: false,
+    disable: !adminEnabled,
     backendUrl: process.env.MEDUSA_BACKEND_URL || "https://api.dentauae.com",
     // CRITICAL: explicit absolute outDir so the admin bundler always finds
     // index.html regardless of what process.cwd() is at startup time.

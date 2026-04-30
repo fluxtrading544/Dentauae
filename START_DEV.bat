@@ -7,6 +7,17 @@ echo   DentaUAE Local Development Environment
 echo ============================================================
 echo.
 
+if not exist "medusa-dentalanti\.env.development" (
+    echo ERROR: medusa-dentalanti\.env.development was not found.
+    pause
+    exit /b 1
+)
+
+REM Medusa CLI loads .env from the backend root. Keep local dev pointed at the Docker dev DB.
+copy /Y "medusa-dentalanti\.env.development" "medusa-dentalanti\.env" >nul
+echo [0/4] Synced medusa-dentalanti\.env.development to medusa-dentalanti\.env
+echo.
+
 REM ── Step 1: Start Docker infrastructure ──────────────────────────────────────
 echo [1/4] Starting Postgres + Redis via Docker...
 docker compose -f docker-compose.dev.yml up -d
@@ -60,7 +71,7 @@ echo.
 
 REM Backend: medusa develop (hot-reload on port 9000, admin at /app)
 echo Opening Backend terminal (Medusa develop — port 9000)...
-start "DentaUAE Backend" cmd /k "cd /d %~dp0medusa-dentalanti && echo. && echo  Backend: http://localhost:9000 && echo  Admin:   http://localhost:9000/app && echo. && copy .env.development .env.local.bak >nul 2>&1 && set NODE_ENV=development && npx medusa develop"
+start "DentaUAE Backend" cmd /k "cd /d %~dp0medusa-dentalanti && echo. && echo  Backend: http://localhost:9000 && echo  Admin:   http://localhost:9000/app && echo. && set NODE_ENV=development && npx medusa develop"
 
 REM Wait a moment before opening frontend
 timeout /t 3 /nobreak >nul
@@ -79,8 +90,8 @@ echo   Backend:    http://localhost:9000
 echo   Admin UI:   http://localhost:9000/app
 echo   Storefront: http://localhost:3000
 echo.
-echo   First-time setup? Run CREATE_DEV_ADMIN.bat to create
-echo   an admin user after the backend is fully started.
+echo   Need a fresh local admin? Run CREATE_DEV_ADMIN.bat
+echo   after the backend is fully started.
 echo ============================================================
 echo.
 pause

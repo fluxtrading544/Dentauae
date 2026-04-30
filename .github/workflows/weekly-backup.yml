@@ -1,0 +1,87 @@
+name: Weekly VPS Backup
+
+on:
+  schedule:
+    # Every Sunday at 02:00 UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch: # allow manual trigger from GitHub UI
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Install sshpass + awscli
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq sshpass awscli
+
+      - name: Dump Postgres and upload to R2
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PASS: ${{ secrets.VPS_PASS }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          TIMESTAMP=$(date +%Y-%m-%d)
+          DUMP_FILE="backup-${TIMESTAMP}.sql.gz"
+
+          echo "=== Dumping database on VPS ==="
+          sshpass -p "$VPS_PASS" ssh \
+            -o StrictHostKeyChecking=no \
+            -o ConnectTimeout=15 \
+            "$VPS_USER@$VPS_HOST" \
+            "docker exec dentauae-postgres-1 pg_dump -U postgres medusa-dentalanti | gzip" \
+            > "$DUMP_FILE"
+
+          echo "=== Dump size ==="
+          ls -lh "$DUMP_FILE"
+
+          echo "=== Uploading to Cloudflare R2 ==="
+          AWS_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID" \
+          AWS_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY" \
+          aws s3 cp "$DUMP_FILE" \
+            "s3://${R2_BUCKET}/db-backups/${DUMP_FILE}" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto
+
+          echo "=== Backup complete: db-backups/${DUMP_FILE} ==="
+
+      - name: Prune backups older than 90 days
+        env:
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          CUTOFF=$(date -d '90 days ago' +%Y-%m-%d)
+          echo "Pruning backups older than $CUTOFF"
+
+          AWS_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID" \
+          AWS_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY" \
+          aws s3 ls "s3://${R2_BUCKET}/db-backups/" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto \
+          | awk '{print $4}' \
+          | grep '^backup-' \
+          | while read FILE; do
+              FILE_DATE=$(echo "$FILE" | grep -oP '\d{4}-\d{2}-\d{2}')
+              if [[ "$FILE_DATE" < "$CUTOFF" ]]; then
+                echo "Deleting old backup: $FILE"
+                AWS_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID" \
+                AWS_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY" \
+                aws s3 rm "s3://${R2_BUCKET}/db-backups/$FILE" \
+                  --endpoint-url "$R2_ENDPOINT" \
+                  --region auto
+              fi
+            done
+          echo "Prune complete"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Weekly backup FAILED — check VPS connectivity and R2 credentials"

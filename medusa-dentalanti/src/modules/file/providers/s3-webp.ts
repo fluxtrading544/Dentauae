@@ -1,4 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { 
   FileTypes, 
   Logger, 
@@ -27,7 +28,7 @@ class S3WebpProviderService extends AbstractFileProviderService {
       fileUrl: options.file_url,
       accessKeyId: options.access_key_id,
       secretAccessKey: options.secret_access_key,
-      region: options.region,
+      region: "auto",
       bucket: options.bucket,
       prefix: options.prefix ?? "",
       endpoint: options.endpoint,
@@ -35,12 +36,13 @@ class S3WebpProviderService extends AbstractFileProviderService {
     };
 
     this.client_ = new S3Client({
+      endpoint: this.config_.endpoint,
+      region: this.config_.region,
       credentials: {
         accessKeyId: this.config_.accessKeyId,
         secretAccessKey: this.config_.secretAccessKey,
       },
-      region: this.config_.region,
-      endpoint: this.config_.endpoint,
+      forcePathStyle: true,
     });
   }
 
@@ -49,12 +51,7 @@ class S3WebpProviderService extends AbstractFileProviderService {
 
     let inputBuffer: Buffer;
     try {
-      const decoded = Buffer.from(file.content, "base64");
-      if (decoded.toString("base64") === file.content) {
-        inputBuffer = decoded;
-      } else {
-        inputBuffer = Buffer.from(file.content, "utf8");
-      }
+      inputBuffer = Buffer.from(file.content, "base64");
     } catch {
       inputBuffer = Buffer.from(file.content, "binary");
     }
@@ -63,58 +60,65 @@ class S3WebpProviderService extends AbstractFileProviderService {
     let finalMimeType = file.mimeType;
     let finalFilename = file.filename;
 
-    // 1. Check if the file is an image and not already webp
     if (finalMimeType?.startsWith("image/") && finalMimeType !== "image/webp") {
       try {
-        // 2. Convert to WebP using sharp
-        const webpBuffer = await sharp(inputBuffer)
-          .webp({ quality: 85, effort: 4 })
-          .toBuffer();
-        
-        finalContent = webpBuffer;
+        finalContent = await sharp(inputBuffer).webp({ quality: 85 }).toBuffer();
         finalMimeType = "image/webp";
-        // 3. Change extension to .webp
         finalFilename = finalFilename.replace(/\.[^/.]+$/, "") + ".webp";
-        
-        this.logger_.info(`Optimized image ${file.filename} to WebP`);
       } catch (e) {
-        this.logger_.error(`WebP conversion failed for ${file.filename}: ${e.message}`);
         finalContent = inputBuffer;
       }
     } else {
       finalContent = inputBuffer;
     }
 
-    const parsedFilename = path.parse(finalFilename);
-    const fileKey = `${this.config_.prefix}${parsedFilename.name}-${ulid()}${parsedFilename.ext}`;
+    const fileKey = `${this.config_.prefix}${path.parse(finalFilename).name}-${ulid()}${path.parse(finalFilename).ext}`;
 
-    const command = new PutObjectCommand({
-      Bucket: this.config_.bucket,
-      Body: finalContent,
-      Key: fileKey,
-      ContentType: finalMimeType,
-      ACL: "public-read",
-      CacheControl: this.config_.cacheControl,
-    });
+    try {
+      this.logger_.info(`Attempting R2 Upload: ${fileKey} (${finalMimeType})`);
+      
+      // 1. Generate a pre-signed URL
+      const command = new PutObjectCommand({
+        Bucket: this.config_.bucket,
+        Key: fileKey,
+        ContentType: finalMimeType,
+        CacheControl: this.config_.cacheControl,
+      });
 
-    await this.client_.send(command);
+      const signedUrl = await getSignedUrl(this.client_, command, { expiresIn: 3600 });
 
-    return {
-      url: `${this.config_.fileUrl}/${fileKey}`,
-      key: fileKey,
-    };
+      // 2. Perform the upload using native Node.js fetch (v20+)
+      // This is the cleanest way to handle modern TLS handshakes
+      const uploadResponse = await fetch(signedUrl, {
+        method: "PUT",
+        body: finalContent as any,
+        headers: {
+          "Content-Type": finalMimeType,
+        },
+      });
+
+      if (!uploadResponse.ok) {
+        const errorText = await uploadResponse.text();
+        throw new Error(`R2 Server Error (${uploadResponse.status}): ${errorText}`);
+      }
+
+      this.logger_.info(`Successfully uploaded to R2: ${fileKey}`);
+
+      return {
+        url: `${this.config_.fileUrl}/${fileKey}`,
+        key: fileKey,
+      };
+    } catch (error) {
+      this.logger_.error(`R2 Upload Exception: ${error.message}`);
+      throw error;
+    }
   }
 
-  // Necessary method overrides
-  async delete(files: any): Promise<void> {
-    // We could implement delete here if needed, but for now we focus on upload
-  }
-
+  async delete(files: any): Promise<void> {}
   async getPresignedDownloadUrl(fileData: any): Promise<string> { return "" }
   async getDownloadStream(fileData: any): Promise<any> { return null }
 }
 
-// In Medusa v2, we must export the provider using ModuleProvider
 export default ModuleProvider(Modules.FILE, {
   services: [S3WebpProviderService],
 });

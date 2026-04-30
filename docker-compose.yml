@@ -58,7 +58,7 @@ services:
       S3_ENDPOINT: ${S3_ENDPOINT}
       STRIPE_API_KEY: ${STRIPE_API_KEY}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
-      MEDUSA_ADMIN_ON_SERVER: "false"
+      MEDUSA_ADMIN_ON_SERVER: "true"
       # Tells medusa-config.ts where the built admin index.html lives in the container.
       # Dockerfile copies .medusa/server/public/admin/* → public/ at build + startup.
       ADMIN_OUT_DIR: /app/.medusa/server/public

@@ -45,3 +45,44 @@ next-env.d.ts
 .gemini/
 .system_generated/
 scratch/
+
+# Diagnostic / debugging scripts (session artifacts, not production code)
+check_*.py
+test_*.py
+test_*.js
+fix_*.py
+run_r2*.py
+verify_r2*.py
+apply_r2*.py
+final_*.py
+enable_admin*.py
+deploy_patch.py
+diagnose*.py
+DIAGNOSE*.bat
+DIAGNOSE*.py
+DEEP_DIAGNOSE*
+CHECK_STATUS.bat
+READ_BUNDLER.*
+WAIT_AND_FINISH.*
+sync_admin_assets.py
+investigate_product.py
+restore_admin_path.py
+get_vps_logs.py
+read_vps_env.py
+update_s3*.py
+*_r2*.py
+*_vps*.py
+
+# SQL dumps
+*.sql
+
+# Debug output files
+deep_diagnose.txt
+diagnose_output.txt
+
+# Debug screenshots at repo root (not app assets)
+/*.png
+
+# Temporary deployment docs
+DOCS_*.md
+PRODUCTION_FIXES_*.md

@@ -30,6 +30,7 @@ export default function AmazonImportPage() {
     setImportedProduct(null);
 
     try {
+      const backendUrl = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000";
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s timeout
 
@@ -38,7 +39,7 @@ export default function AmazonImportPage() {
       const t2 = setTimeout(() => setStatus("Downloading images..."), 4000);
       const t3 = setTimeout(() => setStatus("Creating product in Medusa..."), 8000);
 
-      const response = await fetch("http://localhost:9000/amazon-import", {
+      const response = await fetch(`${backendUrl}/amazon-import`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),

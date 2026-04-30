@@ -1,16 +1,11 @@
 import { defineMiddlewares } from "@medusajs/framework/http"
 import type { MedusaRequest, MedusaResponse, MedusaNextFunction } from "@medusajs/framework/http"
 
-// FIX: Read backend URL from the environment so CSP works in both dev and production.
-// Old code had http://localhost:9000 hardcoded — this blocked all admin panel scripts
-// and API connections when running on the production VPS (api.dentauae.com).
 const backendUrl = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
 
 function buildAdminCSP(): string {
   const extraOrigins: string[] = []
 
-  // In production, backendUrl is https://api.dentauae.com — always include it.
-  // In dev, backendUrl is already http://localhost:9000 so no extra entry needed.
   if (backendUrl !== "http://localhost:9000") {
     extraOrigins.push(backendUrl)
   }
@@ -30,6 +25,24 @@ function buildAdminCSP(): string {
 export default defineMiddlewares({
   routes: [
     {
+      matcher: "/*",
+      middlewares: [
+        (req: MedusaRequest, res: MedusaResponse, next: MedusaNextFunction) => {
+          // Force Express to recognize the request as secure (HTTPS) when behind a proxy
+          // This is critical for Medusa v2 to set the session cookie with `Secure: true`
+          if (process.env.NODE_ENV === "production" || backendUrl.includes("https")) {
+            // Access the underlying express app to set trust proxy
+            // This is the most reliable way to handle Nginx/Cloudflare SSL termination
+            if (req.app) {
+              req.app.set("trust proxy", true)
+            }
+            req.headers["x-forwarded-proto"] = "https"
+          }
+          next()
+        }
+      ],
+    },
+    {
       matcher: "/app*",
       middlewares: [
         (req: MedusaRequest, res: MedusaResponse, next: MedusaNextFunction) => {
@@ -40,3 +53,4 @@ export default defineMiddlewares({
     },
   ],
 })
+

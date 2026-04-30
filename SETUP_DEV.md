@@ -1,6 +1,7 @@
 # Local Development Setup
 
 ## Prerequisites
+
 - Docker Desktop installed and running
 - Node.js 20+ installed
 - Git
@@ -8,65 +9,64 @@
 ## First-time setup
 
 ### 1. Install Node dependencies
-```
+
+```bash
 cd medusa-dentalanti
 npm install
 cd ..
 npm install
 ```
 
-### 2. Start everything (one click)
-Double-click **`START_DEV.bat`**
+### 2. Start everything
 
-This will:
-- Start Postgres (port 5432) + Redis (port 6379) in Docker
-- Open a Backend terminal running `medusa develop` (hot-reload, port 9000)
-- Open a Frontend terminal running `next dev` (hot-reload, port 3000)
+Run:
 
-### 3. Create your admin user (first time only)
-Wait for the backend to fully start (you'll see "Server is ready"), then double-click:
+```bash
+START_DEV.bat
+```
 
-**`CREATE_DEV_ADMIN.bat`**
+This script:
+- starts Postgres and Redis from `docker-compose.dev.yml`
+- copies `medusa-dentalanti/.env.development` to `medusa-dentalanti/.env`
+- starts `medusa develop` on port `9000`
+- starts `next dev` on port `3000`
 
-- Email: `admin@dentauae.com`
-- Password: `Admin@Local2024`
+That env sync is required because the installed Medusa CLI loads `medusa-dentalanti/.env`. It does not automatically use `.env.development`.
+
+### 3. Create a local admin if needed
+
+After the backend is ready, run:
+
+```bash
+CREATE_DEV_ADMIN.bat
+```
+
+Local admin credentials created by that script:
+- email: `admin-local@dentauae.com`
+- password: `Admin@Local2026!`
 
 ## URLs
 
-| Service    | URL                          |
-|------------|------------------------------|
-| Storefront | http://localhost:3000        |
-| Backend    | http://localhost:9000        |
-| Admin UI   | http://localhost:9000/app    |
-| Postgres   | localhost:5432               |
-| Redis      | localhost:6379               |
-
-## Stopping dev environment
-
-Double-click **`STOP_DEV.bat`** — stops Postgres + Redis.
-Close the two terminal windows for backend and frontend.
+| Service | URL |
+|---|---|
+| Storefront | `http://localhost:3000` |
+| Backend | `http://localhost:9000` |
+| Admin UI | `http://localhost:9000/app` |
+| Postgres | `localhost:5432` |
+| Redis | `localhost:6379` |
 
 ## Environment files
 
-| File                                    | Purpose                        |
-|-----------------------------------------|-------------------------------|
-| `medusa-dentalanti/.env.development`    | Backend local env vars         |
-| `.env.local`                            | Next.js storefront env vars    |
-| `docker-compose.dev.yml`               | Postgres + Redis only          |
+| File | Purpose |
+|---|---|
+| `medusa-dentalanti/.env.development` | backend dev source of truth |
+| `medusa-dentalanti/.env` | runtime env actually loaded by Medusa CLI |
+| `.env.local` | Next.js storefront env |
+| `docker-compose.dev.yml` | local Postgres and Redis only |
 
 ## Notes
 
-- **Hot reload**: Both backend (`medusa develop`) and frontend (`next dev`) restart automatically when you save files.
-- **No S3 needed locally**: Files upload to `medusa-dentalanti/uploads/images/` instead.
-- **No real Stripe needed**: Placeholder keys are fine for dev — checkout UI renders but won't charge.
-- **Database**: Fresh `medusa-dev` DB in Docker. Data persists in a Docker volume between restarts.
-
-## Deploying to production after local changes
-
-```
-git add .
-git commit -m "your changes"
-git push origin main
-```
-
-Then run **`DEPLOY_BACKEND_FIX.bat`** to push to VPS and rebuild.
+- Local Medusa development should use the Docker `medusa-dev` database.
+- Local image uploads can use file-local storage.
+- Placeholder Stripe keys are acceptable for development.
+- In production, `NEXT_PUBLIC_*` values are build-time values. If the backend URL or publishable key changes on the VPS, rebuild the frontend container.
