@@ -16,7 +16,7 @@ export const ShopPageClient = ({ initialProducts }: { initialProducts: Product[]
   const [filters, setFilters] = useState({
     search: "",
     brands: [] as string[],
-    priceRange: [200, 1500] as [number, number],
+    priceRange: [50, 2000] as [number, number],
     rating: 0,
     plans: [] as string[]
   });
@@ -111,7 +111,7 @@ export const ShopPageClient = ({ initialProducts }: { initialProducts: Product[]
                   <p className="text-gray-400 mt-2">Try adjusting your filters or searching for something else.</p>
                 </div>
                 <button 
-                  onClick={() => setFilters({search: "", brands: [], priceRange: [200, 1500], rating: 0, plans: []})}
+                  onClick={() => setFilters({search: "", brands: [], priceRange: [50, 2000], rating: 0, plans: []})}
                   className="px-8 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all"
                 >
                   Clear All Filters
